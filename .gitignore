@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# Credentials (never commit)
+.env
+*credentials*.json
+*service-account*.json
+.config/earthengine/
+
+# Large or regenerable data
+data/samples/*.csv
+*.osm.pbf
+data/raw/
+
+# OS
+.DS_Store
