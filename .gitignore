@@ -12,7 +12,7 @@ venv/
 .config/earthengine/
 
 # Large or regenerable data
-data/samples/*.csv
+raw/
 *.osm.pbf
 data/raw/
 

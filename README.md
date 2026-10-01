@@ -11,7 +11,7 @@ Team: Atharv Johar, Himani Das, Ishaan Karan, Nidhi Vaidya, Prajna Penmetsa
 ```
 scripts/          Earth Engine sampling and analysis scripts; settings in scripts/config.py
 data/cities/      city boundaries (india_cities.geojson)
-data/samples/     per-city 1 km square CSVs (not committed; regenerate with script 1)
+data/samples/     per-city 1 km square CSVs (committed, so nobody re-spends EE quota)
 data/results/     cooling_efficiency.csv, city_climate.csv, etc.
 figures/          charts for the slides and report
 docs/             literature review, plans
@@ -32,7 +32,7 @@ The Earth Engine project is `greenpulse-510209`. Ask Himani to add you. The free
 | Dataset | Earth Engine ID |
 | --- | --- |
 | MODIS LST (Aqua) | `MODIS/061/MYD11A2` |
-| MODIS NDVI/EVI | `MODIS/061/MOD13A2` |
+| MODIS NDVI/EVI | `MODIS/061/MOD13A1` (500 m, averaged to 1 km) |
 | ERA5-Land | `ECMWF/ERA5_LAND/MONTHLY_AGGR` |
 | GHSL built-up / height | `JRC/GHSL/P2023A/GHS_BUILT_S`, `JRC/GHSL/P2023A/GHS_BUILT_H` (2018 only) |
 | WorldPop | `WorldPop/GP/100m/pop` (latest year 2020) |
