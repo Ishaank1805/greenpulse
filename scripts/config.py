@@ -20,3 +20,8 @@ VI_ID = 'MODIS/061/MOD13A1'    # NDVI/EVI, 500 m, 16-day
 BUILT_ID = 'JRC/GHSL/P2023A/GHS_BUILT_S/2020'
 POP_ID = 'WorldPop/GP/100m/pop'
 ERA5_ID = 'ECMWF/ERA5_LAND/MONTHLY_AGGR'
+
+# --- Role 1 ---
+# Seasons: name -> list of calendar months. Winter wraps the year end.
+SEASONS = {'pre': [4, 5], 'post': [10, 11], 'winter': [12, 1, 2]}
+SRTM_ID = 'USGS/SRTMGL1_003'
