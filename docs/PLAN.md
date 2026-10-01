@@ -70,10 +70,11 @@ All results are associations, not causal effects.
 
 | Role | Tasks | Presents |
 | --- | --- | --- |
-| 1. Pipeline | B1 three-season sampling, B2 all cities, M monsoon availability, G OSM water | Data, sampling method |
+| 1. Pipeline | B1 three-season sampling, B2 all cities, sampling checks, city map | Data, sampling method |
 | 2. Climate | C + E city climate and Heat Index, D main result | Climate method, the headline result, map, threshold |
 | 3. Analysis | A pilot charts, extending and running script 03, S seasons, H robustness | Regression method, pilot, seasons, robustness |
 | 4. Exposure and story | F exposure, L literature accuracy, I deck (editor) | Problem, exposure, Observations, limitations and next steps |
+| 5. Water and data quality | M monsoon availability, G OSM water share, the water effect | Why no monsoon, the water result |
 
 ## Decisions
 

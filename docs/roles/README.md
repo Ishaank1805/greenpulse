@@ -42,7 +42,7 @@ There are no dates. Work moves in **stages**. Within a stage, everything runs in
 STAGE 0 (first hour, everyone)
   - clone repo, pip install -r requirements.txt, earthengine authenticate,
     get added to EE project greenpulse-510209 (Himani), run scripts/00_check_setup.py
-  - R4 commits scripts/style.py (figure style) — done; see §4 Figures
+  - R4 commits scripts/style.py (figure style) — others can start without it and switch later
 
 STAGE 1 (start immediately, no waiting)
   R1  B1  extend 02_sample_city.py: 3 seasons in one pass + elevation; long format;
@@ -214,14 +214,7 @@ One row per city × season (303 × 3 = 909 rows).
 **Figures:**
 
 - Save as `figures/{task}_{short_name}.png`, e.g. `figures/A_pilot_scatter.png` or `figures/D_ce_vs_rain.png`, at 200 dpi.
-- **style.py is in.** Use it for every figure:
-  ```python
-  from style import apply_style, save, SEASON_COLORS, DIVERGING, CE_LABEL
-  apply_style()
-  ...
-  save(fig, 'D_ce_vs_rain')   # -> figures/D_ce_vs_rain.png at 200 dpi
-  ```
-  It also provides `SEASONS`, `SEASON_LABELS`, `DRY_MM` (1000), `DRY_COLOR`, `WET_COLOR` and `MUTED`. Scripts run from `scripts/`, so `import style` works directly.
+- Use `scripts/style.py` (`from style import apply_style, SEASON_COLORS, DIVERGING`). Until it exists, use matplotlib defaults and switch later.
 - Every axis has a label with units.
 - Cooling slope axes always read "Cooling slope (°C per 0.1 NDVI); negative = greener is cooler".
 - Season colours are fixed: pre = orange, post = blue-green, winter = purple (defined in style.py).
@@ -229,14 +222,6 @@ One row per city × season (303 × 3 = 909 rows).
 **Checks before you hand anything on.** Every task file lists its checks. The rule from the pilot still applies: compare against a second calculation or a known real-world value. This is how a big population bug was caught earlier.
 
 **Observations file.** `docs/observations.md` is created by R4. Each person writes only under their own `## Role N` heading: one sentence per finding, with numbers and the CSV it came from. R4 turns these into the Observations slide.
-
-**The slide deck.** Role 4 builds and formats the whole deck: [Google Slides](https://docs.google.com/presentation/d/1EnrZBA81aB5Bg3Xh8cWKhd4n5jQbhlmhK1_tqBOnO0I/edit?usp=sharing). Role 4 tells each person which slides they present. **Every role still hands Role 4 three things** once their part is done:
-
-1. **Observation lines** in `docs/observations.md`, under your role's heading: one sentence per finding, with the numbers and the CSV they come from.
-2. **Figures** committed to `figures/`, with the names in your role file.
-3. **2–3 speaker points per slide**, sent to Role 4. Include the one thing the TA is most likely to question.
-
-You still present your own slides, so check them in the deck before the rehearsal.
 
 **Language on slides.** Results are **associations, not causal effects**. Say "greener squares are cooler", not "vegetation causes X °C cooling".
 

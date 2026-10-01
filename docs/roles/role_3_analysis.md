@@ -21,7 +21,7 @@ Read [README.md](README.md) first. It defines the file formats (§3), the gates 
 | 2 | **A:** pilot charts from `data/samples/_pilot_v1/` (or the current pilot CSVs, if R1 hasn't moved them yet) | Nothing | First Results slide |
 | 3 | Write `common.py`, and extend `03_cooling_efficiency.py` against README §3.1 | Nothing (you code against the frozen format) | |
 | 4 | **Validate 03** on R1's new pilot files | **G1** (R1) | **G3** |
-| 5 | Add the water control, tested on the pilot water files | R1's "G pilot ready" | |
+| 5 | Add the water control, tested on the pilot water files | R5's "G pilot ready" | R5's water-effect figure |
 | 6 | Run 03 on all sampled cities, repeatedly as B2 progresses, with a final run at the end | G3 + B2 progress | **G4** → R2's D, your S and H, R4's Observations |
 | 7 | **S:** seasons | G4 + G2 (R2's `city_climate.csv`, for soil moisture) | Seasons slide |
 | 8 | **H:** robustness | G4 (+ G2 for the rainfall slope; + water files for the water variant) | Robustness slide |
@@ -127,7 +127,7 @@ Commit `common.py` early (in Stage 1) and tell R2 and R4 it exists.
 7. **Output:** `data/results/cooling_efficiency.csv` with exactly the columns in README §3.3.
 8. **Dropped cities:** also write `data/results/dropped_cities.csv`, one row per city × season × time that has no estimate under the main spec, with the columns `uc_id, city, season, time, n, reason`.
    - `reason` is one of: `fewer than 30 urban squares`, `fewer than 30 squares with clear nights`, or `no sample file`.
-   - The pilot handover notes that the median city is only 73 km², so expect many small cities to drop. Report the count; it goes on a slide.
+   - The median city outline is only about 73 km², so expect many small cities to drop. Report the count; it goes on a slide.
 9. **Speed:** about 303 × 3 × 2 × 2 × 2 × 4 ≈ 29,000 small OLS fits. That should take minutes. Print progress every 25 cities.
 
 ### 3c. Validation, then announce gate G3 (after G1)
@@ -143,7 +143,7 @@ Post "**G3 passed:** script 03 reproduces the pilot; seasons and elev control ad
 
 ## Step 5: water control
 
-When R1 posts "G pilot ready", rerun 03 on the two pilot cities and compare `built_elev_water` with `built_elev`. Post one line in chat, for example: "Adding water share changes Kochi pre/day from X to Y; Jodhpur night from X to Y."
+When R5 posts "G pilot ready", rerun 03 on the two pilot cities and compare `built_elev_water` with `built_elev`. Post one line in chat, for example: "Adding water share changes Kochi pre/day from X to Y; Jodhpur night from X to Y."
 
 The second number matters, because it tests whether water explains Jodhpur's warm green nights.
 
@@ -156,7 +156,7 @@ The second number matters, because it tests whether water explains Jodhpur's war
   2. Run `python scripts/03_cooling_efficiency.py`, which runs every sampled city.
   3. Commit `cooling_efficiency.csv` and `dropped_cities.csv`, then push.
   4. Post "03 rerun: N cities". R2 reruns D from this.
-- **Final run:** after B2 is complete **and** R1's water files exist for all cities. Post "**G4 passed:** final cooling_efficiency.csv, N cities with main-spec estimates (pre/day), N dropped".
+- **Final run:** after B2 is complete (R1) **and** R5 has posted "G complete" (water files for all cities). Post "**G4 passed:** final cooling_efficiency.csv, N cities with main-spec estimates (pre/day), N dropped".
 
 **Checks on the full run:**
 - [ ] Every city with a sample file appears in the output, or has an entry in `dropped_cities.csv`.

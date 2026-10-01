@@ -23,7 +23,7 @@ Read [README.md](README.md) first. It defines the file formats (§3), the gates 
 | 5 | **D (final):** run on the final `cooling_efficiency.csv` | **G4** (R3), ideally with the water control done | Results slides |
 | 6 | Write the observation lines and your slides | Step 5 | |
 
-**Earth Engine coordination.** Role 1's B2 is also using the shared quota. Tell R1 in chat before you start your full 303-city run. Run one city at a time with a 1 s sleep. If you hit "Too many concurrent aggregations" or a 429 error, back off for 60 s and retry (3 attempts). Test on Jodhpur and Kochi first.
+**Earth Engine coordination.** Role 1's B2 and Role 5's monsoon check also use the shared quota. Tell R1 and R5 in chat before you start your full 303-city run, because B2 has priority. Run one city at a time with a 1 s sleep. If you hit "Too many concurrent aggregations" or a 429 error, back off for 60 s and retry (3 attempts). Test on Jodhpur and Kochi first.
 
 ---
 

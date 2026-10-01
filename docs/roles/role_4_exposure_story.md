@@ -78,7 +78,7 @@ Commit it, push, and post "style.py is in: use `from style import apply_style, s
 
 ## Step 3: `docs/observations.md` skeleton
 
-Create the file with these headings, so each person writes only under their own: `## Role 1 (data limits)`, `## Role 2 (climate)`, `## Role 3 (pilot, seasons, robustness)` and `## Role 4 (exposure)`.
+Create the file with these headings, so each person writes only under their own: `## Role 1 (sampling)`, `## Role 2 (climate)`, `## Role 3 (pilot, seasons, robustness)`, `## Role 4 (exposure)` and `## Role 5 (water and data quality)`.
 
 Add one line at the top: "One sentence per finding, with numbers and the CSV it comes from. Associations, not causes."
 
@@ -89,7 +89,7 @@ You turn these lines into the Observations slide.
 ## Step 4, I: the deck
 
 **Format:** a presentation to the TA, with no written submission. Each person presents their own part.
-- Use a shared Google Slides deck so all four people can edit, or whatever tool the team prefers. Put the link in the team chat and at the top of `docs/observations.md`.
+- Use a shared Google Slides deck so all five people can edit, or whatever tool the team prefers. Put the link in the team chat and at the top of `docs/observations.md`.
 - **Confirm the time limit with the TA.** Until you know it, plan about 1 minute per slide.
 
 **Slide rules:**
@@ -108,7 +108,8 @@ You turn these lines into the Observations slide.
 | 3 | **The literature disagrees on dry climates, and mostly measures surface heat** | R4 | Guo and Schwaab vs Manoli and Yang; Venter (~6×), Du (~12×); the evidence is mostly from Europe, China and North America |
 | 4 | **Our question and hypotheses H1–H5** (H6 is listed as after mid-sem) | R4 | PLAN.md |
 | 5 | **Data:** seven open datasets, each with its resolution and use | R1 | Main README data table |
-| 6 | **Study area:** 303 cities from ~350 to ~3,000 mm of rain, in 3 seasons. The monsoon is too cloudy. | R1 (+ R2's figure) | `B_city_map.png`, `C_climate_overview.png`, `M_lst_availability.png` |
+| 6 | **Study area:** 303 cities from ~350 to ~3,000 mm of rain, in 3 seasons | R1 (+ R2's figure) | `B_city_map.png`, `C_climate_overview.png` |
+| 6b | **Why no monsoon:** too few usable satellite pixels in Jun–Sep | R5 | `M_lst_availability.png` |
 | 7 | **Method 1:** 1 km squares, QC-filtered, 2019–2024 seasonal means | R1 | role_1 slides |
 | 8 | **Method 2:** the cooling slope from a regression with controls and clustered uncertainty | R3 | `A_pilot_raw_vs_adjusted.png` |
 | 9 | **Method 3:** city climate from ERA5-Land, daily Heat Index, people-weighting | R2 (+ one line from R4) | |
@@ -118,6 +119,7 @@ You turn these lines into the Observations slide.
 | 13 | **Threshold:** cities under 1000 mm vs Guo's 22% | R2 | `main_result_bins.csv` |
 | 14 | **Seasons:** the same city before and after the monsoon | R3 | `S_season_paired.png`, `S_dce_vs_dsoil.png` |
 | 15 | **Exposure:** people live in hotter, less green squares | R4 | `F_*.png` |
+| 15b | **Water:** does water explain part of the effect, and Jodhpur's warm nights? | R5 | `G_water_effect.png` |
 | 16 | **Robustness:** what changes the answer and what doesn't | R3 | `H_robustness_table.png` |
 | 17 | **Observations:** 5–7 one-line findings, each linked to H1–H5 and to a paper | R4 (each person reads their own line) | `docs/observations.md` |
 | 18 | **Limitations, and what is left for the final** | R4 | See below |
@@ -209,7 +211,7 @@ Also prepare a **"which paper does this follow?" cheat sheet** in your speaker n
 - **`figures/F_crowded_vs_green.png` (optional):** across cities, `gap_ndvi` (x) against `gap_lst_day` (y). Do the cities where people sit in less-green squares also have the largest heat gaps?
 
 **Checks:**
-- [ ] **Population total.** Jodhpur's total over **all** squares (no built filter) is about **0.98 million**. The pilot handover noted 0.98 M against 1.54 M in the city file, which uses a different year and model. If your number differs a lot, look at how `pop` is read.
+- [ ] **Population total.** Jodhpur's total over **all** squares (no built filter) is about **0.98 million** (979,491 in the pilot file). The city file's 1.54 M is for 2025, over a larger outline, from a different model. If your number differs a lot, look at how `pop` is read.
 - [ ] **Bounds.** Every `pop_lst_day` lies between that city's min and max `lst_day`.
 - [ ] **Hand check.** For Jodhpur pre-monsoon, recompute `pop_lst_day` in a separate notebook cell with `numpy.average(lst_day, weights=pop)`. It must match to 1e-9.
 - [ ] **Expectation, not a requirement.** In most cities, crowded squares should be hotter and less green than average, so `gap_lst_day > 0` and `gap_ndvi < 0`. If not, that is a finding. Check it is not a bug before reporting it.

@@ -2,27 +2,24 @@
 
 Read [README.md](README.md) first. It defines the file formats (§3), the gates (§2) and the shared rules (§4) that this file assumes.
 
-**You own:** `scripts/02_sample_city.py`, `scripts/04_run_all_cities.py`, `scripts/05_monsoon_availability.py` and `scripts/06_water_share.py`, plus the existing lines of `scripts/config.py`.
+**You own:** `scripts/02_sample_city.py` and `scripts/04_run_all_cities.py`, plus the existing lines of `scripts/config.py`.
 
-**You produce:** `data/samples/*.csv`, `data/water/*.csv`, `data/results/run_log.csv`, `data/results/b2_checks.csv`, `data/results/lst_availability_by_month.csv` and the figures `figures/B_city_map.png` and `figures/M_lst_availability.png`.
+**You produce:** `data/samples/*.csv`, `data/results/run_log.csv`, `data/results/b2_checks.csv` and the figure `figures/B_city_map.png`.
 
-**You present:** the **Data** section (datasets, the 303 cities, seasons, quality filtering, monsoon availability) and the sampling step of the **Method**.
+**You present:** the **Data** section (datasets, the 303 cities, seasons, quality filtering) and the sampling step of the **Method**. Role 5 presents monsoon availability and water.
 
-**Everyone else is waiting on you.** Do B1 first and announce gate G1 the moment it passes. Then start B2 running in the background. M and G fit around B2, because B2 is mostly waiting.
+**Everyone else is waiting on you.** Do B1 first and announce gate G1 the moment it passes. Then start B2 running in the background. While it runs, do the B2 checks on finished cities and draft your slides. Role 5 (water and data quality) depends on your sample files, so commit partial results regularly.
 
 ## Order of work
 
 | Step | Task | Waits on | Unblocks |
 | --- | --- | --- | --- |
 | 1 | Stage 0 setup | Nothing | Everything |
-| 2 | **B1:** extend `02_sample_city.py`, validate | Nothing | **G1** → R3's script 03 test, R4's exposure test, your B2 and G |
-| 3 | **B2:** start `04_run_all_cities.py` in the background | G1 | G4 (via R3), F (R4) |
-| 4 | **M:** monsoon availability (while B2 runs) | Nothing (can even go before B1 if B1 is blocked) | A Data slide |
-| 5 | **G (pilot):** water share for Jodhpur and Kochi | G1 | R3 tests the water control |
-| 6 | **G (all):** water share for all sampled cities | G1; best after B2 | Final run of 03 with `built_elev_water` |
-| 7 | B2 checks, final commit, Data slides | B2 done | Final results |
+| 2 | **B1:** extend `02_sample_city.py`, validate | Nothing | **G1** → R3's script 03 test, R4's exposure test, R5's water pilot, your B2 |
+| 3 | **B2:** start `04_run_all_cities.py` in the background, and commit samples in batches | G1 | G4 (via R3), F (R4), G for all cities (R5) |
+| 4 | B2 checks, final commit, city map, Data slides | B2 done | Final results |
 
-Do not run M and B2 at exactly the same moment, because they share the Earth Engine quota. Start B2, check it is progressing, then run M. If you see quota errors, pause M.
+**Earth Engine coordination:** Role 5's monsoon check (M) and Role 2's climate run (C + E) also use the shared quota. Agree in chat who runs when. Never have two big loops running at once. B2 has priority, because everyone waits on it.
 
 ---
 
@@ -135,7 +132,7 @@ Add `*.log` to `.gitignore`. Test the script first on 3 small cities, by passing
 
 ### 3c. Share partial results
 
-About every 50 cities (or every couple of hours), commit what exists so R3 and R4 can work on real data:
+About every 50 cities (or every couple of hours), commit what exists so R3, R4 and R5 can work on real data:
 
 ```bash
 git pull --rebase
@@ -174,77 +171,17 @@ Post the summary in chat: N cities ok, N failed, and the worst cities for missin
 
 ---
 
-## Step 4, M: monsoon availability (`05_monsoon_availability.py`)
+## Step 4: final hand-off and your slides
 
-**Why:** we exclude June–September. The TA will ask "why no monsoon?", so we show the data limitation instead of just asserting it.
+When B2 is done:
 
-- **Cities:** Jodhpur (5315), New Delhi (7963), Hyderabad (9524), Mumbai (7599), Kolkata (11352), Kochi (9386).
-- **For each city and each calendar month 1–12, over 2019–2024:**
-  - `frac_day_ok` = mean over the city's squares of (QC-passing composites in that month ÷ all composites in that month).
-  - `frac_night_ok` is the same, for night.
-  - Use the same QC mask as `02_sample_city.py`: import its masking function rather than copying it.
-- **Efficiency:** build one multi-band image per city (24 bands: 12 months × day/night) and run **one** `reduceRegion(mean, scale=1000)` per city. That is 6 calls in total.
-- **Output:** `data/results/lst_availability_by_month.csv` (README §3.5).
-- **Figure:** `figures/M_lst_availability.png`. Draw one line per city, with month on the x axis and the fraction of usable composites (0–1) on the y axis. Shade June–September. Use separate panels for day and night.
-- **Check:** Jun–Sep should be clearly lower than Apr–May in every city, and lowest in Mumbai and Kochi. If it isn't, re-check the mask.
-- **Slide line (fill in the numbers):** "In June–September only about X% of 8-day composites are usable in Mumbai, versus Y% in April–May, so we compare pre-monsoon, post-monsoon and winter (as Kumar et al. 2017 did)."
-
----
-
-## Steps 5–6, G: OSM water share (`06_water_share.py`)
-
-**Why:** water is cool by day and warm at night, like vegetation, so partly-water squares can fake or hide the vegetation effect. It might explain Jodhpur's warm green nights. It also uses the assigned OpenStreetMap dataset.
-
-**What already happens:** squares with no LST reading are open water and are already dropped. Partly-water squares remain, and this task handles them.
-
-### Method
-
-1. **City polygon.** Read it from `data/cities/india_cities.geojson`.
-2. **Download water with osmnx.** Do **not** download the 1 GB India extract.
-   ```python
-   import osmnx as ox
-   ox.settings.timeout = 300
-   ox.settings.use_cache = True          # caches under ./cache/ — add cache/ to .gitignore
-   TAGS = {'natural': ['water', 'wetland'], 'water': True,
-           'waterway': ['riverbank', 'dock'], 'landuse': ['reservoir', 'basin']}
-   gdf = ox.features_from_polygon(city_polygon, TAGS)
-   gdf = gdf[gdf.geom_type.isin(['Polygon', 'MultiPolygon'])]
-   ```
-   Save the raw result to `raw/osm/{uc_id}.gpkg`. `raw/` is git-ignored. If Overpass times out on a big city, split the polygon into 4 quadrants and combine the results.
-3. **Square polygons.**
-   - Take the unique `cell_id`, `lon`, `lat` from that city's sample CSV (`season == 'pre'`).
-   - Project the centres to the MODIS sinusoidal CRS: `+proj=sinu +lon_0=0 +x_0=0 +y_0=0 +R=6371007.181 +units=m +no_defs`.
-   - Build a square of ±463.313 m around each centre. The MODIS 1 km pixel is 926.625 m wide.
-   - This reproduces the real MODIS footprint. A lat/lon box would not.
-4. **Overlap.** Project the water polygons to the same CRS, dissolve them (`unary_union`), intersect them with each square, and compute `water_frac = intersection area / square area`, clipped to 0–1.
-5. **Output:** `data/water/{uc_id}_{slug}.csv` with `uc_id, cell_id, water_frac`, including squares where the share is 0.
-6. **Pace:** for the all-city run, sleep 1–2 s between cities and skip cities that are already done, as in B2. Log failures.
-
-### Order
-
-- **First do Jodhpur and Kochi**, commit them and tell R3 ("G pilot ready"). R3 then tests the `built_elev_water` control.
-- Then run all cities. Start after B2 has produced the sample files: run on whatever exists, then rerun at the end.
-
-### Checks
-
-- [ ] **Kochi.** The pilot handover says 185 squares are open water (no LST). Most of those should have `water_frac > 0.5`. Report how many do.
-- [ ] **Low NDVI over water.** For squares with `water_frac > 0.5` that do have LST, pre-season NDVI should mostly be below 0.2. Report the median.
-- [ ] **Small water share in dry cities.** Jodhpur should have only a few squares with any water: a handful of lakes and tanks.
-- [ ] **Sea is a known gap.** In OSM the sea is a coastline line, not a water polygon. Coastal squares that are partly sea get `water_frac` ≈ 0. Most such squares are below 10% built-up and are excluded anyway. Count the coastal squares that have built ≥ 0.10 and NaN LST, and note this as a limitation.
-
----
-
-## Step 7: final hand-off and your slides
-
-When B2 and G are done:
-
-1. Post "B2 complete: N cities sampled, N failed (list)" and "G complete" in chat. R3 then runs the final 03, which produces G4.
+1. Post "B2 complete: N cities sampled, N failed (list)" in chat. R5 then finishes water for all cities, and R3 runs the final 03 (G4) once water is in.
 2. Make `figures/B_city_map.png`: the 303 city centres (`lon`, `lat` from the geojson), with points sized by `pop_2025`. Add a light India outline if it is easy: Natural Earth admin-0, downloaded once to `raw/`. Otherwise use points only. Colour the points by `rain_annual_mm` from R2's `city_climate.csv` once it exists. That shows the moisture range in one picture.
 
 **Your slides:**
 
 1. **Data:** a table of the datasets (MODIS LST, MODIS NDVI/EVI, ERA5-Land, GHSL, WorldPop, OSM, SRTM), giving each one's resolution and what it is used for. Copy the IDs from the main README.
-2. **Study area:** the city map and the three seasons, plus one line on why the monsoon is excluded, using the M figure.
+2. **Study area:** the city map and the three seasons. Role 5 follows with the monsoon availability figure.
 3. **Method, sampling:** a 1 km MODIS grid, QC filtering (what the QC bits mean), 2019–2024 seasonal means, finer layers averaged up to 1 km (never LST down), and the built ≥ 10% urban filter.
 
 **Be ready for these TA questions:**
@@ -252,4 +189,4 @@ When B2 and G are done:
 - Why Aqua, not Terra? Its overpass is closer to peak heat (~13:30).
 - Why 1 km? It is the native MODIS LST resolution.
 - How did you check the sampling? The pilot reproduction, WorldPop totals checked against a native-grid sum, and value-range checks.
-- What gets dropped, and why?
+- What gets dropped, and why? Squares with no LST are open water. Squares below 10% built-up are not urban. Cities with fewer than 30 usable squares get no estimate.
