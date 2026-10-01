@@ -14,8 +14,14 @@ data/cities/      city boundaries (india_cities.geojson)
 data/samples/     per-city 1 km square CSVs (committed, so nobody re-spends EE quota)
 data/results/     cooling_efficiency.csv, city_climate.csv, etc.
 figures/          charts for the slides and report
-docs/             literature review, plans
+docs/             PLAN.md (approved plan), roles/ (per-role work guides), literature review
 ```
+
+
+
+## Start here
+
+Read [docs/roles/README.md](docs/roles/README.md), then your role file in `docs/roles/`. The approved plan is [docs/PLAN.md](docs/PLAN.md).
 
 ## Setup
 
@@ -25,22 +31,27 @@ pip install -r requirements.txt
 earthengine authenticate
 ```
 
-The Earth Engine project is `greenpulse-510209`. Ask Himani to add you. The free quota is shared by the whole team, so do not re-run big jobs without a reason.
+The Earth Engine project is `greenpulse-510209`. The free quota is shared by the whole team, so do not re-run big jobs without a reason.
 
 ## Data
 
-| Dataset | Earth Engine ID |
-| --- | --- |
-| MODIS LST (Aqua) | `MODIS/061/MYD11A2` |
-| MODIS NDVI/EVI | `MODIS/061/MOD13A1` (500 m, averaged to 1 km) |
-| ERA5-Land | `ECMWF/ERA5_LAND/MONTHLY_AGGR` |
+
+| Dataset                | Earth Engine ID                                                          |
+| ---------------------- | ------------------------------------------------------------------------ |
+| MODIS LST (Aqua)       | `MODIS/061/MYD11A2`                                                      |
+| MODIS NDVI/EVI         | `MODIS/061/MOD13A1` (500 m, averaged to 1 km)                            |
+| ERA5-Land              | `ECMWF/ERA5_LAND/MONTHLY_AGGR`                                           |
 | GHSL built-up / height | `JRC/GHSL/P2023A/GHS_BUILT_S`, `JRC/GHSL/P2023A/GHS_BUILT_H` (2018 only) |
-| WorldPop | `WorldPop/GP/100m/pop` (latest year 2020) |
-| Elevation | `USGS/SRTMGL1_003` |
-| OpenStreetMap | per-city water polygons via Overpass / OSMnx |
+| WorldPop               | `WorldPop/GP/100m/pop` (latest year 2020)                                |
+| Elevation              | `USGS/SRTMGL1_003`                                                       |
+| OpenStreetMap          | per-city water polygons via Overpass / OSMnx                             |
+
+
+
 
 ## Ground rules
 
 - Change settings in `scripts/config.py`, not inside scripts.
 - Check every result against a second calculation or known real-world values before passing it on.
 - Results go in `data/results/` and figures in `figures/`, with clear names.
+

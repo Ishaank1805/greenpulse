@@ -1,3 +1,5 @@
+> **Superseded** by docs/PLAN.md and docs/roles/. Kept for history. Note: its Task D framing of Manoli 2019 and Schwaab 2021 is incorrect (see docs/roles/README.md §5).
+
 
 
 # GreenPulse: Remaining Work
