@@ -9,6 +9,7 @@ Read [README.md](README.md) first. It defines the file formats (§3), the gates 
 - `data/results/main_result_regressions.csv`
 - `data/results/main_result_bins.csv`
 - the figures `figures/C_climate_overview.png`, `figures/D_ce_vs_rain.png`, `figures/D_ce_vs_humidity.png` and `figures/D_ce_map_pre_day.png`, plus the other season/time maps
+- the rainfall-coloured version of `figures/B_city_map.png`: you re-run R1's map script once `city_climate.csv` exists (step 2e)
 
 **You present:** the climate part of **Data** and **Method** (ERA5-Land as a city-level condition, and the Heat Index), and the **main Result**: under what conditions cooling is strongest. This is the answer to the second half of the research question, so it is the most important slide in the deck.
 
@@ -17,7 +18,7 @@ Read [README.md](README.md) first. It defines the file formats (§3), the gates 
 | Step | Task | Waits on | Unblocks |
 | --- | --- | --- | --- |
 | 1 | Stage 0 setup | Nothing | Everything |
-| 2 | **C + E:** `07_city_climate.py` for all 303 cities × 3 seasons | Nothing. Needs only `data/cities/india_cities.geojson`. | **G2** → your D, R3's S, R1's city-map colours |
+| 2 | **C + E:** `07_city_climate.py` for all 303 cities × 3 seasons | Nothing. Needs only `data/cities/india_cities.geojson`. | **G2** → your D, R3's S, the rainfall-coloured city map (you re-run it, step 2e) |
 | 3 | Write `08_main_result.py` and test it on the pilot | G2 (your own). Uses the pilot `cooling_efficiency.csv` for the code test. | |
 | 4 | **D (partial):** rerun on whatever cities R3 has fitted | G2 + partial G4 | Early look at the pattern |
 | 5 | **D (final):** run on the final `cooling_efficiency.csv` | **G4** (R3), ideally with the water control done | Results slides |
@@ -124,6 +125,20 @@ Vectorise it with numpy (`np.where`) for speed. Most winter days fall below 80 �
 Commit `scripts/07_city_climate.py` and `data/results/city_climate.csv`, then push. Post: "**G2 passed:** city_climate.csv, 909 rows, checks OK (Jodhpur X mm, Kochi Y mm)".
 
 Also make `figures/C_climate_overview.png`: a scatter of the 303 cities with `rain_annual_mm` (log x) against pre-monsoon `rh_pct`, coloured by pre-monsoon `t2m_c`. This shows the climate range we cover, and it goes on the Data slide.
+
+### 2e. Re-run the city map with rainfall colours
+
+R1's map script colours the 303 cities by `rain_annual_mm` automatically once `data/results/city_climate.csv` exists. No code changes are needed.
+
+```bash
+python3 scripts/04c_city_map.py
+```
+
+- [ ] The script prints `(coloured by rainfall)`. If it does not, `city_climate.csv` is missing or has no `rain_annual_mm` column.
+- [ ] Open `figures/B_city_map.png` and look at it: Rajasthan cities should be the driest colour, and Kerala and the Northeast the wettest. Check that no point is blank (a missing city in `city_climate.csv`).
+- [ ] The India outline needs `raw/ne_admin0/` (Natural Earth, India point of view, ~5 MB; `raw/` is not in git). If you do not have it, either download it once with `mkdir -p raw/ne_admin0 && curl -L -o raw/ne_admin0/ne.zip https://naciscdn.org/naturalearth/10m/cultural/ne_10m_admin_0_countries_ind.zip && unzip -o raw/ne_admin0/ne.zip -d raw/ne_admin0`, or ask R1 to re-run it. Without the folder the script still works, just without the outline.
+
+Commit `figures/B_city_map.png` with your G2 commit. The script belongs to R1, so ask R1 if it needs changing.
 
 ---
 

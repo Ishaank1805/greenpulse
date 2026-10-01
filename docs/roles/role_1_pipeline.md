@@ -177,6 +177,7 @@ When B2 is done:
 
 1. Post "B2 complete: N cities sampled, N failed (list)" in chat. R5 then finishes water for all cities, and R3 runs the final 03 (G4) once water is in.
 2. Make `figures/B_city_map.png`: the 303 city centres (`lon`, `lat` from the geojson), with points sized by `pop_2025`. Add a light India outline if it is easy: Natural Earth admin-0, downloaded once to `raw/`. Otherwise use points only. Colour the points by `rain_annual_mm` from R2's `city_climate.csv` once it exists. That shows the moisture range in one picture.
+   *Done:* `scripts/04c_city_map.py` draws the map with the India outline (Natural Earth, India point of view) and adds the rainfall colours automatically. **R2 re-runs it after G2** (role_2_climate.md step 2e).
 
 **Your slides:**
 
