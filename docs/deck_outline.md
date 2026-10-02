@@ -81,6 +81,13 @@
 
 *Speaker notes:* Everything finer than 1 km is averaged up to the 1 km temperature grid, never the other way round.
 
+*Speaker points (R1):*
+- All seven are free, open datasets. The professor assigned five; we added SRTM elevation as a control (hills are cooler and often greener) and use OpenStreetMap only for water.
+- We use the Aqua satellite (MYD11A2), not Terra, because its ~13:30 overpass is closer to the hottest part of the day.
+- LST is *surface* temperature (roofs, roads, leaves), not the air temperature people feel. That is a known limitation (Venter et al. 2021; Du et al. 2024), which is why the Heat Index comes later.
+
+*Likely TA question:* "Why 1 km, when GHSL and WorldPop are 100 m?" Because 1 km is the native MODIS LST resolution. Shrinking temperature to 100 m would invent detail the satellite never measured, so the finer layers are averaged up to it.
+
 ### Slide 6. 303 Indian cities across the full moisture range, in 3 seasons (R1, DRAFT)
 - **Cities:** every Indian urban centre with more than 3 lakh people (GHS Urban Centre Database outlines). That is 303 cities.
 - **Seasons:**
@@ -90,6 +97,15 @@
 - **Years:** 2019–2024 averages, so no single year dominates.
 - **Figure:** `figures/B_city_map.png`. Replace it with the rainfall-coloured version after Role 2's climate run.
 - **To fill in:** "Annual rainfall ranges from about X mm (Jodhpur) to Y mm (Kochi)". Take the numbers from `city_climate.csv`.
+
+*Speaker points (R1):*
+- A "city" is a GHSL urban centre: connected 1 km cells with at least 1,500 people/km² and 50,000 people in total. That gives the same rule in every state, unlike municipal boundaries. We use the 2020 outlines to match our 2020 built-up and population data.
+- 303 cities, 53,614 squares of 1 km, about 297 million people (WorldPop 2020). Source: `data/results/b2_checks.csv`, `data/samples/`.
+- Seasons really do differ: the median square is 39.7 °C by day before the monsoon, 31.2 °C after it and 27.9 °C in winter. Each season is averaged over 2019–2024.
+
+*Likely TA question:* "Why these three seasons and not the monsoon?" Jun–Sep cloud leaves too few usable images (Role 5's slide 6b, and Kumar et al. 2017 excluded it for the same reason). The other three each still have a clear daytime image 94–98% of the time in the median city.
+
+*Note for R4 (wording):* "Pre-monsoon: hot and dry" is true for most cities but not Kerala, where April–May is already wet. In Kochi, winter (34.1 °C) is slightly warmer than pre-monsoon (33.7 °C) for that reason. Suggest "hot, and dry in most cities".
 
 ### Slide 6b. No monsoon season: too few usable satellite images (R5, PLACEHOLDER)
 - **Figure:** `figures/M_lst_availability.png`.
@@ -106,6 +122,13 @@
 - **Seasonal means:** each square gets a seasonal mean for 2019–2024 of day and night temperature, NDVI, EVI, built-up share, population and elevation.
 - **Checked:** the new 3-season pipeline reproduces the pilot exactly (Jodhpur 254 squares, Kochi 1,238).
 - **Coverage:** 202 of 303 cities have at least 30 urban squares, which is our minimum for a reliable estimate.
+
+*Speaker points (R1):*
+- Quality filter: MODIS gives every pixel a quality code. We keep "good" readings, plus "other quality" readings whose error is at most 2 K. Cloudy readings are thrown out before averaging.
+- How we checked it: (1) the 3-season pipeline reproduces the pilot values exactly; (2) the population per square matches WorldPop's own total to within 0.02% (30 km circle around Jodhpur); (3) our own count of MODIS grid squares matches Earth Engine's for every city tested; (4) range checks on every value in all 303 cities (`b2_checks.csv`).
+- What gets dropped and why: squares with no temperature are open water (the missing share is identical in every season, so it is not cloud). Squares under 10% built-up are not urban. Cities with fewer than 30 urban squares get no estimate (101 of 303).
+
+*Likely TA question:* "How do you know missing squares are water and not cloud?" A cloudy square would be missing in some seasons and not others. In every city the missing share is the same in all three seasons, and in Kochi the missing squares never had a single reading in 6 years.
 
 ### Slide 8. The cooling slope: how much cooler greener squares are, other things equal (R3, DRAFT)
 - For each city × season × day/night:
