@@ -2,7 +2,7 @@
 
 One sentence per finding, with numbers and the CSV it comes from. Associations, not causes. Write only under your own role's heading. Role 4 turns these into the Observations slide.
 
-Slide deck: *(link to be added)*
+Slide deck (Google Slides): [https://docs.google.com/presentation/d/1EnrZBA81aB5Bg3Xh8cWKhd4n5jQbhlmhK1_tqBOnO0I](https://docs.google.com/presentation/d/1EnrZBA81aB5Bg3Xh8cWKhd4n5jQbhlmhK1_tqBOnO0I/edit?usp=sharing)
 
 ## Role 1 (sampling)
 

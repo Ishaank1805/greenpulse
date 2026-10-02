@@ -1,5 +1,7 @@
 # Mid-sem deck: outline and slide text
 
+**Deck:** [Google Slides](https://docs.google.com/presentation/d/1EnrZBA81aB5Bg3Xh8cWKhd4n5jQbhlmhK1_tqBOnO0I/edit?usp=sharing)
+
 **Owner: Role 4.** This is a presentation to the TA. Each person presents their own slides. Paste the text into Google Slides, and update this file when a slide's text changes, so the repo and the deck stay in step.
 
 **Rules:**

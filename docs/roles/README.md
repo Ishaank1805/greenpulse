@@ -230,6 +230,14 @@ One row per city × season (303 × 3 = 909 rows).
 
 **Observations file.** `docs/observations.md` is created by R4. Each person writes only under their own `## Role N` heading: one sentence per finding, with numbers and the CSV it came from. R4 turns these into the Observations slide.
 
+**The slide deck.** Role 4 builds and formats the whole deck: [Google Slides](https://docs.google.com/presentation/d/1EnrZBA81aB5Bg3Xh8cWKhd4n5jQbhlmhK1_tqBOnO0I/edit?usp=sharing). The slide text is in [../deck_outline.md](../deck_outline.md), and each slide there names who presents it. **Every role still hands Role 4 three things** once their part is done:
+
+1. **Observation lines** in `docs/observations.md`, under your role's heading: one sentence per finding, with the numbers and the CSV they come from.
+2. **Figures** committed to `figures/`, with the names in your role file.
+3. **2–3 speaker points per slide**, added under your slide in `docs/deck_outline.md`. Include the one thing the TA is most likely to question.
+
+You still present your own slides, so check them in the deck before the rehearsal.
+
 **Language on slides.** Results are **associations, not causal effects**. Say "greener squares are cooler", not "vegetation causes X °C cooling".
 
 ---
