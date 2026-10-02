@@ -141,6 +141,8 @@ You turn these lines into the Observations slide.
 
 **Draft slides 1–4 fully, and 5–9 as drafts, in Stage 1.** Fill 10–17 as figures arrive.
 
+The slide text lives in [../deck_outline.md](../deck_outline.md). Keep it in step with the Google Slides deck, so other roles' team members can read and fill in their slides.
+
 ---
 
 ## Step 5, L: literature accuracy (for the slides)

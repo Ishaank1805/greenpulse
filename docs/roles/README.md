@@ -42,7 +42,7 @@ There are no dates. Work moves in **stages**. Within a stage, everything runs in
 STAGE 0 (first hour, everyone)
   - clone repo, pip install -r requirements.txt, earthengine authenticate,
     get added to EE project greenpulse-510209 (Himani), run scripts/00_check_setup.py
-  - R4 commits scripts/style.py (figure style) — others can start without it and switch later
+  - R4 commits scripts/style.py (figure style) — done; see §4 Figures
 
 STAGE 1 (start immediately, no waiting)
   R1  B1  extend 02_sample_city.py: 3 seasons in one pass + elevation; long format;
@@ -214,7 +214,14 @@ One row per city × season (303 × 3 = 909 rows).
 **Figures:**
 
 - Save as `figures/{task}_{short_name}.png`, e.g. `figures/A_pilot_scatter.png` or `figures/D_ce_vs_rain.png`, at 200 dpi.
-- Use `scripts/style.py` (`from style import apply_style, SEASON_COLORS, DIVERGING`). Until it exists, use matplotlib defaults and switch later.
+- **style.py is in.** Use it for every figure:
+  ```python
+  from style import apply_style, save, SEASON_COLORS, DIVERGING, CE_LABEL
+  apply_style()
+  ...
+  save(fig, 'D_ce_vs_rain')   # -> figures/D_ce_vs_rain.png at 200 dpi
+  ```
+  It also provides `SEASONS`, `SEASON_LABELS`, `DRY_MM` (1000), `DRY_COLOR`, `WET_COLOR` and `MUTED`. Scripts run from `scripts/`, so `import style` works directly.
 - Every axis has a label with units.
 - Cooling slope axes always read "Cooling slope (°C per 0.1 NDVI); negative = greener is cooler".
 - Season colours are fixed: pre = orange, post = blue-green, winter = purple (defined in style.py).
