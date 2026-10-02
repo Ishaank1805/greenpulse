@@ -123,7 +123,21 @@ Commit `common.py` early (in Stage 1) and tell R2 and R4 it exists.
    - Skip `built_elev_water` (write no row) when the city has no water file.
    - Inside `fit`, drop NaN on **all variables in that formula**.
    - Keep `built_coef` in the output.
-6. **Keep everything else unchanged:** `MIN_NIGHTS = 10`, `MIN_SQUARES = 30`, `BLOCK_DEG = 0.045`, clustered standard errors and `ce_per_0.1 = ce / 10`. This applies to every season. Winter has ~67 composites and pre/post ~45, so 10 nights is a lenient bar in all of them.
+6. **Keep everything else unchanged:** `MIN_NIGHTS = 10`, `MIN_SQUARES = 30`, `BLOCK_DEG = 0.045`, clustered standard errors and `ce_per_0.1 = ce / 10`, in every season. One change: make the night cut-off a parameter of `fit` (`min_nights=MIN_NIGHTS`), so the robustness check in Step 8 can refit with a lower one.
+
+   **Known issue: night data is thin in humid cities.** From Role 1's full samples (urban squares, built ≥ 0.10, with NDVI):
+
+   | | Pre | Post | Winter |
+   | --- | --- | --- | --- |
+   | Cities with ≥ 30 squares by **day** | 202 | 202 | 202 |
+   | Cities with ≥ 30 squares at **night**, `MIN_NIGHTS = 10` | 135 | 141 | 157 |
+   | … with `MIN_NIGHTS = 6` | 167 | 167 | 181 |
+   | Median clear nights per urban square | 17 | 18 | 32 |
+
+   About a third of cities lose their night estimate. The losses are concentrated in humid, cloudy cities: Kochi's urban squares have a median of 8–12 clear nights, against 40 or more in Jodhpur. Two things follow:
+
+   - **Night results are biased towards dry cities,** and H3 compares dry with wet. Always report the number of cities behind each night result, split by rainfall group, and say on the slide that wet cities are under-represented at night.
+   - **Keep 10 as the main cut-off.** A night mean over fewer clear nights is noisier, and 10 was the validated pilot setting. Test 6 as a robustness variant (Step 8). Do not lower the main cut-off without agreeing it in the team chat. It changes `cooling_efficiency.csv`, which R2 and R5 build on.
 7. **Output:** `data/results/cooling_efficiency.csv` with exactly the columns in README §3.3.
 8. **Dropped cities:** also write `data/results/dropped_cities.csv`, one row per city × season × time that has no estimate under the main spec, with the columns `uc_id, city, season, time, n, reason`.
    - `reason` is one of: `fewer than 30 urban squares`, `fewer than 30 squares with clear nights`, or `no sample file`.
@@ -161,6 +175,7 @@ The second number matters, because it tests whether water explains Jodhpur's war
 **Checks on the full run:**
 - [ ] Every city with a sample file appears in the output, or has an entry in `dropped_cities.csv`.
 - [ ] Pre/day, main spec: report the share of cities with `ci_hi < 0` (significant cooling). H1 expects most of them. Also report the median `ce_per_0.1`.
+- [ ] **Night coverage.** For each season, report how many cities have a night estimate under the main spec, overall and split into < 1000 vs ≥ 1000 mm. With `MIN_NIGHTS = 10`, expect about 135 / 141 / 157 cities (pre / post / winter) against 202 by day. Post the split in chat, so R2 knows how many wet cities the night panels rest on.
 - [ ] No `ce_per_0.1` has an absolute value above 10 °C per 0.1 NDVI. Any such value means a degenerate fit, such as almost no NDVI variation: check `vi_sd` and list those cities.
 
 ---
@@ -223,6 +238,7 @@ The second number matters, because it tests whether water explains Jodhpur's war
 | `no_water_control` | `control = built_elev` |
 | `no_elev_control` | `control = built` |
 | `no_controls` | `control = none` |
+| `min_nights_6` | **Night only.** Refit with the main spec and `min_nights=6` (the parameter added in Step 3b). This recovers ~30 cities per season, mostly humid ones. Report whether the dry-vs-wet night contrast holds. |
 | `drop_water_squares` | Refit with the main spec, after dropping squares with `water_frac > 0.5`. Import the `fit` function from 03 (`importlib.import_module('03_cooling_efficiency')`) and run it on filtered samples. |
 
 **Columns:**
@@ -241,6 +257,7 @@ The second number matters, because it tests whether water explains Jodhpur's war
    - For night and the main spec, report the share of cities under 1000 mm with `ci_lo > 0` (greener squares significantly warmer), against the share among cities at or above 1000 mm.
    - Do this for each season.
    - Write it as an extra block of rows with `variant = night_warming_dry` and `variant = night_warming_wet`.
+   - Give the number of cities in each group. Wet cities are under-represented at night (see Step 3b), so repeat the comparison with `min_nights_6`. If the contrast only appears at one cut-off, say so.
 2. **NDVI vs EVI disagreement:**
    - Per city (pre/day), mark "disagree" if exactly one of the two indices gives `ci_hi < 0`.
    - Compute each city's correlation between NDVI and built share from the samples.
@@ -262,7 +279,7 @@ Write one sentence each, with numbers, under `## Role 3` in `docs/observations.m
 
 - **H1:** "By day before the monsoon, N of M cities (X%) show significantly cooler greener squares; the median slope is X °C per 0.1 NDVI."
 - **H4:** "Within the same city, cooling is [stronger / weaker / no different] after the monsoon in X% of cities (median change X; Wilcoxon p = …), [and more so where soils wetted most]."
-- **H3 (dry nights):** "At night, X% of dry cities show greener-is-warmer slopes, against Y% of wet cities."
+- **H3 (dry nights):** "At night, X% of N dry cities show greener-is-warmer slopes, against Y% of M wet cities." Always give N and M, and add one line saying that humid cities lose more night estimates to cloud, and whether the result holds with a 6-night cut-off.
 - **Robustness:** "The pattern holds / changes when …". Name the one variant that matters most.
 - **Data limits:** the number of dropped cities and why. If the post-monsoon losses are large, say so.
 
