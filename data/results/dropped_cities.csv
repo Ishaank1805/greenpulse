@@ -1,0 +1,780 @@
+uc_id,city,season,time,n,reason
+164,Kralpora,post,day,8,fewer than 30 urban squares
+164,Kralpora,post,night,7,fewer than 30 urban squares
+164,Kralpora,pre,day,8,fewer than 30 urban squares
+164,Kralpora,pre,night,0,fewer than 30 urban squares
+164,Kralpora,winter,day,8,fewer than 30 urban squares
+164,Kralpora,winter,night,8,fewer than 30 urban squares
+1639,Khansahib,post,day,1,fewer than 30 urban squares
+1639,Khansahib,post,night,0,fewer than 30 urban squares
+1639,Khansahib,pre,day,1,fewer than 30 urban squares
+1639,Khansahib,pre,night,1,fewer than 30 urban squares
+1639,Khansahib,winter,day,1,fewer than 30 urban squares
+1639,Khansahib,winter,night,1,fewer than 30 urban squares
+3732,Junagadh,post,night,23,fewer than 30 squares with clear nights
+3732,Junagadh,pre,night,19,fewer than 30 squares with clear nights
+3732,Junagadh,winter,night,23,fewer than 30 squares with clear nights
+5118,Surendranagar,post,night,28,fewer than 30 squares with clear nights
+5118,Surendranagar,pre,night,27,fewer than 30 squares with clear nights
+5118,Surendranagar,winter,night,29,fewer than 30 squares with clear nights
+5701,Mahesana,post,night,15,fewer than 30 squares with clear nights
+5701,Mahesana,pre,night,15,fewer than 30 squares with clear nights
+5701,Mahesana,winter,night,18,fewer than 30 squares with clear nights
+6602,Nadiad,post,day,26,fewer than 30 urban squares
+6602,Nadiad,post,night,13,fewer than 30 urban squares
+6602,Nadiad,pre,day,26,fewer than 30 urban squares
+6602,Nadiad,pre,night,13,fewer than 30 urban squares
+6602,Nadiad,winter,day,26,fewer than 30 urban squares
+6602,Nadiad,winter,night,18,fewer than 30 urban squares
+6662,Anand,post,night,9,fewer than 30 squares with clear nights
+6662,Anand,pre,night,7,fewer than 30 squares with clear nights
+6662,Anand,winter,night,12,fewer than 30 squares with clear nights
+7008,Ajmer,post,night,27,fewer than 30 squares with clear nights
+7008,Ajmer,pre,night,24,fewer than 30 squares with clear nights
+7008,Ajmer,winter,night,26,fewer than 30 squares with clear nights
+7283,Navsari,post,night,26,fewer than 30 squares with clear nights
+7283,Navsari,pre,night,26,fewer than 30 squares with clear nights
+7283,Navsari,winter,night,27,fewer than 30 squares with clear nights
+7390,Godhra,post,day,22,fewer than 30 urban squares
+7390,Godhra,post,night,6,fewer than 30 urban squares
+7390,Godhra,pre,day,22,fewer than 30 urban squares
+7390,Godhra,pre,night,6,fewer than 30 urban squares
+7390,Godhra,winter,day,22,fewer than 30 urban squares
+7390,Godhra,winter,night,8,fewer than 30 urban squares
+7465,Bhilwara,post,night,27,fewer than 30 squares with clear nights
+7465,Bhilwara,pre,night,29,fewer than 30 squares with clear nights
+7546,Silvassa,post,day,26,fewer than 30 urban squares
+7546,Silvassa,post,night,6,fewer than 30 urban squares
+7546,Silvassa,pre,day,26,fewer than 30 urban squares
+7546,Silvassa,pre,night,3,fewer than 30 urban squares
+7546,Silvassa,winter,day,26,fewer than 30 urban squares
+7546,Silvassa,winter,night,6,fewer than 30 urban squares
+7563,Vasai-Virar,post,night,22,fewer than 30 squares with clear nights
+7563,Vasai-Virar,pre,night,21,fewer than 30 squares with clear nights
+7590,Kurukshetra,post,night,26,fewer than 30 squares with clear nights
+7590,Kurukshetra,pre,night,23,fewer than 30 squares with clear nights
+7725,Karnal,pre,night,27,fewer than 30 squares with clear nights
+7760,Dahod,post,day,14,fewer than 30 urban squares
+7760,Dahod,post,night,9,fewer than 30 urban squares
+7760,Dahod,pre,day,14,fewer than 30 urban squares
+7760,Dahod,pre,night,7,fewer than 30 urban squares
+7760,Dahod,winter,day,14,fewer than 30 urban squares
+7760,Dahod,winter,night,9,fewer than 30 urban squares
+7767,Panvel,pre,night,28,fewer than 30 squares with clear nights
+7949,Sonipat,pre,night,27,fewer than 30 squares with clear nights
+8047,Rasoi,post,night,28,fewer than 30 squares with clear nights
+8047,Rasoi,pre,night,18,fewer than 30 squares with clear nights
+8054,Bhiwadi,pre,night,22,fewer than 30 squares with clear nights
+8156,Ratlam,post,day,26,fewer than 30 urban squares
+8156,Ratlam,post,night,18,fewer than 30 urban squares
+8156,Ratlam,pre,day,26,fewer than 30 urban squares
+8156,Ratlam,pre,night,17,fewer than 30 urban squares
+8156,Ratlam,winter,day,26,fewer than 30 urban squares
+8156,Ratlam,winter,night,21,fewer than 30 urban squares
+8240,Roorkee,pre,night,26,fewer than 30 squares with clear nights
+8340,Greater Noida,post,night,11,fewer than 30 squares with clear nights
+8340,Greater Noida,pre,night,3,fewer than 30 squares with clear nights
+8340,Greater Noida,winter,night,21,fewer than 30 squares with clear nights
+8350,Rishikesh,post,night,10,fewer than 30 squares with clear nights
+8350,Rishikesh,pre,night,12,fewer than 30 squares with clear nights
+8350,Rishikesh,winter,night,13,fewer than 30 squares with clear nights
+8400,Hapur,post,night,16,fewer than 30 squares with clear nights
+8400,Hapur,pre,night,13,fewer than 30 squares with clear nights
+8400,Hapur,winter,night,22,fewer than 30 squares with clear nights
+8466,Satara,post,night,26,fewer than 30 squares with clear nights
+8466,Satara,pre,night,24,fewer than 30 squares with clear nights
+8466,Satara,winter,night,26,fewer than 30 squares with clear nights
+8481,Bulandshahr,post,day,24,fewer than 30 urban squares
+8481,Bulandshahr,post,night,24,fewer than 30 urban squares
+8481,Bulandshahr,pre,day,24,fewer than 30 urban squares
+8481,Bulandshahr,pre,night,21,fewer than 30 urban squares
+8481,Bulandshahr,winter,day,24,fewer than 30 urban squares
+8481,Bulandshahr,winter,night,24,fewer than 30 urban squares
+8514,Khurja,post,day,17,fewer than 30 urban squares
+8514,Khurja,post,night,11,fewer than 30 urban squares
+8514,Khurja,pre,day,17,fewer than 30 urban squares
+8514,Khurja,pre,night,7,fewer than 30 urban squares
+8514,Khurja,winter,day,17,fewer than 30 urban squares
+8514,Khurja,winter,night,15,fewer than 30 urban squares
+8614,Dewas,post,night,25,fewer than 30 squares with clear nights
+8614,Dewas,pre,night,24,fewer than 30 squares with clear nights
+8614,Dewas,winter,night,25,fewer than 30 squares with clear nights
+8652,Hathras,post,day,21,fewer than 30 urban squares
+8652,Hathras,post,night,21,fewer than 30 urban squares
+8652,Hathras,pre,day,21,fewer than 30 urban squares
+8652,Hathras,pre,night,15,fewer than 30 urban squares
+8652,Hathras,winter,day,21,fewer than 30 urban squares
+8652,Hathras,winter,night,19,fewer than 30 urban squares
+8674,Sambhal,post,day,18,fewer than 30 urban squares
+8674,Sambhal,post,night,18,fewer than 30 urban squares
+8674,Sambhal,pre,day,18,fewer than 30 urban squares
+8674,Sambhal,pre,night,15,fewer than 30 urban squares
+8674,Sambhal,winter,day,18,fewer than 30 urban squares
+8674,Sambhal,winter,night,17,fewer than 30 urban squares
+8680,Ichalkaranji,post,night,29,fewer than 30 squares with clear nights
+8680,Ichalkaranji,pre,night,26,fewer than 30 squares with clear nights
+8680,Ichalkaranji,winter,night,26,fewer than 30 squares with clear nights
+8686,Thakurdwara,post,night,16,fewer than 30 squares with clear nights
+8686,Thakurdwara,pre,night,7,fewer than 30 squares with clear nights
+8686,Thakurdwara,winter,night,24,fewer than 30 squares with clear nights
+8704,Bhusawal,post,day,26,fewer than 30 urban squares
+8704,Bhusawal,post,night,19,fewer than 30 urban squares
+8704,Bhusawal,pre,day,26,fewer than 30 urban squares
+8704,Bhusawal,pre,night,20,fewer than 30 urban squares
+8704,Bhusawal,winter,day,26,fewer than 30 urban squares
+8704,Bhusawal,winter,night,21,fewer than 30 urban squares
+8728,Belagavi,post,night,22,fewer than 30 squares with clear nights
+8728,Belagavi,pre,night,16,fewer than 30 squares with clear nights
+8728,Belagavi,winter,night,18,fewer than 30 squares with clear nights
+8732,Chandausi,post,day,14,fewer than 30 urban squares
+8732,Chandausi,post,night,10,fewer than 30 urban squares
+8732,Chandausi,pre,day,14,fewer than 30 urban squares
+8732,Chandausi,pre,night,7,fewer than 30 urban squares
+8732,Chandausi,winter,day,14,fewer than 30 urban squares
+8732,Chandausi,winter,night,10,fewer than 30 urban squares
+8754,Morena,post,day,18,fewer than 30 urban squares
+8754,Morena,post,night,18,fewer than 30 urban squares
+8754,Morena,pre,day,18,fewer than 30 urban squares
+8754,Morena,pre,night,13,fewer than 30 urban squares
+8754,Morena,winter,day,18,fewer than 30 urban squares
+8754,Morena,winter,night,18,fewer than 30 urban squares
+8758,Rampur,post,day,27,fewer than 30 urban squares
+8758,Rampur,post,night,19,fewer than 30 urban squares
+8758,Rampur,pre,day,27,fewer than 30 urban squares
+8758,Rampur,pre,night,17,fewer than 30 urban squares
+8758,Rampur,winter,day,27,fewer than 30 urban squares
+8758,Rampur,winter,night,22,fewer than 30 urban squares
+8776,Khandwa,post,day,22,fewer than 30 urban squares
+8776,Khandwa,post,night,20,fewer than 30 urban squares
+8776,Khandwa,pre,day,22,fewer than 30 urban squares
+8776,Khandwa,pre,night,20,fewer than 30 urban squares
+8776,Khandwa,winter,day,22,fewer than 30 urban squares
+8776,Khandwa,winter,night,22,fewer than 30 urban squares
+8780,Burhanpur,post,day,19,fewer than 30 urban squares
+8780,Burhanpur,post,night,18,fewer than 30 urban squares
+8780,Burhanpur,pre,day,19,fewer than 30 urban squares
+8780,Burhanpur,pre,night,17,fewer than 30 urban squares
+8780,Burhanpur,winter,day,19,fewer than 30 urban squares
+8780,Burhanpur,winter,night,18,fewer than 30 urban squares
+8794,Etah,post,day,15,fewer than 30 urban squares
+8794,Etah,post,night,15,fewer than 30 urban squares
+8794,Etah,pre,day,15,fewer than 30 urban squares
+8794,Etah,pre,night,15,fewer than 30 urban squares
+8794,Etah,winter,day,15,fewer than 30 urban squares
+8794,Etah,winter,night,15,fewer than 30 urban squares
+8804,Jalna,post,night,23,fewer than 30 squares with clear nights
+8804,Jalna,pre,night,22,fewer than 30 squares with clear nights
+8804,Jalna,winter,night,25,fewer than 30 squares with clear nights
+8812,Haldwani,post,night,14,fewer than 30 squares with clear nights
+8812,Haldwani,pre,night,16,fewer than 30 squares with clear nights
+8812,Haldwani,winter,night,21,fewer than 30 squares with clear nights
+8814,Rudrapur,post,night,18,fewer than 30 squares with clear nights
+8814,Rudrapur,pre,night,3,fewer than 30 squares with clear nights
+8814,Rudrapur,winter,night,22,fewer than 30 squares with clear nights
+8852,Badaun,post,day,13,fewer than 30 urban squares
+8852,Badaun,post,night,13,fewer than 30 urban squares
+8852,Badaun,pre,day,13,fewer than 30 urban squares
+8852,Badaun,pre,night,10,fewer than 30 urban squares
+8852,Badaun,winter,day,13,fewer than 30 urban squares
+8852,Badaun,winter,night,11,fewer than 30 urban squares
+8866,Dharwad,post,night,23,fewer than 30 squares with clear nights
+8866,Dharwad,pre,night,5,fewer than 30 squares with clear nights
+8866,Dharwad,winter,night,1,fewer than 30 squares with clear nights
+8904,Mainpuri,post,day,21,fewer than 30 urban squares
+8904,Mainpuri,post,night,20,fewer than 30 urban squares
+8904,Mainpuri,pre,day,21,fewer than 30 urban squares
+8904,Mainpuri,pre,night,14,fewer than 30 urban squares
+8904,Mainpuri,winter,day,21,fewer than 30 urban squares
+8904,Mainpuri,winter,night,21,fewer than 30 urban squares
+8920,Bhind,post,day,18,fewer than 30 urban squares
+8920,Bhind,post,night,17,fewer than 30 urban squares
+8920,Bhind,pre,day,18,fewer than 30 urban squares
+8920,Bhind,pre,night,10,fewer than 30 urban squares
+8920,Bhind,winter,day,18,fewer than 30 urban squares
+8920,Bhind,winter,night,14,fewer than 30 urban squares
+8936,Pilibhit,post,day,16,fewer than 30 urban squares
+8936,Pilibhit,post,night,13,fewer than 30 urban squares
+8936,Pilibhit,pre,day,16,fewer than 30 urban squares
+8936,Pilibhit,pre,night,7,fewer than 30 urban squares
+8936,Pilibhit,winter,day,16,fewer than 30 urban squares
+8936,Pilibhit,winter,night,15,fewer than 30 urban squares
+8946,Etawah,post,day,27,fewer than 30 urban squares
+8946,Etawah,post,night,18,fewer than 30 urban squares
+8946,Etawah,pre,day,27,fewer than 30 urban squares
+8946,Etawah,pre,night,18,fewer than 30 urban squares
+8946,Etawah,winter,day,27,fewer than 30 urban squares
+8946,Etawah,winter,night,27,fewer than 30 urban squares
+9028,Shahjahanpur,pre,night,27,fewer than 30 squares with clear nights
+9042,Parbhani,post,day,26,fewer than 30 urban squares
+9042,Parbhani,post,night,24,fewer than 30 urban squares
+9042,Parbhani,pre,day,26,fewer than 30 urban squares
+9042,Parbhani,pre,night,24,fewer than 30 urban squares
+9042,Parbhani,winter,day,26,fewer than 30 urban squares
+9042,Parbhani,winter,night,24,fewer than 30 urban squares
+9064,Shivamogga,pre,night,22,fewer than 30 squares with clear nights
+9064,Shivamogga,winter,night,23,fewer than 30 squares with clear nights
+9108,Kannur,post,night,23,fewer than 30 squares with clear nights
+9132,Davanagere,post,night,26,fewer than 30 squares with clear nights
+9132,Davanagere,pre,night,22,fewer than 30 squares with clear nights
+9132,Davanagere,winter,night,22,fewer than 30 squares with clear nights
+9140,Hardoi,post,day,19,fewer than 30 urban squares
+9140,Hardoi,post,night,19,fewer than 30 urban squares
+9140,Hardoi,pre,day,19,fewer than 30 urban squares
+9140,Hardoi,pre,night,16,fewer than 30 urban squares
+9140,Hardoi,winter,day,19,fewer than 30 urban squares
+9140,Hardoi,winter,night,18,fewer than 30 urban squares
+9150,Thalassery,post,night,25,fewer than 30 squares with clear nights
+9150,Thalassery,pre,night,27,fewer than 30 squares with clear nights
+9152,Sagar,post,night,18,fewer than 30 squares with clear nights
+9152,Sagar,pre,night,20,fewer than 30 squares with clear nights
+9152,Sagar,winter,night,20,fewer than 30 squares with clear nights
+9168,Vadakara,post,day,11,fewer than 30 urban squares
+9168,Vadakara,post,night,11,fewer than 30 urban squares
+9168,Vadakara,pre,day,11,fewer than 30 urban squares
+9168,Vadakara,pre,night,11,fewer than 30 urban squares
+9168,Vadakara,winter,day,11,fewer than 30 urban squares
+9168,Vadakara,winter,night,11,fewer than 30 urban squares
+9218,Lakhimpur,post,day,27,fewer than 30 urban squares
+9218,Lakhimpur,post,night,13,fewer than 30 urban squares
+9218,Lakhimpur,pre,day,27,fewer than 30 urban squares
+9218,Lakhimpur,pre,night,12,fewer than 30 urban squares
+9218,Lakhimpur,winter,day,27,fewer than 30 urban squares
+9218,Lakhimpur,winter,night,25,fewer than 30 urban squares
+9236,Sitapur,post,day,21,fewer than 30 urban squares
+9236,Sitapur,post,night,18,fewer than 30 urban squares
+9236,Sitapur,pre,day,21,fewer than 30 urban squares
+9236,Sitapur,pre,night,18,fewer than 30 urban squares
+9236,Sitapur,winter,day,21,fewer than 30 urban squares
+9236,Sitapur,winter,night,21,fewer than 30 urban squares
+9284,Yavatmal,post,night,23,fewer than 30 squares with clear nights
+9284,Yavatmal,pre,night,28,fewer than 30 squares with clear nights
+9284,Yavatmal,winter,night,25,fewer than 30 squares with clear nights
+9310,Bidar,post,day,24,fewer than 30 urban squares
+9310,Bidar,post,night,20,fewer than 30 urban squares
+9310,Bidar,pre,day,24,fewer than 30 urban squares
+9310,Bidar,pre,night,21,fewer than 30 urban squares
+9310,Bidar,winter,day,24,fewer than 30 urban squares
+9310,Bidar,winter,night,20,fewer than 30 urban squares
+9376,Raichur,post,day,26,fewer than 30 urban squares
+9376,Raichur,post,night,16,fewer than 30 urban squares
+9376,Raichur,pre,day,26,fewer than 30 urban squares
+9376,Raichur,pre,night,19,fewer than 30 urban squares
+9376,Raichur,winter,day,26,fewer than 30 urban squares
+9376,Raichur,winter,night,15,fewer than 30 urban squares
+9388,Nizamabad,post,night,20,fewer than 30 squares with clear nights
+9388,Nizamabad,pre,night,24,fewer than 30 squares with clear nights
+9388,Nizamabad,winter,night,25,fewer than 30 squares with clear nights
+9414,Fatehpur,post,day,17,fewer than 30 urban squares
+9414,Fatehpur,post,night,10,fewer than 30 urban squares
+9414,Fatehpur,pre,day,17,fewer than 30 urban squares
+9414,Fatehpur,pre,night,12,fewer than 30 urban squares
+9414,Fatehpur,winter,day,17,fewer than 30 urban squares
+9414,Fatehpur,winter,night,16,fewer than 30 urban squares
+9444,Bahraich,post,day,22,fewer than 30 urban squares
+9444,Bahraich,post,night,14,fewer than 30 urban squares
+9444,Bahraich,pre,day,22,fewer than 30 urban squares
+9444,Bahraich,pre,night,13,fewer than 30 urban squares
+9444,Bahraich,winter,day,22,fewer than 30 urban squares
+9444,Bahraich,winter,night,18,fewer than 30 urban squares
+9452,Palakkad,post,night,26,fewer than 30 squares with clear nights
+9452,Palakkad,pre,night,13,fewer than 30 squares with clear nights
+9462,Tumakuru,post,night,19,fewer than 30 squares with clear nights
+9462,Tumakuru,pre,night,13,fewer than 30 squares with clear nights
+9462,Tumakuru,winter,night,17,fewer than 30 squares with clear nights
+9472,Kottayam,post,night,18,fewer than 30 squares with clear nights
+9502,Raebareli,post,night,21,fewer than 30 squares with clear nights
+9502,Raebareli,pre,night,21,fewer than 30 squares with clear nights
+9502,Raebareli,winter,night,25,fewer than 30 squares with clear nights
+9514,Anantapur,post,night,19,fewer than 30 squares with clear nights
+9514,Anantapur,pre,night,17,fewer than 30 squares with clear nights
+9536,Katni,post,night,14,fewer than 30 squares with clear nights
+9536,Katni,pre,night,17,fewer than 30 squares with clear nights
+9536,Katni,winter,night,15,fewer than 30 squares with clear nights
+9566,Kurnool,pre,night,28,fewer than 30 squares with clear nights
+9566,Kurnool,winter,night,29,fewer than 30 squares with clear nights
+9576,Satna,post,night,20,fewer than 30 squares with clear nights
+9576,Satna,pre,night,21,fewer than 30 squares with clear nights
+9576,Satna,winter,night,24,fewer than 30 squares with clear nights
+9588,Gonda,post,day,23,fewer than 30 urban squares
+9588,Gonda,post,night,14,fewer than 30 urban squares
+9588,Gonda,pre,day,23,fewer than 30 urban squares
+9588,Gonda,pre,night,14,fewer than 30 urban squares
+9588,Gonda,winter,day,23,fewer than 30 urban squares
+9588,Gonda,winter,night,21,fewer than 30 urban squares
+9664,Hosur,pre,night,10,fewer than 30 squares with clear nights
+9666,Karimnagar,post,night,25,fewer than 30 squares with clear nights
+9666,Karimnagar,pre,night,26,fewer than 30 squares with clear nights
+9666,Karimnagar,winter,night,27,fewer than 30 squares with clear nights
+9676,Colachel,post,night,6,fewer than 30 squares with clear nights
+9676,Colachel,pre,night,29,fewer than 30 squares with clear nights
+9676,Colachel,winter,night,15,fewer than 30 squares with clear nights
+9686,Rewa,post,night,14,fewer than 30 squares with clear nights
+9686,Rewa,pre,night,17,fewer than 30 squares with clear nights
+9686,Rewa,winter,night,25,fewer than 30 squares with clear nights
+9692,Sultanpur,post,day,24,fewer than 30 urban squares
+9692,Sultanpur,post,night,11,fewer than 30 urban squares
+9692,Sultanpur,pre,day,24,fewer than 30 urban squares
+9692,Sultanpur,pre,night,10,fewer than 30 urban squares
+9692,Sultanpur,winter,day,24,fewer than 30 urban squares
+9692,Sultanpur,winter,night,19,fewer than 30 urban squares
+9728,Pratapgarh,post,day,19,fewer than 30 urban squares
+9728,Pratapgarh,post,night,7,fewer than 30 urban squares
+9728,Pratapgarh,pre,day,19,fewer than 30 urban squares
+9728,Pratapgarh,pre,night,8,fewer than 30 urban squares
+9728,Pratapgarh,winter,day,19,fewer than 30 urban squares
+9728,Pratapgarh,winter,night,13,fewer than 30 urban squares
+9774,Jhusi,post,day,21,fewer than 30 urban squares
+9774,Jhusi,post,night,0,fewer than 30 urban squares
+9774,Jhusi,pre,day,21,fewer than 30 urban squares
+9774,Jhusi,pre,night,0,fewer than 30 urban squares
+9774,Jhusi,winter,day,21,fewer than 30 urban squares
+9774,Jhusi,winter,night,16,fewer than 30 urban squares
+9780,Nagercoil,post,night,8,fewer than 30 squares with clear nights
+9780,Nagercoil,pre,night,12,fewer than 30 squares with clear nights
+9780,Nagercoil,winter,night,26,fewer than 30 squares with clear nights
+9820,Basti,post,day,25,fewer than 30 urban squares
+9820,Basti,post,night,16,fewer than 30 urban squares
+9820,Basti,pre,day,25,fewer than 30 urban squares
+9820,Basti,pre,night,16,fewer than 30 urban squares
+9820,Basti,winter,day,25,fewer than 30 urban squares
+9820,Basti,winter,night,21,fewer than 30 urban squares
+9840,Dindigul,pre,night,21,fewer than 30 squares with clear nights
+9860,Gyanpur,post,day,15,fewer than 30 urban squares
+9860,Gyanpur,post,night,0,fewer than 30 urban squares
+9860,Gyanpur,pre,day,15,fewer than 30 urban squares
+9860,Gyanpur,pre,night,1,fewer than 30 urban squares
+9860,Gyanpur,winter,day,15,fewer than 30 urban squares
+9860,Gyanpur,winter,night,6,fewer than 30 urban squares
+9864,Kadapa,post,day,29,fewer than 30 urban squares
+9864,Kadapa,post,night,21,fewer than 30 urban squares
+9864,Kadapa,pre,day,29,fewer than 30 urban squares
+9864,Kadapa,pre,night,20,fewer than 30 urban squares
+9864,Kadapa,winter,day,29,fewer than 30 urban squares
+9864,Kadapa,winter,night,21,fewer than 30 urban squares
+9908,Jaunpur,post,day,23,fewer than 30 urban squares
+9908,Jaunpur,post,night,20,fewer than 30 urban squares
+9908,Jaunpur,pre,day,23,fewer than 30 urban squares
+9908,Jaunpur,pre,night,20,fewer than 30 urban squares
+9908,Jaunpur,winter,day,23,fewer than 30 urban squares
+9908,Jaunpur,winter,night,22,fewer than 30 urban squares
+9934,Mirzapur,post,night,1,fewer than 30 squares with clear nights
+9934,Mirzapur,pre,night,2,fewer than 30 squares with clear nights
+9934,Mirzapur,winter,night,20,fewer than 30 squares with clear nights
+9984,Azamgarh,post,night,15,fewer than 30 squares with clear nights
+9984,Azamgarh,pre,night,15,fewer than 30 squares with clear nights
+9984,Azamgarh,winter,night,19,fewer than 30 squares with clear nights
+10010,Khammam,post,day,27,fewer than 30 urban squares
+10010,Khammam,post,night,26,fewer than 30 urban squares
+10010,Khammam,pre,day,27,fewer than 30 urban squares
+10010,Khammam,pre,night,20,fewer than 30 urban squares
+10010,Khammam,winter,day,27,fewer than 30 urban squares
+10010,Khammam,winter,night,23,fewer than 30 urban squares
+10034,Tiruvannamalai,post,day,23,fewer than 30 urban squares
+10034,Tiruvannamalai,post,night,15,fewer than 30 urban squares
+10034,Tiruvannamalai,pre,day,23,fewer than 30 urban squares
+10034,Tiruvannamalai,pre,night,18,fewer than 30 urban squares
+10034,Tiruvannamalai,winter,day,23,fewer than 30 urban squares
+10034,Tiruvannamalai,winter,night,22,fewer than 30 urban squares
+10046,Tirupati,pre,night,19,fewer than 30 squares with clear nights
+10060,Ranipet,post,night,26,fewer than 30 squares with clear nights
+10060,Ranipet,pre,night,9,fewer than 30 squares with clear nights
+10068,Waidhan,post,night,29,fewer than 30 squares with clear nights
+10102,Deoria,post,day,23,fewer than 30 urban squares
+10102,Deoria,post,night,14,fewer than 30 urban squares
+10102,Deoria,pre,day,23,fewer than 30 urban squares
+10102,Deoria,pre,night,14,fewer than 30 urban squares
+10102,Deoria,winter,day,23,fewer than 30 urban squares
+10102,Deoria,winter,night,23,fewer than 30 urban squares
+10106,Padrauna,post,day,9,fewer than 30 urban squares
+10106,Padrauna,post,night,0,fewer than 30 urban squares
+10106,Padrauna,pre,day,9,fewer than 30 urban squares
+10106,Padrauna,pre,night,1,fewer than 30 urban squares
+10106,Padrauna,winter,day,9,fewer than 30 urban squares
+10106,Padrauna,winter,night,6,fewer than 30 urban squares
+10110,Mau,post,day,28,fewer than 30 urban squares
+10110,Mau,post,night,16,fewer than 30 urban squares
+10110,Mau,pre,day,28,fewer than 30 urban squares
+10110,Mau,pre,night,16,fewer than 30 urban squares
+10110,Mau,winter,day,28,fewer than 30 urban squares
+10110,Mau,winter,night,22,fewer than 30 urban squares
+10160,Bilaspur,post,night,28,fewer than 30 squares with clear nights
+10164,Ghazipur,post,day,25,fewer than 30 urban squares
+10164,Ghazipur,post,night,4,fewer than 30 urban squares
+10164,Ghazipur,pre,day,25,fewer than 30 urban squares
+10164,Ghazipur,pre,night,7,fewer than 30 urban squares
+10164,Ghazipur,winter,day,25,fewer than 30 urban squares
+10164,Ghazipur,winter,night,24,fewer than 30 urban squares
+10178,Nellore,pre,night,25,fewer than 30 squares with clear nights
+10190,Viluppuram,post,day,28,fewer than 30 urban squares
+10190,Viluppuram,post,night,24,fewer than 30 urban squares
+10190,Viluppuram,pre,day,28,fewer than 30 urban squares
+10190,Viluppuram,pre,night,11,fewer than 30 urban squares
+10190,Viluppuram,winter,day,28,fewer than 30 urban squares
+10190,Viluppuram,winter,night,17,fewer than 30 urban squares
+10204,Kumbakonam,post,night,24,fewer than 30 squares with clear nights
+10204,Kumbakonam,pre,night,18,fewer than 30 squares with clear nights
+10208,Kanchipuram,post,night,25,fewer than 30 squares with clear nights
+10208,Kanchipuram,pre,night,13,fewer than 30 squares with clear nights
+10212,Tamkuhi Raj,post,day,9,fewer than 30 urban squares
+10212,Tamkuhi Raj,post,night,0,fewer than 30 urban squares
+10212,Tamkuhi Raj,pre,day,9,fewer than 30 urban squares
+10212,Tamkuhi Raj,pre,night,1,fewer than 30 urban squares
+10212,Tamkuhi Raj,winter,day,9,fewer than 30 urban squares
+10212,Tamkuhi Raj,winter,night,4,fewer than 30 urban squares
+10232,Bhore,post,day,2,fewer than 30 urban squares
+10232,Bhore,post,night,0,fewer than 30 urban squares
+10232,Bhore,pre,day,2,fewer than 30 urban squares
+10232,Bhore,pre,night,0,fewer than 30 urban squares
+10232,Bhore,winter,day,2,fewer than 30 urban squares
+10232,Bhore,winter,night,2,fewer than 30 urban squares
+10286,Bettiah,post,day,17,fewer than 30 urban squares
+10286,Bettiah,post,night,5,fewer than 30 urban squares
+10286,Bettiah,pre,day,17,fewer than 30 urban squares
+10286,Bettiah,pre,night,6,fewer than 30 urban squares
+10286,Bettiah,winter,day,17,fewer than 30 urban squares
+10286,Bettiah,winter,night,15,fewer than 30 urban squares
+10306,Maharajganj,post,day,29,fewer than 30 urban squares
+10306,Maharajganj,post,night,0,fewer than 30 urban squares
+10306,Maharajganj,pre,day,29,fewer than 30 urban squares
+10306,Maharajganj,pre,night,0,fewer than 30 urban squares
+10306,Maharajganj,winter,day,29,fewer than 30 urban squares
+10306,Maharajganj,winter,night,4,fewer than 30 urban squares
+10316,Nautan,post,day,0,fewer than 30 urban squares
+10316,Nautan,post,night,0,fewer than 30 urban squares
+10316,Nautan,pre,day,0,fewer than 30 urban squares
+10316,Nautan,pre,night,0,fewer than 30 urban squares
+10316,Nautan,winter,day,0,fewer than 30 urban squares
+10316,Nautan,winter,night,0,fewer than 30 urban squares
+10326,Korba,post,night,28,fewer than 30 squares with clear nights
+10334,Ballia,post,night,19,fewer than 30 squares with clear nights
+10334,Ballia,pre,night,11,fewer than 30 squares with clear nights
+10368,Eluru,post,day,25,fewer than 30 urban squares
+10368,Eluru,post,night,24,fewer than 30 urban squares
+10368,Eluru,pre,day,25,fewer than 30 urban squares
+10368,Eluru,pre,night,25,fewer than 30 urban squares
+10368,Eluru,winter,day,25,fewer than 30 urban squares
+10368,Eluru,winter,night,25,fewer than 30 urban squares
+10386,Sasaram,post,day,20,fewer than 30 urban squares
+10386,Sasaram,post,night,7,fewer than 30 urban squares
+10386,Sasaram,pre,day,20,fewer than 30 urban squares
+10386,Sasaram,pre,night,9,fewer than 30 urban squares
+10386,Sasaram,winter,day,20,fewer than 30 urban squares
+10386,Sasaram,winter,night,9,fewer than 30 urban squares
+10400,Turkaulia,post,day,2,fewer than 30 urban squares
+10400,Turkaulia,post,night,0,fewer than 30 urban squares
+10400,Turkaulia,pre,day,2,fewer than 30 urban squares
+10400,Turkaulia,pre,night,0,fewer than 30 urban squares
+10400,Turkaulia,winter,day,2,fewer than 30 urban squares
+10400,Turkaulia,winter,night,0,fewer than 30 urban squares
+10402,Ekma,post,day,3,fewer than 30 urban squares
+10402,Ekma,post,night,0,fewer than 30 urban squares
+10402,Ekma,pre,day,3,fewer than 30 urban squares
+10402,Ekma,pre,night,0,fewer than 30 urban squares
+10402,Ekma,winter,day,3,fewer than 30 urban squares
+10402,Ekma,winter,night,2,fewer than 30 urban squares
+10432,Motihari,post,day,23,fewer than 30 urban squares
+10432,Motihari,post,night,14,fewer than 30 urban squares
+10432,Motihari,pre,day,23,fewer than 30 urban squares
+10432,Motihari,pre,night,13,fewer than 30 urban squares
+10432,Motihari,winter,day,23,fewer than 30 urban squares
+10432,Motihari,winter,night,20,fewer than 30 urban squares
+10440,Sahebganj,post,day,2,fewer than 30 urban squares
+10440,Sahebganj,post,night,0,fewer than 30 urban squares
+10440,Sahebganj,pre,day,2,fewer than 30 urban squares
+10440,Sahebganj,pre,night,0,fewer than 30 urban squares
+10440,Sahebganj,winter,day,2,fewer than 30 urban squares
+10440,Sahebganj,winter,night,0,fewer than 30 urban squares
+10444,Marhaura,post,day,13,fewer than 30 urban squares
+10444,Marhaura,post,night,0,fewer than 30 urban squares
+10444,Marhaura,pre,day,13,fewer than 30 urban squares
+10444,Marhaura,pre,night,0,fewer than 30 urban squares
+10444,Marhaura,winter,day,13,fewer than 30 urban squares
+10444,Marhaura,winter,night,1,fewer than 30 urban squares
+10446,Dehri,post,day,16,fewer than 30 urban squares
+10446,Dehri,post,night,11,fewer than 30 urban squares
+10446,Dehri,pre,day,16,fewer than 30 urban squares
+10446,Dehri,pre,night,12,fewer than 30 urban squares
+10446,Dehri,winter,day,16,fewer than 30 urban squares
+10446,Dehri,winter,night,15,fewer than 30 urban squares
+10462,Chhapra,post,day,23,fewer than 30 urban squares
+10462,Chhapra,post,night,16,fewer than 30 urban squares
+10462,Chhapra,pre,day,23,fewer than 30 urban squares
+10462,Chhapra,pre,night,16,fewer than 30 urban squares
+10462,Chhapra,winter,day,23,fewer than 30 urban squares
+10462,Chhapra,winter,night,23,fewer than 30 urban squares
+10470,Arrah,post,day,24,fewer than 30 urban squares
+10470,Arrah,post,night,13,fewer than 30 urban squares
+10470,Arrah,pre,day,24,fewer than 30 urban squares
+10470,Arrah,pre,night,13,fewer than 30 urban squares
+10470,Arrah,winter,day,24,fewer than 30 urban squares
+10470,Arrah,winter,night,18,fewer than 30 urban squares
+10502,Dighwara,post,day,12,fewer than 30 urban squares
+10502,Dighwara,post,night,0,fewer than 30 urban squares
+10502,Dighwara,pre,day,12,fewer than 30 urban squares
+10502,Dighwara,pre,night,0,fewer than 30 urban squares
+10502,Dighwara,winter,day,12,fewer than 30 urban squares
+10502,Dighwara,winter,night,5,fewer than 30 urban squares
+10512,Mehsi,post,day,5,fewer than 30 urban squares
+10512,Mehsi,post,night,0,fewer than 30 urban squares
+10512,Mehsi,pre,day,5,fewer than 30 urban squares
+10512,Mehsi,pre,night,0,fewer than 30 urban squares
+10512,Mehsi,winter,day,5,fewer than 30 urban squares
+10512,Mehsi,winter,night,3,fewer than 30 urban squares
+10546,Kalyanpur,post,day,1,fewer than 30 urban squares
+10546,Kalyanpur,post,night,0,fewer than 30 urban squares
+10546,Kalyanpur,pre,day,1,fewer than 30 urban squares
+10546,Kalyanpur,pre,night,0,fewer than 30 urban squares
+10546,Kalyanpur,winter,day,1,fewer than 30 urban squares
+10546,Kalyanpur,winter,night,0,fewer than 30 urban squares
+10580,Sitamarhi,post,day,25,fewer than 30 urban squares
+10580,Sitamarhi,post,night,6,fewer than 30 urban squares
+10580,Sitamarhi,pre,day,25,fewer than 30 urban squares
+10580,Sitamarhi,pre,night,5,fewer than 30 urban squares
+10580,Sitamarhi,winter,day,25,fewer than 30 urban squares
+10580,Sitamarhi,winter,night,17,fewer than 30 urban squares
+10592,Runisaidpur,post,day,6,fewer than 30 urban squares
+10592,Runisaidpur,post,night,0,fewer than 30 urban squares
+10592,Runisaidpur,pre,day,6,fewer than 30 urban squares
+10592,Runisaidpur,pre,night,0,fewer than 30 urban squares
+10592,Runisaidpur,winter,day,6,fewer than 30 urban squares
+10592,Runisaidpur,winter,night,6,fewer than 30 urban squares
+10674,Bakhtiyarpur,post,night,7,fewer than 30 squares with clear nights
+10674,Bakhtiyarpur,pre,night,4,fewer than 30 squares with clear nights
+10674,Bakhtiyarpur,winter,night,25,fewer than 30 squares with clear nights
+10698,Rahika,post,day,3,fewer than 30 urban squares
+10698,Rahika,post,night,0,fewer than 30 urban squares
+10698,Rahika,pre,day,3,fewer than 30 urban squares
+10698,Rahika,pre,night,0,fewer than 30 urban squares
+10698,Rahika,winter,day,3,fewer than 30 urban squares
+10698,Rahika,winter,night,2,fewer than 30 urban squares
+10704,Darbhanga,pre,night,26,fewer than 30 squares with clear nights
+10728,Bihar Sharif,post,day,25,fewer than 30 urban squares
+10728,Bihar Sharif,post,night,16,fewer than 30 urban squares
+10728,Bihar Sharif,pre,day,25,fewer than 30 urban squares
+10728,Bihar Sharif,pre,night,17,fewer than 30 urban squares
+10728,Bihar Sharif,winter,day,25,fewer than 30 urban squares
+10728,Bihar Sharif,winter,night,20,fewer than 30 urban squares
+10734,Madhubani,post,day,17,fewer than 30 urban squares
+10734,Madhubani,post,night,6,fewer than 30 urban squares
+10734,Madhubani,pre,day,17,fewer than 30 urban squares
+10734,Madhubani,pre,night,8,fewer than 30 urban squares
+10734,Madhubani,winter,day,17,fewer than 30 urban squares
+10734,Madhubani,winter,night,16,fewer than 30 urban squares
+10760,Mansurchak,post,day,19,fewer than 30 urban squares
+10760,Mansurchak,post,night,0,fewer than 30 urban squares
+10760,Mansurchak,pre,day,19,fewer than 30 urban squares
+10760,Mansurchak,pre,night,0,fewer than 30 urban squares
+10760,Mansurchak,winter,day,19,fewer than 30 urban squares
+10760,Mansurchak,winter,night,11,fewer than 30 urban squares
+10766,Bibhutpur,post,night,0,fewer than 30 squares with clear nights
+10766,Bibhutpur,pre,night,0,fewer than 30 squares with clear nights
+10766,Bibhutpur,winter,night,5,fewer than 30 squares with clear nights
+10812,Kodarma,post,day,21,fewer than 30 urban squares
+10812,Kodarma,post,night,1,fewer than 30 urban squares
+10812,Kodarma,pre,day,21,fewer than 30 urban squares
+10812,Kodarma,pre,night,1,fewer than 30 urban squares
+10812,Kodarma,winter,day,21,fewer than 30 urban squares
+10812,Kodarma,winter,night,3,fewer than 30 urban squares
+10816,Begusarai,post,night,17,fewer than 30 squares with clear nights
+10816,Begusarai,pre,night,18,fewer than 30 squares with clear nights
+10826,Birpur,post,day,11,fewer than 30 urban squares
+10826,Birpur,post,night,0,fewer than 30 urban squares
+10826,Birpur,pre,day,11,fewer than 30 urban squares
+10826,Birpur,pre,night,0,fewer than 30 urban squares
+10826,Birpur,winter,day,11,fewer than 30 urban squares
+10826,Birpur,winter,night,5,fewer than 30 urban squares
+10880,Saharsa,post,day,21,fewer than 30 urban squares
+10880,Saharsa,post,night,5,fewer than 30 urban squares
+10880,Saharsa,pre,day,21,fewer than 30 urban squares
+10880,Saharsa,pre,night,8,fewer than 30 urban squares
+10880,Saharsa,winter,day,21,fewer than 30 urban squares
+10880,Saharsa,winter,night,13,fewer than 30 urban squares
+10892,Khagaria,post,day,13,fewer than 30 urban squares
+10892,Khagaria,post,night,3,fewer than 30 urban squares
+10892,Khagaria,pre,day,13,fewer than 30 urban squares
+10892,Khagaria,pre,night,4,fewer than 30 urban squares
+10892,Khagaria,winter,day,13,fewer than 30 urban squares
+10892,Khagaria,winter,night,8,fewer than 30 urban squares
+10898,Simri Bakhtiarpur,post,day,3,fewer than 30 urban squares
+10898,Simri Bakhtiarpur,post,night,0,fewer than 30 urban squares
+10898,Simri Bakhtiarpur,pre,day,3,fewer than 30 urban squares
+10898,Simri Bakhtiarpur,pre,night,0,fewer than 30 urban squares
+10898,Simri Bakhtiarpur,winter,day,3,fewer than 30 urban squares
+10898,Simri Bakhtiarpur,winter,night,1,fewer than 30 urban squares
+10904,Munger,post,night,14,fewer than 30 squares with clear nights
+10904,Munger,pre,night,11,fewer than 30 squares with clear nights
+10904,Munger,winter,night,26,fewer than 30 squares with clear nights
+10954,Giridih,post,night,4,fewer than 30 squares with clear nights
+10954,Giridih,pre,night,6,fewer than 30 squares with clear nights
+10954,Giridih,winter,night,13,fewer than 30 squares with clear nights
+11008,Bhagalpur,post,night,28,fewer than 30 squares with clear nights
+11008,Bhagalpur,pre,night,26,fewer than 30 squares with clear nights
+11012,Deoghar,post,day,27,fewer than 30 urban squares
+11012,Deoghar,post,night,15,fewer than 30 urban squares
+11012,Deoghar,pre,day,27,fewer than 30 urban squares
+11012,Deoghar,pre,night,17,fewer than 30 urban squares
+11012,Deoghar,winter,day,27,fewer than 30 urban squares
+11012,Deoghar,winter,night,18,fewer than 30 urban squares
+11016,Araria,post,day,12,fewer than 30 urban squares
+11016,Araria,post,night,0,fewer than 30 urban squares
+11016,Araria,pre,day,12,fewer than 30 urban squares
+11016,Araria,pre,night,0,fewer than 30 urban squares
+11016,Araria,winter,day,12,fewer than 30 urban squares
+11016,Araria,winter,night,3,fewer than 30 urban squares
+11018,Brahmapur,pre,night,24,fewer than 30 squares with clear nights
+11026,Kotwali,post,day,0,fewer than 30 urban squares
+11026,Kotwali,post,night,0,fewer than 30 urban squares
+11026,Kotwali,pre,day,0,fewer than 30 urban squares
+11026,Kotwali,pre,night,0,fewer than 30 urban squares
+11026,Kotwali,winter,day,0,fewer than 30 urban squares
+11026,Kotwali,winter,night,0,fewer than 30 urban squares
+11040,Purulia,post,day,17,fewer than 30 urban squares
+11040,Purulia,post,night,13,fewer than 30 urban squares
+11040,Purulia,pre,day,17,fewer than 30 urban squares
+11040,Purulia,pre,night,13,fewer than 30 urban squares
+11040,Purulia,winter,day,17,fewer than 30 urban squares
+11040,Purulia,winter,night,14,fewer than 30 urban squares
+11044,Purnia,post,night,21,fewer than 30 squares with clear nights
+11044,Purnia,pre,night,23,fewer than 30 squares with clear nights
+11044,Purnia,winter,night,29,fewer than 30 squares with clear nights
+11056,Darjeeling,post,day,3,fewer than 30 urban squares
+11056,Darjeeling,post,night,3,fewer than 30 urban squares
+11056,Darjeeling,pre,day,3,fewer than 30 urban squares
+11056,Darjeeling,pre,night,3,fewer than 30 urban squares
+11056,Darjeeling,winter,day,3,fewer than 30 urban squares
+11056,Darjeeling,winter,night,3,fewer than 30 urban squares
+11078,Katihar,post,day,25,fewer than 30 urban squares
+11078,Katihar,post,night,6,fewer than 30 urban squares
+11078,Katihar,pre,day,25,fewer than 30 urban squares
+11078,Katihar,pre,night,7,fewer than 30 urban squares
+11078,Katihar,winter,day,25,fewer than 30 urban squares
+11078,Katihar,winter,night,12,fewer than 30 urban squares
+11140,Bankura,post,day,19,fewer than 30 urban squares
+11140,Bankura,post,night,12,fewer than 30 urban squares
+11140,Bankura,pre,day,19,fewer than 30 urban squares
+11140,Bankura,pre,night,14,fewer than 30 urban squares
+11140,Bankura,winter,day,19,fewer than 30 urban squares
+11140,Bankura,winter,night,14,fewer than 30 urban squares
+11142,Rajmahal,post,day,9,fewer than 30 urban squares
+11142,Rajmahal,post,night,0,fewer than 30 urban squares
+11142,Rajmahal,pre,day,9,fewer than 30 urban squares
+11142,Rajmahal,pre,night,0,fewer than 30 urban squares
+11142,Rajmahal,winter,day,9,fewer than 30 urban squares
+11142,Rajmahal,winter,night,0,fewer than 30 urban squares
+11148,Puri,post,day,18,fewer than 30 urban squares
+11148,Puri,post,night,17,fewer than 30 urban squares
+11148,Puri,pre,day,18,fewer than 30 urban squares
+11148,Puri,pre,night,17,fewer than 30 urban squares
+11148,Puri,winter,day,18,fewer than 30 urban squares
+11148,Puri,winter,night,18,fewer than 30 urban squares
+11150,Raiganj,post,day,21,fewer than 30 urban squares
+11150,Raiganj,post,night,3,fewer than 30 urban squares
+11150,Raiganj,pre,day,21,fewer than 30 urban squares
+11150,Raiganj,pre,night,4,fewer than 30 urban squares
+11150,Raiganj,winter,day,21,fewer than 30 urban squares
+11150,Raiganj,winter,night,21,fewer than 30 urban squares
+11172,Jalpaiguri,post,day,19,fewer than 30 urban squares
+11172,Jalpaiguri,post,night,12,fewer than 30 urban squares
+11172,Jalpaiguri,pre,day,19,fewer than 30 urban squares
+11172,Jalpaiguri,pre,night,19,fewer than 30 urban squares
+11172,Jalpaiguri,winter,day,19,fewer than 30 urban squares
+11172,Jalpaiguri,winter,night,16,fewer than 30 urban squares
+11180,Siuri,post,day,18,fewer than 30 urban squares
+11180,Siuri,post,night,12,fewer than 30 urban squares
+11180,Siuri,pre,day,18,fewer than 30 urban squares
+11180,Siuri,pre,night,14,fewer than 30 urban squares
+11180,Siuri,winter,day,18,fewer than 30 urban squares
+11180,Siuri,winter,night,13,fewer than 30 urban squares
+11184,Dhulian,post,night,12,fewer than 30 squares with clear nights
+11184,Dhulian,pre,night,16,fewer than 30 squares with clear nights
+11184,Dhulian,winter,night,19,fewer than 30 squares with clear nights
+11262,Kharagpur,post,night,28,fewer than 30 squares with clear nights
+11262,Kharagpur,pre,night,23,fewer than 30 squares with clear nights
+11280,Berhampore,post,night,20,fewer than 30 squares with clear nights
+11280,Berhampore,winter,night,22,fewer than 30 squares with clear nights
+11290,Balurghat,post,day,13,fewer than 30 urban squares
+11290,Balurghat,post,night,3,fewer than 30 urban squares
+11290,Balurghat,pre,day,13,fewer than 30 urban squares
+11290,Balurghat,pre,night,3,fewer than 30 urban squares
+11290,Balurghat,winter,day,13,fewer than 30 urban squares
+11290,Balurghat,winter,night,11,fewer than 30 urban squares
+11302,Tamluk,post,night,7,fewer than 30 squares with clear nights
+11302,Tamluk,pre,night,20,fewer than 30 squares with clear nights
+11302,Tamluk,winter,night,5,fewer than 30 squares with clear nights
+11310,Cooch Behar,post,day,23,fewer than 30 urban squares
+11310,Cooch Behar,post,night,8,fewer than 30 urban squares
+11310,Cooch Behar,pre,day,23,fewer than 30 urban squares
+11310,Cooch Behar,pre,night,22,fewer than 30 urban squares
+11310,Cooch Behar,winter,day,23,fewer than 30 urban squares
+11310,Cooch Behar,winter,night,8,fewer than 30 urban squares
+11346,Debandi,post,day,1,fewer than 30 urban squares
+11346,Debandi,post,night,0,fewer than 30 urban squares
+11346,Debandi,pre,day,1,fewer than 30 urban squares
+11346,Debandi,pre,night,0,fewer than 30 urban squares
+11346,Debandi,winter,day,1,fewer than 30 urban squares
+11346,Debandi,winter,night,0,fewer than 30 urban squares
+11366,Mahishadal,post,day,1,fewer than 30 urban squares
+11366,Mahishadal,post,night,0,fewer than 30 urban squares
+11366,Mahishadal,pre,day,1,fewer than 30 urban squares
+11366,Mahishadal,pre,night,0,fewer than 30 urban squares
+11366,Mahishadal,winter,day,1,fewer than 30 urban squares
+11366,Mahishadal,winter,night,0,fewer than 30 urban squares
+11374,Krishnanagar,post,day,23,fewer than 30 urban squares
+11374,Krishnanagar,post,night,8,fewer than 30 urban squares
+11374,Krishnanagar,pre,day,23,fewer than 30 urban squares
+11374,Krishnanagar,pre,night,9,fewer than 30 urban squares
+11374,Krishnanagar,winter,day,23,fewer than 30 urban squares
+11374,Krishnanagar,winter,night,9,fewer than 30 urban squares
+11402,Dhubri,post,day,15,fewer than 30 urban squares
+11402,Dhubri,post,night,3,fewer than 30 urban squares
+11402,Dhubri,pre,day,15,fewer than 30 urban squares
+11402,Dhubri,pre,night,9,fewer than 30 urban squares
+11402,Dhubri,winter,day,15,fewer than 30 urban squares
+11402,Dhubri,winter,night,8,fewer than 30 urban squares
+11416,Bazarati,post,day,8,fewer than 30 urban squares
+11416,Bazarati,post,night,0,fewer than 30 urban squares
+11416,Bazarati,pre,day,8,fewer than 30 urban squares
+11416,Bazarati,pre,night,0,fewer than 30 urban squares
+11416,Bazarati,winter,day,8,fewer than 30 urban squares
+11416,Bazarati,winter,night,1,fewer than 30 urban squares
+11420,Jaynagar Majilpur,post,day,3,fewer than 30 urban squares
+11420,Jaynagar Majilpur,post,night,0,fewer than 30 urban squares
+11420,Jaynagar Majilpur,pre,day,3,fewer than 30 urban squares
+11420,Jaynagar Majilpur,pre,night,0,fewer than 30 urban squares
+11420,Jaynagar Majilpur,winter,day,3,fewer than 30 urban squares
+11420,Jaynagar Majilpur,winter,night,0,fewer than 30 urban squares
+11442,Minakhan,post,day,0,fewer than 30 urban squares
+11442,Minakhan,post,night,0,fewer than 30 urban squares
+11442,Minakhan,pre,day,0,fewer than 30 urban squares
+11442,Minakhan,pre,night,0,fewer than 30 urban squares
+11442,Minakhan,winter,day,0,fewer than 30 urban squares
+11442,Minakhan,winter,night,0,fewer than 30 urban squares
+11444,Canning,post,day,2,fewer than 30 urban squares
+11444,Canning,post,night,0,fewer than 30 urban squares
+11444,Canning,pre,day,2,fewer than 30 urban squares
+11444,Canning,pre,night,0,fewer than 30 urban squares
+11444,Canning,winter,day,2,fewer than 30 urban squares
+11444,Canning,winter,night,0,fewer than 30 urban squares
+11514,Moirabari,post,day,7,fewer than 30 urban squares
+11514,Moirabari,post,night,5,fewer than 30 urban squares
+11514,Moirabari,pre,day,7,fewer than 30 urban squares
+11514,Moirabari,pre,night,7,fewer than 30 urban squares
+11514,Moirabari,winter,day,7,fewer than 30 urban squares
+11514,Moirabari,winter,night,7,fewer than 30 urban squares
+11520,Tezpur,post,night,12,fewer than 30 squares with clear nights
+11520,Tezpur,winter,night,20,fewer than 30 squares with clear nights
+11524,Nagaon,post,day,28,fewer than 30 urban squares
+11524,Nagaon,post,night,20,fewer than 30 urban squares
+11524,Nagaon,pre,day,28,fewer than 30 urban squares
+11524,Nagaon,pre,night,24,fewer than 30 urban squares
+11524,Nagaon,winter,day,28,fewer than 30 urban squares
+11524,Nagaon,winter,night,28,fewer than 30 urban squares
+11556,Silchar,post,night,27,fewer than 30 squares with clear nights
+11556,Silchar,winter,night,27,fewer than 30 squares with clear nights
+11578,Dimapur,winter,night,16,fewer than 30 squares with clear nights
+11580,Aizawl,post,day,16,fewer than 30 urban squares
+11580,Aizawl,post,night,15,fewer than 30 urban squares
+11580,Aizawl,pre,day,16,fewer than 30 urban squares
+11580,Aizawl,pre,night,13,fewer than 30 urban squares
+11580,Aizawl,winter,day,16,fewer than 30 urban squares
+11580,Aizawl,winter,night,14,fewer than 30 urban squares
