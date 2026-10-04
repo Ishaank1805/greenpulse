@@ -25,3 +25,8 @@ ERA5_ID = 'ECMWF/ERA5_LAND/MONTHLY_AGGR'
 # Seasons: name -> list of calendar months. Winter wraps the year end.
 SEASONS = {'pre': [4, 5], 'post': [10, 11], 'winter': [12, 1, 2]}
 SRTM_ID = 'USGS/SRTMGL1_003'
+
+# --- Role 2 ---
+ERA5_DAILY_ID = 'ECMWF/ERA5_LAND/DAILY_AGGR'
+CLIMATE_SCALE = 1000          # m; lets EE area-weight 9 km ERA5 cells over small city polygons
+CLIMATE_FALLBACK_BUFFER = 10_000   # m; centroid buffer when a polygon misses every land cell
