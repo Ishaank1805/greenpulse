@@ -71,3 +71,7 @@ Source: `data/results/exposure.csv`. 202 cities with ≥ 30 urban squares (built
 - **Comparison with the literature:** Chakraborty et al. 2019 found poorer neighbourhoods hotter in 72% of 25 cities, using surface temperature. We use population density, not income, so we can say "more crowded squares", not "poorer". Our 63–87% by day is in the same range.
 
 ## Role 5 (water and data quality)
+
+- **Monsoon availability:** In Mumbai, usable daytime LST composites fall from **85.0% in April–May to 25.2% in June–September**, supporting exclusion of the monsoon from the main seasonal analysis (`data/results/lst_availability_by_month.csv`).
+- **Water control:** Across **202 cities**, the median pre-monsoon daytime NDVI slope changes only from **−1.052 to −1.129 °C per 0.1 NDVI** after controlling for mapped water share, so water does not explain away the overall cooling association (`data/results/cooling_efficiency.csv`).
+- **Jodhpur night:** Jodhpur's pre-monsoon nighttime slope remains **+0.944 → +0.944 °C per 0.1 NDVI** after adding the water control, so its greener-is-warmer night association is not explained by mapped water (`data/results/cooling_efficiency.csv`).

@@ -107,10 +107,17 @@
 
 *Note for R4 (wording):* "Pre-monsoon: hot and dry" is true for most cities but not Kerala, where April–May is already wet. In Kochi, winter (34.1 °C) is slightly warmer than pre-monsoon (33.7 °C) for that reason. Suggest "hot, and dry in most cities".
 
-### Slide 6b. No monsoon season: too few usable satellite images (R5, PLACEHOLDER)
+### Slide 6b. No monsoon season: too few usable satellite images (R5, READY)
 - **Figure:** `figures/M_lst_availability.png`.
-- **Text:** "In June–September only X% of 8-day composites are usable in Mumbai, against Y% in April–May." Kumar et al. (2017) also excluded June–September for this reason.
-- **Early evidence from Role 1's samples:** Chennai has a median of 21 usable composites after the monsoon, against 36 before it, because its rains come in Oct–Dec.
+- **Text:** "In Mumbai, only **25.2%** of daytime 8-day LST composites are usable in June–September, against **85.0%** in April–May." Kumar et al. (2017) also excluded June–September because of cloud-limited satellite coverage.
+- Across the six cities checked, monsoon daytime availability is lower than pre-monsoon availability; Kolkata is lowest at **19.1%**.
+
+*Speaker points (R5):*
+- We used the same MODIS LST quality mask as the main pipeline and measured usable observations month-by-month over 2019–2024 in six cities.
+- The loss is substantial and geographically uneven: Mumbai drops from 85.0% before the monsoon to 25.2% during it, while Kolkata reaches 19.1%.
+- So we exclude June–September because cloud leaves much less comparable LST coverage across cities, not because we assume vegetation has no effect during the monsoon.
+
+*Likely TA question:* "Why not keep monsoon with fewer observations?" Because the missing coverage is large and uneven between cities, so estimates would be based on very different amounts of usable satellite data.
 
 ---
 
@@ -241,9 +248,17 @@
 - This uses population density, not income, so say "crowded", never "poor". Chakraborty et al. 2019 found poorer neighbourhoods hotter in 72% of 25 cities.
 - **Source:** `data/results/exposure.csv`.
 
-### Slide 15b. [Does water explain part of the effect?] (R5, PLACEHOLDER)
+### Slide 15b. Water does not explain away the vegetation effect (R5, READY)
 - **Figure:** `figures/G_water_effect.png`.
-- **Text:** "Controlling for water share changes the median daytime slope from X to Y. Jodhpur's warm green nights [remain / disappear]."
+- **Text:** Across **202 cities**, controlling for mapped water changes the median pre-monsoon daytime slope only from **−1.052 to −1.129 °C per 0.1 NDVI**.
+- **Jodhpur night:** **+0.944 → +0.944 °C per 0.1 NDVI**; the warm-green-night association remains after controlling for water.
+
+*Speaker points (R5):*
+- Water is a possible confounder because water-rich squares can also be cooler, so we calculated the mapped water fraction of every 1 km MODIS square from OpenStreetMap.
+- We compare the same regression with built-up share and elevation (`built_elev`) against one that additionally controls for water (`built_elev_water`).
+- The overall daytime slope changes only slightly, and Jodhpur's nighttime slope is unchanged, so mapped water does not explain the main vegetation-temperature association.
+
+*Likely TA question:* "How was water share calculated?" We intersected OpenStreetMap water polygons with each MODIS square and used the fraction of the square covered by mapped water. A known limitation is that OSM coastlines do not represent the sea in the same way as inland water polygons.
 
 ### Slide 16. Daytime cooling survives every check; controls are what matter (R3, DRAFT)
 - **Figure:** `figures/H_robustness_table.png`. The variants are EVI, a 20% built-up cut-off, each control removed, water squares dropped, and a 6-night cut-off.
