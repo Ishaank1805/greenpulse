@@ -41,7 +41,7 @@ ce03 = importlib.import_module('03_cooling_efficiency')
 OUT = C.DATA / 'results' / 'robustness.csv'
 COLS = ['variant', 'season', 'time', 'n_cities', 'share_cooling_sig', 'median_ce_per_0.1',
         'spearman_vs_main', 'rain_slope', 'rain_slope_p', 'share_warming_sig']
-LABELS = {'main': 'Main (NDVI, built ≥ 10%, built + elevation)', 'evi': 'EVI instead of NDVI',
+LABELS = {'main': 'Main (NDVI, built ≥ 10%, built + elev. + water)', 'evi': 'EVI instead of NDVI',
           'built_min_0.20': 'Built-up cut-off 20%', 'no_water_control': 'No water control',
           'no_elev_control': 'No elevation control (pilot spec)', 'no_controls': 'No controls',
           'min_nights_6': '6 clear nights (night only)',
