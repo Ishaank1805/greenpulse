@@ -12,7 +12,8 @@ Sources: `data/results/b2_checks.csv`, `data/results/run_log.csv`, `data/samples
 - **Sampling matches the grid:** the median city has exactly the number of squares its area predicts (ratio 1.00), and the pre-monsoon values reproduce the Jodhpur/Kochi pilot exactly.
 - **Cloud thins the data but rarely empties a square.** The median city has a clear daytime image 98% of the time before the monsoon, 95% after it and 94% in winter. Each season has its own cloudy region: Kerala before the monsoon (Kottayam 46%), Tamil Nadu after it (Viluppuram 37%), and the Gangetic plain in winter (Jaunpur 60%, likely fog).
 - **Squares with no temperature are water, not cloud:** the missing share is identical in all three seasons in every city (worst Vadakara 19%, Thalassery 18%, Mangaluru 17%, all coastal).
-- **Seasons differ strongly overall but not everywhere:** the median square is 39.7 °C by day before the monsoon, 31.2 °C after it and 27.9 °C in winter. In Kochi, winter (34.1 °C) is slightly warmer than pre-monsoon (33.7 °C), because Kerala's April–May is already wet. Role 2's `city_climate.csv` can confirm the rainfall.
+- **Missing squares are the same squares in every season** in all 303 cities, which confirms they are water (MODIS does not report land temperature over water), not cloud.
+- **Seasons differ strongly overall but not everywhere:** the median square is 39.7 °C by day before the monsoon, 31.2 °C after it and 27.9 °C in winter. In Kochi, winter (34.1 °C) is slightly warmer than pre-monsoon (33.7 °C), because Kerala's April–May is already wet: Kochi gets 622 mm of rain in April–May against 126 mm in winter, while the median city gets 67 mm in April–May (`city_climate.csv`).
 - **Hill cities reach sub-zero surfaces:** winter night surface temperature falls to −12.8 °C (Khansahib), −7.9 °C (Kralpora) and −6.5 °C (Srinagar) in the Kashmir valley, at 1,600–2,000 m. These were flagged by the range checks and confirmed as real.
 
 ## Role 2 (climate)
