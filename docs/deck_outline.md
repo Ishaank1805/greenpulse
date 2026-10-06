@@ -103,7 +103,7 @@
 - 303 cities, 53,614 squares of 1 km, about 297 million people (WorldPop 2020). Source: `data/results/b2_checks.csv`, `data/samples/`.
 - Seasons really do differ: the median square is 39.7 °C by day before the monsoon, 31.2 °C after it and 27.9 °C in winter. Each season is averaged over 2019–2024.
 
-*Likely TA question:* "Why these three seasons and not the monsoon?" Jun–Sep cloud leaves too few usable images (Role 5's slide 6b, and Kumar et al. 2017 excluded it for the same reason). The other three each still have a clear daytime image 94–98% of the time in the median city.
+*Likely TA question:* "Why these three seasons and not the monsoon?" Jun–Sep cloud leaves too few usable images (Role 5's slide 6b, and Kumar et al. 2017 excluded it for the same reason). The other three still keep 94–98% of 8-day images after quality filtering (median over **land** squares, median city; `b2_checks.csv`). This is a different measure from slide 6b's, which averages over all squares including water.
 
 *Second likely TA question:* "Why is Kochi warmer in winter than before the monsoon?" Kerala's April–May is already wet (622 mm in Kochi), so the ground is cooled by evaporation, while winter is dry and sunny. Kochi's winter surface is 34.1 °C against 33.7 °C pre-monsoon. The same code gives the expected order in Jodhpur, so it is not a bug.
 
@@ -111,6 +111,7 @@
 - **Figure:** `figures/M_lst_availability.png`.
 - **Text:** "In Mumbai, only **25.2%** of daytime 8-day LST composites are usable in June–September, against **85.0%** in April–May." Kumar et al. (2017) also excluded June–September because of cloud-limited satellite coverage.
 - Across the six cities checked, monsoon daytime availability is lower than pre-monsoon availability; Kolkata is lowest at **19.1%**.
+- **Measure:** the share of 8-day images that pass the quality filter, averaged over **every** square in the city outline, with water squares counting as unusable. That is why Mumbai's April–May figure (85%) is lower than slide 6's land-only figure (~98%). Compare months **within** this chart, not with slide 6.
 
 *Speaker points (R5):*
 - We used the same MODIS LST quality mask as the main pipeline and measured usable observations month-by-month over 2019–2024 in six cities.
@@ -137,7 +138,7 @@
 
 *Likely TA question:* "How do you know missing squares are water and not cloud?" A cloudy square would be missing in some seasons and not others. In every one of the 303 cities, exactly the same squares are missing in all three seasons, and in Kochi the missing squares never had a single reading in 6 years.
 
-### Slide 8. The cooling slope: how much cooler greener squares are, other things equal (R3, DRAFT)
+### Slide 8. The cooling slope: how much cooler greener squares are, other things equal (R3, READY)
 - For each city × season × day/night:
   `LST = b0 + b1·NDVI + b2·built + b3·elevation + b4·water`
 - **Cooling slope** = b1 ÷ 10, in °C per 0.1 NDVI. **Negative = greener squares are cooler.**
@@ -152,7 +153,7 @@
 
 *Likely TA question:* "Is this causal?" No. It is an association with the observed confounders (built-up share, elevation and water) held fixed.
 
-### Slide 9. Climate is one value per city, and exposure is weighted by people (R2 + R4, DRAFT)
+### Slide 9. Climate is one value per city, and exposure is weighted by people (R2 + R4, READY)
 - **ERA5-Land is ~9 km,** too coarse to vary within a city, so it describes the **background climate** each city sits in.
 - **Dryness measure:** annual rainfall is the main one, and soil moisture is the second. Potential evaporation is unreliable in arid areas, so we don't use it.
 - **Heat Index:** daily, NOAA formula, from the daily maximum temperature and the dewpoint.
@@ -169,7 +170,7 @@
 
 ## Part 4: Results
 
-### Slide 10. Pilot: greener squares are cooler by day in both a desert and a wet city (R3, DRAFT)
+### Slide 10. Pilot: greener squares are cooler by day in both a desert and a wet city (R3, READY)
 - **Jodhpur (desert):** −1.32 °C per 0.1 NDVI (95%: −1.98 to −0.67).
 - **Kochi (wet):** −1.04 °C per 0.1 NDVI (95%: −1.57 to −0.51).
 - **At night, Jodhpur reverses:** greener squares are warmer (+0.62). This shows only once built-up share is controlled.
@@ -182,7 +183,7 @@
 
 *Likely TA question:* "Why does Kochi change so much with the controls?" Water. Kochi's water squares are cool and have low NDVI, so without a water control low greenery looks cooler and the cooling is understated. Adding water moves Kochi from −1.44 to −1.90; in Jodhpur, with little water, it changes nothing.
 
-### Slide 11. By day, cooling does not depend on rainfall; at night, wetter cities cool more (R2, DRAFT)
+### Slide 11. By day, cooling does not depend on rainfall; at night, wetter cities cool more (R2, READY)
 - **Figure:** `figures/D_ce_vs_rain.png` (top row day, bottom row night; one column per season).
 - **Text:** "Across 202 cities, the daytime slope shows no clear trend with rainfall in any season (pre-monsoon +0.17 per 10× rain, 95% CI −0.73 to +1.07). At night, wetter cities cool clearly more (pre −1.16, post −0.98 per 10× rain)." By day this supports neither side of the slide-3 debate; at night it sides with Guo / Schwaab (weaker cooling in dry places).
 
@@ -195,7 +196,7 @@
 
 *Likely TA question:* "Couldn't it be city size?" No. With city size added, the night results don't move (−1.19 before the monsoon, −1.03 after, both clear), and size itself is never significant.
 
-### Slide 12. Greener is cooler by day almost everywhere in India (R2, DRAFT)
+### Slide 12. Greener is cooler by day almost everywhere in India (R2, READY)
 - **Figure:** `figures/D_ce_map_pre_day.png`. Blue = cooling, red = warming; hollow markers = not significant; size = population. Optional backup: `D_ce_map_pre_night.png` for the night contrast.
 
 *Speaker points (R2):*
@@ -205,7 +206,7 @@
 
 *Likely TA question:* "Is there a regional pattern?" Not by day; that is what slide 11 tests formally.
 
-### Slide 13. Dry Indian cities do not warm by day; their green squares warm at night (R2, DRAFT)
+### Slide 13. Dry Indian cities do not warm by day; their green squares warm at night (R2, READY)
 - **Table** (pre-monsoon, from `data/results/main_result_bins.csv`):
 
 | | Cities | Median slope | Significant cooling | Greener-is-warmer |
@@ -224,10 +225,9 @@
 
 *Likely TA question:* "Are the night numbers reliable with so few dry cities?" Only 39 dry cities have night estimates. With a 6-night cut-off (48 dry cities) the result gets stronger, 54% vs 18%.
 
-### Slide 14. In the same city, daytime cooling is weaker after the monsoon, night cooling stronger (R3, DRAFT)
+### Slide 14. In the same city, daytime cooling is weaker after the monsoon, night cooling stronger (R3, READY)
 - **Figures:** `figures/S_season_paired.png` and `figures/S_dce_vs_dsoil.png`.
-- **Text:** "Cooling is [stronger / weaker] after the monsoon in X% of cities; [more so where soils wetted most]."
-- **Draft text:** "By day, cooling is weaker after the monsoon in 81% of 202 cities (median change +0.43 °C per 0.1 NDVI); at night it is stronger in 69% of 127 cities (median −0.16)." Add: "Soil wetting does not clearly explain this (`S_dce_vs_dsoil.png`: −1.71, 95% CI −3.65 to +0.24)."
+- **Text:** "By day, cooling is weaker after the monsoon in 81% of 202 cities (median change +0.43 °C per 0.1 NDVI); at night it is stronger in 69% of 127 cities (median −0.16)." Add: "Soil wetting does not clearly explain this (`S_dce_vs_dsoil.png`: −1.71, 95% CI −3.65 to +0.24)."
 
 *Speaker points (R3):*
 - Same city, same squares, different season. Everything fixed about the city (layout, size, region) cancels out. That is why this is our cleanest test of conditions (H4).
@@ -236,17 +236,22 @@
 
 *Likely TA question:* "Is the change just noise?" Wilcoxon p ≈ 7e-19 by day across 202 cities. Per city, 30% are significantly weaker and only 2% significantly stronger, using a conservative standard error that treats the seasons as independent.
 
-### Slide 15. People live in less green, hotter squares, especially at night (R4, READY)
-- **Less green:** crowded squares are less green in **90–96%** of 202 cities, depending on season.
-- **At night:** people live in hotter-than-average squares in **96–97%** of cities (135–157 cities, depending on season; humid cities are under-represented because of cloud).
-- **By day:** the pattern is weaker and depends on season: **63%** pre-monsoon, **87%** post-monsoon, **73%** winter.
-  - The pre-monsoon exceptions include Surat, Pune, Mumbai, Indore, Nagpur and Jaipur, where bare outskirts heat up more than the city (as in Jodhpur).
-- **Size of the gap:** small on average (median +0.1 to +0.2 °C), but up to about 1 °C, as in Kolkata (+1.08 °C).
-- **Figures:** `figures/F_exposure_by_season.png` (main) and `figures/F_exposure_dumbbell.png` (backup or a second panel).
+### Slide 15. Crowded squares are less green, and the less green they are, the hotter (R4, READY)
+- **Less green:** crowded squares are less green than the city average in **90–96%** of 202 cities, depending on season.
+- **Hotter at night:** people live in hotter-than-average squares in **96–97%** of cities (135–157 cities with night data; humid cities are under-represented because of cloud).
+- **Hotter by day, less consistently:** **63%** pre-monsoon, **87%** post-monsoon, **73%** winter. The gap is small on average (median +0.1 to +0.2 °C) but reaches **+1.08 °C in Kolkata**.
+- **The link to vegetation:** across cities, the less green the crowded squares are, the bigger their heat gap (Spearman **ρ ≈ −0.73** in every season).
+- **Figures:** `figures/F_exposure_by_season.png` (main) and `figures/F_crowded_vs_green.png` (the vegetation link). Backup: `figures/F_exposure_dumbbell.png`.
 
-*Speaker notes:*
-- This uses population density, not income, so say "crowded", never "poor". Chakraborty et al. 2019 found poorer neighbourhoods hotter in 72% of 25 cities.
-- **Source:** `data/results/exposure.csv`.
+*Speaker points (R4):*
+- People-weighting: each 1 km square's temperature is weighted by the number of people living there (WorldPop 2020). Comparing with the plain average shows whether the heat sits where people are.
+- Night is the clearest result. By day, before the monsoon, some large cities go the other way: Surat, Pune, Mumbai, Kozhikode, Indore, Nagpur, Jaipur. Most of them are wet, so it is not simply a dry-city effect, and the reason is not established.
+- Rainfall makes only a small difference, and only before the monsoon (55% of dry vs 66% of wet cities; none in other seasons).
+- We use population density, not income, so say "crowded", never "poor". Chakraborty et al. 2019 found poorer neighbourhoods hotter in 72% of 25 cities, using surface temperature, which is the same range as our 63–87% by day.
+
+*Likely TA question:* "Is +0.1 °C meaningful?" On average it is small; the point is the direction (almost every city at night) and the link to greenness (ρ ≈ −0.73). In some cities it is about 1 °C. It is surface temperature, which overstates what people feel (Venter et al. 2021).
+
+*Source:* `data/results/exposure.csv`; rainfall from `city_climate.csv`.
 
 ### Slide 15b. Water does not explain away the vegetation effect (R5, READY)
 - **Figure:** `figures/G_water_effect.png`.
@@ -260,15 +265,14 @@
 
 *Likely TA question:* "How was water share calculated?" We intersected OpenStreetMap water polygons with each MODIS square and used the fraction of the square covered by mapped water. A known limitation is that OSM coastlines do not represent the sea in the same way as inland water polygons.
 
-### Slide 16. Daytime cooling survives every check; controls are what matter (R3, DRAFT)
+### Slide 16. Daytime cooling survives every check; controls are what matter (R3, READY)
 - **Figure:** `figures/H_robustness_table.png`. The variants are EVI, a 20% built-up cut-off, each control removed, water squares dropped, and a 6-night cut-off.
-- Name the one variant that matters most.
-- **Draft text:** "70–77% of cities show significant daytime cooling under every variant. Dropping the controls matters most (city ranking ρ = 0.56 with the main spec); EVI gives a similar ranking (ρ = 0.83), and the water control changes little (ρ = 0.91)."
+- **Text:** "70–77% of cities show significant daytime cooling under every variant. Dropping the controls matters most (city ranking ρ = 0.56 with the main spec); EVI gives a similar ranking (ρ = 0.83), and the water control changes little (ρ = 0.91)."
 
 *Speaker points (R3):*
 - What we changed: the greenness index (EVI), the urban cut-off (20%), each control (including water), water squares dropped, and the night cut-off (6 clear nights). The rainfall slope changes sign across variants and is never significant at 5%, so "no clear daytime rainfall pattern" is the safe reading.
 - The night result depends on the built-up control: without it, greener squares look cooler at night in 53–75% of cities; with it, the night slope centres on zero. Built-up surfaces hold heat at night.
-- A 6-night cut-off adds 24–32 humid cities at night and does not change the picture (ρ = 0.91–0.95).
+- A 6-night cut-off adds 24–32 cities at night, about three-quarters of them wet (`robustness.csv`), and does not change the picture (ρ = 0.91–0.95).
 
 *Likely TA question:* "Why do NDVI and EVI disagree in some cities?" They disagree on significance in 14% of cities. It is not explained by NDVI being tied to built-up share (16% vs 13%, p = 0.54), so we report it as an open point.
 
@@ -276,14 +280,18 @@
 
 ## Part 5: Observations
 
-### Slide 17. What we observe so far (R4 collects, each person reads their own line; DRAFT)
-One line per hypothesis, each with a number and a paper. Fill from `docs/observations.md`.
-- **H1** (R3): …
-- **H2** (R2): …
-- **H3** (R2 / R3): … (give the number of dry and wet cities; humid cities have less night data)
-- **H4** (R3): …
-- **H5** (R4): crowded squares are less green in 90–96% of cities. People live in hotter squares at night in 96–97% of cities, and by day in 63–87%.
-- **Data** (R1 / R5): no monsoon season, 101 cities too small for an estimate, and humid cities under-represented at night.
+### Slide 17. What we observe so far (each person reads their own line; READY)
+- **H1, greener is cooler by day (R3):** yes, almost everywhere. 75% of 202 cities cool significantly before the monsoon (median −1.13 °C per 0.1 NDVI), and 70–74% in the other seasons. Fits Bowler 2010, Schwaab 2021 and Kim 2024.
+- **H2, depends on moisture? (R2):** not by day. The daytime slope shows no clear trend with rainfall (+0.17 per 10× rain, 95% CI −0.73 to +1.07), and no dry city warms by day (0 of 56, against Guo's 22%). So neither side of the dry-climate debate is supported by day.
+- **H3, nights (R2/R3):** night slopes centre on zero (as in Yang 2022 and Du 2024). Wetter cities cool more at night (−1.16 per 10× rain, 135 cities): 38% of 39 dry cities have warmer green nights, against 18% of 96 wet ones. This fits Guo's heat-storage idea. Humid cities have less night data, but the result holds with a 6-night cut-off (54% vs 18%).
+- **H4, seasons in the same city (R3):** daytime cooling is weaker after the monsoon in 81% of 202 cities (median change +0.43). Night cooling is stronger in 69% of 127. Soil wetting does not clearly explain the change (p = 0.09).
+- **H5, exposure (R4):** crowded squares are less green in 90–96% of cities. People live in hotter squares at night in 96–97% of cities and by day in 63–87%, and the less green the crowded squares, the hotter (ρ ≈ −0.73).
+- **Data (R1/R5):**
+  - The monsoon is excluded: usable images in Mumbai fall from 85% to 25%.
+  - 101 of 303 cities are too small for an estimate.
+  - Controlling for water barely moves the result (median −1.05 → −1.13).
+
+*Speaker notes:* Every line here is an association, not a cause. Each presenter reads their own line, so keep to one breath each.
 
 ### Slide 18. Limitations, and what is left for the final (R4, READY)
 - **Done (about 50–60%):** the pipeline, 303 cities × 3 seasons sampled, the cooling slopes, climate, exposure and the main results.
