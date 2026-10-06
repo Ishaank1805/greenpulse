@@ -38,13 +38,13 @@
 **Dry cities: weaker cooling, or stronger?**
 - **Weaker:**
   - In 22% of the driest cities (under 1000 mm/yr of rain), vegetation causes net warming (Guo et al. 2026, 761 cities).
-  - Tree cooling is weaker in dry southern Europe than in central Europe (Schwaab et al. 2021).
+  - Under hot extremes, trees cool less in dry southern Europe (0–4 K) than in central Europe (8–12 K) (Schwaab et al. 2021, 293 cities).
 - **Stronger:**
   - Greening is more efficient in dry regions, but only with irrigation (Manoli et al. 2019).
   - Tree cooling efficiency is higher in hot, dry cities (Yang et al. 2022, 510 cities).
 
 **Humid cities: a new warning.**
-- In 138 Indian cities, high canopy activity goes with a higher Heat Index in humid cores (Borah et al. 2026, an association).
+- In 138 Indian cities, at pre-monsoon midday, high canopy activity goes with a higher Heat Index in humid cores (Borah et al. 2026; a machine-learning association, not a measured mechanism).
 
 **The metric problem.**
 - Satellites overstate the urban heat island about 6× compared with air temperature (Venter et al. 2021).
@@ -54,6 +54,19 @@
 - Most of this evidence comes from Europe, China and North America.
 
 *Speaker notes:* India spans the whole moisture range, from Jodhpur (desert) to Kochi (very wet), so it is a natural place to test the dry-climate disagreement.
+
+*Cheat sheet for every presenter, for "which paper does this follow?":*
+
+| What we do | Where it comes from |
+| --- | --- |
+| The cooling slope (cooling per unit of greenness) | Yang 2022 (cooling efficiency); Schwaab 2021 (LST against tree cover) |
+| Background climate as the explanation | Zhao 2014; Manoli 2019; Guo 2026 |
+| The 1,000 mm threshold | Guo 2026; Manoli 2019 |
+| Day vs night | Yang 2022 and Du 2024 (night ≈ 0); Ibsen 2021 (night air temperature) |
+| Heat Index and humidity | Borah 2026 |
+| People-weighting | Chakraborty 2019; Chen 2022; Li 2024 |
+| No monsoon season | Kumar 2017 |
+| Surface temperature overstates felt heat | Venter 2021 (~6×); Du 2024 (~12×) |
 
 ### Slide 4. What we test (R4, READY)
 - **H1:** greener squares are cooler by day in most cities.
