@@ -22,3 +22,8 @@ data/raw/
 cache/
 node_modules/
 package-lock.json
+
+# Presentation files kept local (not shared in the repo)
+docs/speaker_script.md
+docs/deck_outline.md
+docs/GreenPulse_midsem.pptx
