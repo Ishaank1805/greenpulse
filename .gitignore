@@ -20,3 +20,5 @@ data/raw/
 .DS_Store
 *.log
 cache/
+node_modules/
+package-lock.json
