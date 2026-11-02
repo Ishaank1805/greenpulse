@@ -298,3 +298,88 @@ Compare with the literature, using only the README §5 table. For example, Yang 
 - Why are the standard errors clustered? Neighbouring squares share weather and soil, so treating them as independent overstates certainty.
 - Is NDVI the same as trees? No. It measures greenness and cannot separate trees from irrigated grass or crops, which matters for Guo's finding about grassland and cropland.
 - Is this causal? No. It is an association, with observed confounders controlled.
+
+---
+
+## Final phase (Johar)
+
+**Your tasks:** 6 (cooling by building height) and 7 (the "more sun" test for the seasonal change), from [../FINAL_PLAN.md](../FINAL_PLAN.md) §3. **Both wait on Himani's gates:** G-H for height and G-S for solar radiation. While you wait, write the code against the README §6.1 formats and test it on a fake `height` column.
+
+**Do not change the main specification** or the existing `cooling_efficiency.csv`. Every mid-eval number stays as it is.
+
+| Step | Task | Waits on | Unblocks |
+| --- | --- | --- | --- |
+| 1 | Write `16_height_effect.py`, test on fake data | Nothing | |
+| 2 | Run it on real heights | **G-H** (Himani) | Nidhi's checks, deck |
+| 3 | Add the sun test to `10_seasons.py` | **G-S** (Himani) | Deck |
+| 4 | Observation lines, speaker points to Nidhi | 2, 3 | Deck |
+
+### Steps 1–2: cooling by building height (`16_height_effect.py`)
+
+**Question:** do tall, dense parts of a city get less cooling from the same amount of greenness?
+
+**Data:**
+- `common.load_samples()` (it now includes `height`) and the water files, as script 03 uses them.
+- Urban squares only (`built ≥ 0.10`), with the same night rule as 03 (`n_night ≥ 10`).
+
+**Two analyses per city × season × time:**
+
+1. **Terciles.**
+   - Split the city's urban squares into low, mid and tall by `height` (city-specific terciles, `pd.qcut(height, 3)`).
+   - In each tercile, fit the **main-spec** regression: NDVI + built + elev + water. Import `fit` from 03 with `importlib` rather than rewriting it.
+   - Keep a tercile only if it has at least 30 squares. Most small cities will drop; report how many cities keep all three terciles.
+2. **Interaction.**
+   - Over all urban squares, fit `lst ~ ndvi * height_z + built + elev + water_frac`, where `height_z` is height standardised within the city.
+   - Use the same clustered standard errors (5 km blocks).
+   - `interaction` is the `ndvi:height_z` coefficient divided by 10, so it is per 0.1 NDVI per 1 SD of height.
+   - **Sign:** positive means cooling is weaker in taller areas.
+
+**Output:** `data/results/height_effect.csv` (README §6.1).
+- Tercile rows have `tercile` = low, mid or tall.
+- Interaction rows have `tercile = all`, with `interaction` and `interaction_p` filled in.
+
+**Across cities, for pre-monsoon day (then the other panels):**
+- the median slope by tercile
+- the share of cities where the tall-tercile slope is weaker (less negative) than the low one
+- the share of cities with a significantly positive interaction
+- a Wilcoxon test of tall against low
+
+**Robustness:** also add `height` as an extra control to the main spec, as a variant in `11_robustness.py` named `plus_height_control`. Report its `spearman_vs_main` and the change in median slope.
+
+**Figure:** `figures/H_height_terciles.png`, a slope chart of each city's low, mid and tall slope (grey lines) with the median (thick), day only, one panel per season.
+
+**Checks:**
+- [ ] **Fake test first.** With a random `height` column, the interaction should be significant in about 5% of cities. That confirms the code doesn't invent an effect.
+- [ ] **Counts add up.** Each city's tercile squares sum to its urban-square count (minus any NaN height).
+- [ ] **Nothing shifts.** The main-spec slopes in `cooling_efficiency.csv` are unchanged: re-read the file and compare.
+- [ ] **Not a proxy.** Height and built-up share are correlated, so report the median within-city correlation between them. If it is above 0.8, say that height and density can't be separated.
+
+### Step 3: the "more sun" test (in `10_seasons.py`)
+
+**The idea from the mid-eval:** daytime cooling is strongest before the monsoon, perhaps because April–May has the most sun, so vegetation has more heat to offset. We stated it was untested.
+
+**Test it** the same way as the soil-moisture test:
+- Join `city_solar.csv` (Himani) on `uc_id` and `season`.
+- Compute `Δssrd = ssrd_post − ssrd_pre`.
+- Fit `d_post_pre ~ Δssrd` by WLS with weights `1/se_d²`. Do the same for winter against pre.
+- Also fit both together: `d_post_pre ~ Δssrd + Δswvl1`.
+
+**Expected sign if the idea is right:** a larger *drop* in sun after the monsoon goes with a larger *weakening* of cooling, so the slope of d against Δssrd is negative.
+
+**Write** the slopes, CIs and p-values to `data/results/seasons_summary.csv`, as new rows with a `contrast` label such as `sun_post_pre`. Make `figures/S_dce_vs_dsun.png` in the same style as `S_dce_vs_dsoil.png`.
+
+**Check:**
+- [ ] Δssrd is negative (less sun after the monsoon) in most cities. If it isn't, check Himani's units with her.
+
+### Step 4: observations and slides
+
+**Observation lines** go under `## Role 3` in `docs/observations.md`:
+- **Height:** "Cooling is [weaker / similar / stronger] in the tallest third of squares (median X vs Y; Z% of cities)."
+- **Sun:** "The seasonal weakening [does / does not] track the drop in solar radiation (slope X, p = …)."
+
+Your block in the final talk is about 5 minutes:
+- the cooling slope, pilot and robustness, kept short from the mid-eval
+- **one new slide on building height**
+- **one new slide on the sun test**
+
+Send speaker points to **Nidhi**.

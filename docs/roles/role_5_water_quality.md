@@ -120,3 +120,84 @@ Write one sentence each, with numbers, under `## Role 5 (water and data quality)
 - How is water share computed? By overlaying OSM polygons on the true MODIS square footprint, in the sinusoidal projection.
 - What about the sea? It is a known gap. Most partly-sea squares fall below the 10% built-up cut-off anyway.
 - Why does water matter for a vegetation study? It is cool by day and warm at night, like vegetation, so it could be confused with it.
+
+---
+
+## Final phase (Nidhi)
+
+**Your tasks:** 10 (robustness of the new results) and 11 (the final deck and speaker script), from [../FINAL_PLAN.md](../FINAL_PLAN.md) §3. You also lead task 13, the timed rehearsal.
+
+**The talk:** 25 minutes of presentation plus 5 minutes of questions. Everyone sends you their figures, observation lines and 2–3 speaker points per slide.
+
+| Step | Task | Waits on | Unblocks |
+| --- | --- | --- | --- |
+| 1 | Deck skeleton, with the mid-eval slides condensed | Nothing | |
+| 2 | `19_new_checks.py`: do the new results survive our usual checks? | Ishaan's `felt_heat.csv`, Johar's `height_effect.csv` | Robustness slide |
+| 3 | Fill in the new-result slides, fact-check every number | Everyone's figures and lines | |
+| 4 | Speaker script, in blocks by person | 3 | Rehearsal |
+| 5 | Timed rehearsal | 4 | Final |
+
+### Step 1: the deck skeleton
+
+- **Start from the mid-eval deck** (Prajna has the final version, `greenpulse-mideval.pptx`). **Keep its style:**
+  - Amatic SC for titles, Assistant for text.
+  - Only black, green (#1F4D3A) and orange (#C8640A), except on the title slide.
+  - No italics, no em dashes, hyphens for number ranges.
+  - Clear full-sentence bullets.
+- **Plan about 25 slides,** one minute each, in six blocks (FINAL_PLAN §4):
+
+| Block | Presenter | Minutes | Slides (approx.) |
+| --- | --- | --- | --- |
+| 1 | Prajna | 4 | Title, problem, literature, hypotheses H1-H6 |
+| 2 | Himani | 4 | Data, cities, grid, **new layers** (height, sun) |
+| 3 | Johar | 5 | Cooling slope, pilot, robustness, **height**, **sun test** |
+| 4 | Ishaan | 5 | Rainfall result, map, dry cities, seasons, **H6 method**, **H6 result** |
+| 5 | Nidhi (you) | 3 | Monsoon, water, **checks on the new results** |
+| 6 | Prajna | 4 | Exposure, **Lorenz**, **Hyderabad**, conclusion and limitations |
+
+- **Condense the mid-eval results** to about 8 minutes in total. Merge where you can: for example, map and rainfall can share a slide, and pilot and Jodhpur grid can share one. The new results need the room.
+- **Mark each new slide as a placeholder** until its figure arrives, saying which person and which figure.
+
+### Step 2: robustness of the new results (`19_new_checks.py`)
+
+This is the same idea as Johar's mid-eval robustness check: would the new conclusions change if we changed our choices?
+
+**H6** (from Ishaan's `felt_heat.csv`, r = 0.08, δ = 0, `ndvi_0.1`, pre-monsoon). Recompute the Spearman of `hi_efficiency` and of `delta_star` against `rh_pct` in four ways:
+- **all cities** (should match Ishaan's number exactly; this is your check)
+- **without few-block cities:** drop cities whose main-spec day slope rests on 5 or fewer blocks (`n_blocks` in `cooling_efficiency.csv`)
+- **without water-heavy cities:** drop cities whose median urban-square `water_frac` is above 0.05
+- **with the no-water slopes:** use the `built_elev` slopes instead of `built_elev_water`. You'll need to rerun the H6 arithmetic: import Ishaan's functions from `15_felt_heat.py`.
+
+**Building height** (from Johar's `height_effect.csv`, pre-monsoon day). Recompute the share of cities with a significantly positive interaction, and the median tall-minus-low slope difference:
+- for all cities
+- without few-block cities
+- without water-heavy cities
+
+**Output:** `data/results/new_checks.csv` (README §6.1), one row per analysis × variant × statistic.
+
+**Check:**
+- [ ] The "all cities" rows reproduce Ishaan's and Johar's own numbers exactly. If they don't, you are filtering differently. Sort that out with them before going on.
+
+**Observation line,** under `## Role 5`: "The H6 and height results [hold / change] when few-block and water-heavy cities are removed (…numbers…)."
+
+### Step 3: fill in and fact-check
+
+- **Every number on a slide** must come from a CSV in `data/results/` or from the verified literature table (README §5). Check each one yourself.
+- **Labels:** H6 slides must say "scenario". Every cooling-slope figure must state the sign convention (negative = greener is cooler).
+- **City counts:** check they are consistent. Day results use 202 cities; night results use 135-157.
+
+### Step 4: speaker script
+
+- Use the same format as the mid-eval script:
+  - one block per person
+  - written to be spoken to the evaluator, not to a class
+  - short, with one or two numbers per slide
+  - a one-line handover at the end of each block, using names
+- **Add a Q&A sheet** for the 5 minutes of questions. Give each person 2-3 likely questions on their own work, each with a one-line answer.
+- Like the mid-eval files, keep the deck and script **local** (not committed), unless the team decides otherwise.
+
+### Step 5: rehearsal
+
+- Run one full rehearsal with a timer.
+- **Target:** 24 minutes, which leaves a minute of buffer before the 25-minute limit.
+- **If it runs over,** cut mid-eval detail first, never the new results.

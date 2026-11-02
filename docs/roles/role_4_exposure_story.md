@@ -244,3 +244,112 @@ Adjust the wording to what the numbers show.
 - Every figure comes from committed scripts.
 - `docs/observations.md` has at least one numbered finding from every role.
 - Every presenter can explain their part, why they did it, and how they checked it.
+
+---
+
+## Final phase (Prajna)
+
+**Your tasks:** 8 (Lorenz curve and Gini) and 9 (the Hyderabad Landsat case study), from [../FINAL_PLAN.md](../FINAL_PLAN.md) §3. Both are code. **Nidhi now builds the deck and script**, so send her your speaker points and figures.
+
+| Step | Task | Waits on | Unblocks |
+| --- | --- | --- | --- |
+| 1 | `17_lorenz.py`: who receives greenness and cooling | Nothing (samples and slopes exist) | Deck |
+| 2 | `18_hyderabad.py`: park cooling at 30 m | Nothing; agree Earth Engine time with Himani and Ishaan | Deck |
+| 3 | Observation lines, speaker points to Nidhi | 1, 2 | Deck |
+
+Step 1 is pure Python. Start it now, while Earth Engine time gets agreed for step 2.
+
+### Step 1: Lorenz curve and Gini (`17_lorenz.py`)
+
+**Question:** within each city, how unevenly are greenery, and the cooling it brings, shared among people? This builds on the exposure analysis (`12_exposure.py`).
+
+**Data:**
+- `data/samples/` (urban squares, `built ≥ 0.10`, with non-NaN `ndvi` and `pop`).
+- The main-spec day slopes from `common.main_spec(cooling_efficiency.csv)`.
+- Same city rule as before: at least 30 urban squares.
+
+**Greenness inequality, per city × season:**
+1. Give every person their square's NDVI, so each square is weighted by its `pop`.
+2. Sort squares by NDVI, from least to most green.
+3. Lorenz curve: x = cumulative share of people, y = cumulative share of total "person-NDVI" (Σ pop·NDVI).
+4. Gini = 1 − 2 × (area under the Lorenz curve), using the trapezoid rule with the point (0, 0) added.
+   - A Gini of 0 means everyone gets the same greenness; 1 means one square has it all.
+
+**Cooling inequality,** for cities whose day slope is negative (greener is cooler):
+1. Cooling received per square = −`ce_per_0.1` × (NDVI − the city's 10th-percentile NDVI) / 0.1, clipped at 0.
+   - This is how much cooler a square is than the city's barest squares, according to the city's own slope.
+2. Compute the Gini of cooling received across people, in the same way.
+3. Skip cities whose slope is not negative, and count them.
+
+**Output:** `data/results/lorenz.csv` (README §6.1).
+
+**Across cities:**
+- the median Gini for greenness and for cooling, by season
+- the 5 most and 5 least unequal cities (pre-monsoon)
+- a test of whether larger or wetter cities are more unequal: Spearman of Gini against `n_cells` and against `rain_annual_mm`
+
+**Figures:**
+- **`figures/L_lorenz_examples.png`:** Lorenz curves for 6 cities (the 3 most and 3 least unequal, or Delhi, Mumbai, Kolkata, Bengaluru, Jodhpur and Kochi), with the diagonal for perfect equality.
+- **`figures/L_gini_hist.png`:** the spread of greenness and cooling Gini across cities.
+
+**Checks** (build them in):
+- [ ] **Equal case:** a fake city with equal NDVI and equal population gives a Gini of exactly 0.
+- [ ] **Concentrated case:** a fake city where one square has all the NDVI gives a Gini close to 1 − 1/n.
+- [ ] **Hand check:** recompute one real city's Gini by hand with numpy, using a different formula, the mean absolute difference: G = ΣΣ|xᵢ − xⱼ|·wᵢ·wⱼ / (2·mean·W²). The two must agree to 1e-6.
+- [ ] **Range:** every Gini is between 0 and 1.
+
+**The literature link, stated carefully:** Chen et al. 2022 found greenspace exposure inequality of Gini 0.47 in the Global South against 0.27 in the North. That is across cities worldwide with a different greenspace measure, so compare direction and scale, not the exact value.
+
+### Step 2: Hyderabad case study (`18_hyderabad.py`)
+
+**Question:** what does 30 m data show that 1 km squares cannot? Specifically: how far does a park's cooling reach, and how strong is it? Compare with Shah et al. 2021: Bengaluru, Landsat surface temperature, 2.23 °C cooler, cooling reaching 347 m.
+
+**The city:** Hyderabad, `uc_id 9524`, about 861 km², from `data/cities/india_cities.geojson`.
+
+**Landsat surface temperature (Earth Engine):**
+- Collections `LANDSAT/LC08/C02/T1_L2` and `LANDSAT/LC09/C02/T1_L2`, merged.
+  - Filter: Hyderabad outline, April–May 2019–2024, `CLOUD_COVER < 20`.
+- **Mask clouds** with `QA_PIXEL`. Drop pixels with bit 1 (dilated cloud), bit 3 (cloud) or bit 4 (cloud shadow) set.
+- **Convert units:**
+  - Surface temperature: `ST_B10 × 0.00341802 + 149 − 273.15` (°C).
+  - NDVI: from `SR_B5` and `SR_B4`, after scaling each by `× 0.0000275 − 0.2`.
+- **Composite:** take the median over all clear scenes. Report the number of scenes; there should be at least 5.
+- Landsat passes at about 10:30–11:00 local time, earlier than MODIS Aqua's 13:30. So its temperatures will be lower than MODIS values, which is expected. State it.
+
+**Parks (OpenStreetMap, osmnx):**
+- Tags: `{'leisure': ['park', 'garden'], 'landuse': ['recreation_ground']}`.
+- Keep polygons of at least 5 ha.
+- Drop parks that are mostly water, such as lakeside promenades, using Nidhi's OSM water approach. Cache the download in `raw/osm/`.
+- Report how many parks are left, with their names where OSM has them.
+
+**Rings:**
+- For each park, build outward rings 30 m wide, from 0 to 1,000 m past the park edge. Work in a metric projection, such as UTM zone 44N, `EPSG:32644`.
+- Remove other parks and water from each ring, so a ring measures built-up surroundings only.
+- Compute the mean surface temperature of the park interior and of each ring inside Earth Engine, using `reduceRegions(mean, scale=30)` on the composite. Upload the rings as a FeatureCollection, in batches of about 1,000 features.
+  - This keeps the output small: one number per ring, instead of downloading the 30 m raster.
+
+**Cooling distance and intensity, per park:**
+1. Fit a cubic polynomial to ring temperature against distance (0–1,000 m).
+2. **Cooling distance:** the first turning point, where temperature stops rising. If there is none within 1,000 m, record 1,000 m and flag it.
+3. **Cooling intensity:** temperature at that distance minus the park interior.
+4. This turning-point approach is common in park-cooling studies. Check Shah et al. 2021's methods section before saying it is the same method as theirs.
+
+**Outputs:** `data/results/hyderabad_parks.csv` and `hyderabad_ring_profile.csv` (README §6.1).
+
+**Figures:**
+- **`figures/HYD_ring_profile.png`:** the median temperature against distance across parks, with the inter-quartile band, and a dashed line at Shah's 347 m.
+- **`figures/HYD_map.png`:** the 30 m surface temperature map of Hyderabad with park outlines, next to the 1 km MODIS squares (`data/samples/9524_hyderabad.csv`, pre-monsoon). This makes the resolution point visible.
+
+**Checks:**
+- [ ] **Parks are cooler:** the interior is cooler than the 500–1,000 m ring in most parks. Report the share.
+- [ ] **Plausible temperatures:** composite values mostly 30–50 °C before the monsoon.
+- [ ] **Agrees with MODIS:** averaging the 30 m composite into each MODIS 1 km square gives a pattern that correlates positively with the MODIS daytime temperature for Hyderabad. Values will be offset, because of the different overpass time.
+- [ ] **Enough parks:** at least 10. If there are fewer, relax the size threshold to 2 ha and say so.
+
+### Step 3: observations and slides
+
+**Observation lines** go under `## Role 4` in `docs/observations.md`:
+- **Lorenz:** "Within cities, greenness is shared unequally (median Gini X), and the cooling it provides even more so (Y)."
+- **Hyderabad:** "At 30 m, Hyderabad's parks are X °C cooler than their surroundings, with cooling reaching about Y m (Shah et al. 2021, Bengaluru: 2.23 °C, 347 m). Our 1 km squares cannot see this."
+
+Your block in the final talk is about 4 minutes: exposure (short), the Lorenz curve, Hyderabad, and the conclusion and limitations. Send speaker points to **Nidhi**.

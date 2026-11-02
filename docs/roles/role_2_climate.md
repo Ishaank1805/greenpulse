@@ -232,3 +232,88 @@ Write one sentence each, with numbers, in `docs/observations.md` under a `## Rol
 - Why weight by 1/SE²? Precise slopes should count more.
 - Couldn't the pattern be city size? We checked `built_mean` in the multiple regression, and city size is in `n_cells`, so try adding it as a check.
 - Why surface temperature, not air temperature? It is the only 1 km temperature available for all cities, and our review notes it overstates cooling (Venter: ~6× for the urban heat island; Du: ~12× for tree cooling efficiency).
+
+---
+
+## Final phase (Ishaan)
+
+**Your tasks:** 1, 2 and 3 from [../FINAL_PLAN.md](../FINAL_PLAN.md) §3. **H6 is the headline new result** of the final, so this is the priority path. The full method is in FINAL_PLAN §1. This section is the step-by-step version.
+
+| Step | Task | Waits on | Unblocks |
+| --- | --- | --- | --- |
+| 1 | Export the daily climate data to `city_daily_climate.csv` | Nothing | **G-H6a** → your H6 script |
+| 2 | `15_felt_heat.py`: scenarios, break-even point, checks, figures | Step 1 | Step 3, Nidhi's checks |
+| 3 | Test H6, write observation lines | Step 2 | Deck |
+| 4 | Speaker points to Nidhi | Step 3 | Deck |
+
+### Step 1: export the daily climate data
+
+Your ERA5 daily values are cached locally in `cache/era5/{uc_id}.json`, which is gitignored, so nobody else has them.
+
+- Add an `--export-daily` option to `07_city_climate.py`. It is your script, so you may edit it.
+- The option reads the cache and writes `data/results/city_daily_climate.csv` with the columns `uc_id, city, season, date, t2m_max_c, td_c` (README §6.1).
+  - Convert both temperatures from kelvin to °C.
+  - The date comes from the daily feature's `system:index` or time property.
+- **If the cache is gone:** rerun the fetch for all cities (303 Earth Engine calls). Agree a time with Himani and Prajna first.
+- **Size:** about 303 × 1,270 rows, roughly 15–20 MB, which is fine to commit.
+
+**Checks:**
+- [ ] **Matches the saved averages.** For each city and season, the mean of `t2m_max_c` equals `t2m_max_c` in `city_climate.csv` to within 0.01 °C.
+- [ ] **Day counts:** about 366 days per city for `pre`, 366 for `post` and 540 for `winter`.
+- [ ] **No NaNs.**
+
+**Announce:** "**G-H6a passed:** `city_daily_climate.csv` exported."
+
+### Step 2: `15_felt_heat.py`
+
+1. **Inputs:**
+   - **Slopes:** `main_spec(cooling_efficiency.csv)`, with `time = day` and seasons `pre` and `post`.
+   - **Daily climate:** `city_daily_climate.csv`.
+   - **Greening steps:** from `data/samples/` (pre-season, urban squares).
+2. **Reuse the formulas.** Get `heat_index_c` and `rh_magnus` from `07_city_climate.py` using `importlib.import_module('07_city_climate')`. Do not copy the formula: one formula means one set of checks.
+3. **Loop.** For each city × season × step (`ndvi_0.1`, `iqr`) × r (0.08, 0.18) × δ (0, 0.5, 1, 2 °C):
+   - **Surface cooling:**
+     - For `ndvi_0.1`: `d_lst = ce_per_0.1`.
+     - For `iqr`: `d_lst = ce_per_0.1 × (NDVI p75 − NDVI p25) / 0.1`, using that city's urban squares.
+   - **Air cooling:** `d_tair = d_lst × r`.
+   - **Daily Heat Index,** vectorised over the city's days:
+     - baseline: `hi0 = HI(T, RH(T, Td))`
+     - scenario: `hi1 = HI(T + d_tair, RH(T + d_tair, Td + δ))`
+   - **Change in felt heat:** `d_hi = mean(hi1 − hi0)`.
+   - **Efficiency:** `hi_efficiency = mean(hi1 − hi0 at δ = 0) / d_tair`. Leave it blank when `d_tair` is 0.
+4. **Break-even (`delta_star`).** For each city × season × step × r, find the smallest δ (0 to 5 °C, in 0.05 steps) at which `d_hi ≥ 0`.
+   - If `d_tair ≥ 0` (no cooling to begin with), set it to 0.
+   - If it never reaches 0 within 5 °C, set it to NaN and note that.
+   - Store it on the δ = 0 rows.
+5. **Write `data/results/felt_heat.csv`** in the README §6.1 format.
+
+**Checks** (build them in as asserts or printed checks):
+- [ ] **Zero inputs give zero change:** with `d_tair = 0` and δ = 0, `d_hi` is exactly 0.
+- [ ] **Baseline matches:** mean `hi0` per city × season equals `hi_c` in `city_climate.csv` to within 0.05 °C.
+- [ ] **Dry city:** Jodhpur pre-monsoon `hi_efficiency` is close to 1 (it is dry).
+- [ ] **Humid cities:** Kochi, Chennai and Kolkata have lower efficiency and smaller `delta_star` than Jodhpur.
+- [ ] **Sign:** where a city's slope is negative, `d_tair` and the δ = 0 `d_hi` are both negative.
+- [ ] **Size:** at r = 0.08, `|d_tair|` is around tenths of a degree, and nowhere near Meili's 3.1–5.8 °C maximum.
+
+**Figures** (use `style.py`):
+- **`figures/H6_felt_vs_surface.png`:** x = `d_lst`, y = `d_hi` (r = 0.08, δ = 0, `ndvi_0.1`, pre-monsoon), one dot per city, coloured by pre-monsoon `rh_pct`. Add the reference line y = r·x, the felt change if humidity didn't matter, and label Jodhpur, Kochi, Chennai and Delhi.
+- **`figures/H6_breakeven.png`:** x = pre-monsoon `rh_pct`, y = `delta_star`, one dot per city, with a 1,000 mm colour split (DRY/WET colours).
+
+### Step 3: test H6
+
+- **Correlations:** Spearman between pre-monsoon `rh_pct` and both `hi_efficiency` and `delta_star`, at r = 0.08, `ndvi_0.1`.
+- **Rainfall groups:** medians for < 1,000 vs ≥ 1,000 mm.
+- **Repeat** for r = 0.18 and the `iqr` step. Say whether the conclusion changes.
+
+**Observation lines** go under `## Role 2` in `docs/observations.md`:
+- **The H6 verdict:** "Translating surface cooling into felt heat shrinks the benefit more in humid cities (efficiency X vs Y; ρ = …)", or that it does not.
+- **Break-even:** "In humid cities, leaves adding about X °C of dewpoint would cancel the felt benefit, against Y °C in dry cities."
+- **The caveat, always stated:** it is a scenario from surface slopes and published ratios (Du 2024, Venter 2021, both European), not an air-temperature measurement. It connects to Borah 2026.
+
+### Step 4: slides
+
+Your block in the final talk is about 5 minutes:
+- the rainfall result, the map, dry cities vs Guo, and seasons, kept short
+- **two new H6 slides:** the method in one picture, then the result and break-even
+
+Send speaker points to **Nidhi**.

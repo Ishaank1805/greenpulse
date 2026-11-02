@@ -191,3 +191,76 @@ When B2 is done:
 - Why 1 km? It is the native MODIS LST resolution.
 - How did you check the sampling? The pilot reproduction, WorldPop totals checked against a native-grid sum, and value-range checks.
 - What gets dropped, and why? Squares with no LST are open water. Squares below 10% built-up are not urban. Cities with fewer than 30 usable squares get no estimate.
+
+---
+
+## Final phase (Himani)
+
+**Your tasks:** 4 (building height) and 5 (solar radiation), from [../FINAL_PLAN.md](../FINAL_PLAN.md) §3. Both are Earth Engine work, and **both are gates**: Johar's two analyses wait on them, so do them first.
+
+**Quota:** Ishaan (daily climate, only if his cache is gone) and Prajna (Hyderabad Landsat) also need Earth Engine. Agree an order in chat. One big loop at a time.
+
+| Step | Task | Waits on | Unblocks |
+| --- | --- | --- | --- |
+| 1 | `04e_add_height.py`: add a `height` column to every sample file | Nothing | **G-H** → Johar's height analysis |
+| 2 | `04f_city_solar.py`: solar radiation per city and season | Nothing | **G-S** → Johar's "more sun" test |
+| 3 | Data slide update and speaker points to Nidhi | 1, 2 | Deck |
+
+### Step 1: building height (`04e_add_height.py`)
+
+**Goal:** every `data/samples/{uc_id}_{slug}.csv` gains one column, `height`, appended **last**. Every other column stays byte-for-byte the same (README §6.1).
+
+**Why a separate script, not a re-run of 02:** the samples are validated and committed. Re-sampling everything would spend quota and risk changing numbers. Sample only the new layer, then join it on `cell_id`.
+
+**The layer:**
+- `JRC/GHSL/P2023A/GHS_BUILT_H` (single image, 2018), band `built_height` in metres, 100 m.
+- Use the **built-surface-weighted** mean, so empty 100 m cells don't dilute tall blocks:
+  `height_1km = mean(built_height × built_surface) / mean(built_surface)`.
+  - Compute both means with `reduceResolution(ee.Reducer.mean(), maxPixels=1024)` onto the MODIS grid.
+  - `built_surface` comes from `JRC/GHSL/P2023A/GHS_BUILT_S/2020`. Its epoch is 2020, not 2018; say so in the method, because it is the best match available.
+  - Where the weight is 0, the result is masked, which becomes NaN in the CSV.
+- **Grid:** the same 1 km MODIS projection as `02_sample_city.py`. Take it from `build_stack()` or copy its grid line.
+
+**Per city:**
+1. Sample the two-band image over the city polygon, using one `sample()` with `geometries=True, dropNulls=False`, the same as 02.
+2. Build `cell_id = f"{lon:.5f}_{lat:.5f}"` and merge onto the existing CSV with a left join on `cell_id`.
+3. Write the file back.
+4. Skip any city whose file already has `height`, so reruns resume. Log to `data/results/run_log.csv` with a `task` note, or keep a separate `height_log.csv`.
+
+**Checks (all before announcing G-H):**
+- [ ] **No row changed.** Every original column is identical before and after (compare with `pandas.testing.assert_frame_equal` on the old columns). The row count is unchanged.
+- [ ] **Join complete.** Every `cell_id` matched. Report any unmatched cells, which should be zero, since the grid is the same.
+- [ ] **Plausible values:**
+  - Median urban (`built ≥ 0.10`) height is higher in Mumbai and New Delhi than in Jodhpur.
+  - Values are mostly 3–30 m, and none is over 100 m.
+- [ ] **Missing only where empty.** `height` is NaN only where `built` ≈ 0. Count the NaNs among urban squares; there should be almost none.
+- [ ] **Pilot unchanged.** For `5315_jodhpur.csv` and `9386_kochi.csv`, the pre-season rows still reproduce `_pilot_v1/` exactly (rerun your B1 check).
+
+**Announce:** "**G-H passed:** `height` added to all 303 sample files, no other column changed."
+
+### Step 2: solar radiation (`04f_city_solar.py`)
+
+**Goal:** `data/results/city_solar.csv` with the columns `uc_id, city, season, ssrd_mj_m2_day`: 909 rows, one per city per season.
+
+**Why a separate file:** `07_city_climate.py` and `city_climate.csv` belong to Ishaan, so don't edit them. Johar joins your file on `uc_id` and `season`.
+
+**The layer:**
+- `ECMWF/ERA5_LAND/MONTHLY_AGGR`, band `surface_solar_radiation_downwards_sum`, 2019–2024.
+- Use the same season months as `C.SEASONS`.
+- **Units:** check the Earth Engine catalog page before converting. The monthly `_sum` bands are J/m² accumulated over the month. Convert to MJ/m² per day by dividing by 1e6 and by the number of days in that month, then average over the season's months and years.
+- Use the same city reducer as Ishaan: `reduceRegion(mean, scale=1000)`, with a 10 km centroid buffer if the result is null. Puri needed this.
+
+**Checks:**
+- [ ] **Plausible range:** roughly 15–28 MJ/m²/day before the monsoon in most cities. If you get values around 500 or 0.02, the unit conversion is wrong.
+- [ ] **Season pattern:** pre-monsoon is higher than winter in most cities, especially in the north.
+- [ ] **Complete:** 909 rows, no NaNs.
+
+**Announce:** "**G-S passed:** `city_solar.csv`, 909 rows."
+
+### Step 3: slides
+
+Your block in the final talk is about 4 minutes:
+- data, cities and the 1 km grid, kept short from the mid-eval
+- **one new slide on the new layers:** building height (what it is, the weighting, 2018) and solar radiation (why we added it)
+
+Send 2–3 speaker points per slide, and your observation lines (under `## Role 1` in `docs/observations.md`), to **Nidhi**, who builds the deck.

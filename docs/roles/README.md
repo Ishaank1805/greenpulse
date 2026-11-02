@@ -284,3 +284,60 @@ Every number below was checked against the original paper. Use these numbers and
 - **Kochi:** −1.04 °C per 0.1 NDVI by day (95% range −1.57 to −0.51).
 - **Jodhpur at night:** +0.62, so greener squares are warmer. This shows only once built-up share is controlled.
 - **Kochi with EVI:** the daytime cooling largely disappears, because NDVI and built-up share are tightly correlated there (r = −0.79).
+
+---
+
+## 6. Final phase (after the mid-eval)
+
+The plan is in [../FINAL_PLAN.md](../FINAL_PLAN.md). Each role file now ends with a **"Final phase"** section that lists that person's tasks in detail. **The mid-eval main model does not change:** NDVI, built ≥ 10%, built + elevation + water. Everything below adds new results on top of it.
+
+### Who's who
+
+| Role | Person | Final-phase tasks (numbers from FINAL_PLAN §3) |
+| --- | --- | --- |
+| 1. Pipeline | Himani | 4. Building height column · 5. Solar radiation per city |
+| 2. Climate | Ishaan | 1. Export daily climate · 2. H6 felt-heat script · 3. H6 test |
+| 3. Analysis | Johar | 6. Cooling by building height · 7. "More sun" test for seasons |
+| 4. Exposure | Prajna | 8. Lorenz curve and Gini · 9. Hyderabad Landsat case study |
+| 5. Water and quality | Nidhi | 10. Robustness of the new results · 11. Final deck and speaker script |
+
+### Gates
+
+| Gate | Announced by | Means | Unblocks |
+| --- | --- | --- | --- |
+| **G-H6a** | Ishaan | `data/results/city_daily_climate.csv` exists | Ishaan's H6 script |
+| **G-H** | Himani | every sample file has a `height` column | Johar's height analysis |
+| **G-S** | Himani | `data/results/city_solar.csv` exists | Johar's "more sun" test |
+
+Nidhi's robustness check waits on Ishaan's and Johar's results. The deck waits on everyone's figures.
+
+**Earth Engine in the final phase:** Himani (height, solar), Ishaan (only if his daily cache is gone) and Prajna (Hyderabad Landsat). Johar and Nidhi work only from CSVs. Agree turns in chat, one big loop at a time. This replaces the §4 note on who uses Earth Engine.
+
+### New scripts and owners
+
+| Script | Owner |
+| --- | --- |
+| `04e_add_height.py`, `04f_city_solar.py` | R1 |
+| `07_city_climate.py` (new `--export-daily` option), `15_felt_heat.py` | R2 |
+| `16_height_effect.py`, `10_seasons.py` (new sun test) | R3 |
+| `17_lorenz.py`, `18_hyderabad.py` | R4 |
+| `19_new_checks.py` | R5 |
+
+### 6.1 New and changed file formats
+
+**`data/samples/*.csv`: one new column, `height`, appended as the last column.** It is the GHSL 2018 mean building height in metres, weighted by built-up surface. It is the same in every season, and NaN where a square has no built-up surface. All existing columns stay exactly as they are.
+
+| File | Owner | Columns |
+| --- | --- | --- |
+| `data/results/city_daily_climate.csv` | R2 | uc_id, city, season, date, t2m_max_c, td_c |
+| `data/results/city_solar.csv` | R1 | uc_id, city, season, ssrd_mj_m2_day |
+| `data/results/felt_heat.csv` | R2 | uc_id, city, season, step, r, delta_td, d_lst, d_tair, d_hi, hi_efficiency, delta_star |
+| `data/results/height_effect.csv` | R3 | uc_id, city, season, time, tercile, n, ce_per_0.1, ci_lo, ci_hi, interaction, interaction_p |
+| `data/results/lorenz.csv` | R4 | uc_id, city, season, gini_ndvi, gini_cooling, n_cells, pop_total |
+| `data/results/hyderabad_parks.csv` | R4 | park_id, name, area_ha, lst_park_c, lst_plateau_c, cooling_c, distance_m |
+| `data/results/hyderabad_ring_profile.csv` | R4 | park_id, ring_m, lst_c, n_pixels |
+| `data/results/new_checks.csv` | R5 | analysis, variant, n_cities, statistic, value, note |
+
+**Units and signs:**
+- `d_*` columns are scenario minus baseline, in °C, so negative means cooler.
+- In `felt_heat.csv`, `step` is `ndvi_0.1` or `iqr`, `r` is 0.08 or 0.18, and `delta_td` is 0, 0.5, 1 or 2.
