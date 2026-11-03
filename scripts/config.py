@@ -30,3 +30,7 @@ SRTM_ID = 'USGS/SRTMGL1_003'
 ERA5_DAILY_ID = 'ECMWF/ERA5_LAND/DAILY_AGGR'
 CLIMATE_SCALE = 1000          # m; lets EE area-weight 9 km ERA5 cells over small city polygons
 CLIMATE_FALLBACK_BUFFER = 10_000   # m; centroid buffer when a polygon misses every land cell
+
+# --- Role 1 (final phase) ---
+HEIGHT_ID = 'JRC/GHSL/P2023A/GHS_BUILT_H/2018'   # building height (m), 100 m; only epoch is 2018
+SSRD_BAND = 'surface_solar_radiation_downwards_sum'   # in ERA5_ID (monthly), J/m2
