@@ -129,7 +129,7 @@ def main():
     ok = res[res.status == 'ok']
     print(f'{len(res)} cities: {len(ok)} sampled, {(res.status == "failed").sum()} failed, '
           f'{(res.status == "missing").sum()} not yet run -> {OUT.relative_to(C.ROOT)}')
-    print(f'Cities with any flag: {(ok['flags'] != "").sum()}')
+    print(f'Cities with any flag: {(ok["flags"] != "").sum()}')
     print(f'Square count vs expected: median ratio {ok.squares_ratio.median():.3f}, '
           f'range {ok.squares_ratio.min():.3f}-{ok.squares_ratio.max():.3f}')
     print(f'Out-of-range values (all cities): {int(ok.n_out_of_range.sum())} | '

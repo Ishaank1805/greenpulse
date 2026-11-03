@@ -16,6 +16,14 @@ Sources: `data/results/b2_checks.csv`, `data/results/run_log.csv`, `data/samples
 - **Seasons differ strongly overall but not everywhere:** the median square is 39.7 °C by day before the monsoon, 31.2 °C after it and 27.9 °C in winter. In Kochi, winter (34.1 °C) is slightly warmer than pre-monsoon (33.7 °C), because Kerala's April–May is already wet: Kochi gets 622 mm of rain in April–May against 126 mm in winter, while the median city gets 67 mm in April–May (`city_climate.csv`).
 - **Hill cities reach sub-zero surfaces:** winter night surface temperature falls to −12.8 °C (Khansahib), −7.9 °C (Kralpora) and −6.5 °C (Srinagar) in the Kashmir valley, at 1,600–2,000 m. These were flagged by the range checks and confirmed as real.
 
+**Final phase (new layers).** Sources: `data/samples/*.csv` (`height` column), `data/results/height_log.csv`, `data/results/city_solar.csv`.
+
+- **Building height added to all 303 cities with no other value changed:** every original column is byte-identical to the mid-sem files, and the pilot rows still reproduce exactly. Height is GHSL 2018, weighted by GHSL 2020 built surface, so empty 100 m cells do not dilute tall blocks.
+- **Indian urban squares are mostly low-rise:** the median urban square (built ≥ 10%) is 7.9 m tall, 98.9% lie between 3 and 30 m, and the tallest is 34.8 m. City medians range from 2.5 m (Kalyanpur) to 15.1 m (Mumbai); Mumbai (15.1 m) and New Delhi (9.3 m) are taller than Jodhpur (7.3 m). Height is missing only where a square has no buildings (0 of 26,398 urban squares).
+- **Height and built-up share overlap:** across urban squares they correlate at 0.56, so height adds information beyond built-up share but is not independent of it.
+- **Sunshine drops sharply after the monsoon:** daily solar radiation is lower after the monsoon than before it in all 303 cities (median 24.2 → 16.1 MJ/m²/day, −32%). Pre-monsoon ranges from 17.9 (Tezpur) to 26.2 MJ/m²/day (Gandhidham), with Jodhpur and Bikaner at 26.1.
+- **Pre-monsoon is the sunniest season almost everywhere:** above winter in 96% of cities and in every city north of 23.5° N. The 11 exceptions are all in Kerala, where cloudy April–May gives less sun than winter (Kochi 18.4 vs 19.9 MJ/m²/day), matching Kochi's slightly warmer winter surface (above).
+
 ## Role 2 (climate)
 
 Sources: `data/results/city_climate.csv`, `main_result_regressions.csv`, `main_result_bins.csv`, `robustness.csv` (night_warming rows), and the printed checks of `07_city_climate.py` and `08_main_result.py`. Final run (G4): main spec with built-up, elevation and water controls. Slopes are °C per 0.1 NDVI; negative = greener squares are cooler. Rainfall effects are given per 10× rainfall (log10 scale). The cities with estimates span 262 mm (Bikaner) to 3,635 mm (Shillong), a little more than one tenfold step, so a slope per 10× rain is roughly the difference between the driest and wettest cities. Associations, not causes.

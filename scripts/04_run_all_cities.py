@@ -23,7 +23,7 @@ sampler = importlib.import_module('02_sample_city')
 
 LOG_FILE = C.DATA / 'results' / 'run_log.csv'
 LOG_FIELDS = ['time', 'uc_id', 'city', 'status', 'n_rows', 'seconds', 'error']
-BACKOFF = (30, 120, 300)  # wait after the 1st, 2nd and 3rd failed attempt
+RETRY_WAITS = (30, 120)   # 3 attempts: wait 30 s after the 1st failure, 120 s after the 2nd
 PAUSE = 2                 # seconds between cities; the quota is shared
 
 
@@ -54,7 +54,8 @@ def run_city(feature, stack, grid):
         log({**base, 'status': 'skipped', 'n_rows': '', 'seconds': '', 'error': ''})
         return 'skipped', 0.0
 
-    for attempt, wait in enumerate(BACKOFF, start=1):
+    attempts = len(RETRY_WAITS) + 1
+    for attempt in range(1, attempts + 1):
         t0 = time.time()
         try:
             df = sampler.sample_one(feature, stack, grid)
@@ -69,12 +70,13 @@ def run_city(feature, stack, grid):
         except Exception as e:  # ee.EEException, timeouts, network errors
             secs = time.time() - t0
             msg = f'attempt {attempt}: {type(e).__name__}: {e}'[:500]
-            last = attempt == len(BACKOFF)
+            last = attempt == attempts
             log({**base, 'status': 'failed' if last else 'retry', 'n_rows': '',
                  'seconds': round(secs, 1), 'error': msg})
             print(f'  {props["name"]}: {msg}')
             if last:
                 return 'failed', secs
+            wait = RETRY_WAITS[attempt - 1]
             print(f'  waiting {wait} s before retrying')
             time.sleep(wait)
 
