@@ -39,6 +39,18 @@ Sources: `data/results/city_climate.csv`, `main_result_regressions.csv`, `main_r
 - **Extreme cities are mostly small cities:** the four most negative pre-monsoon day slopes come from cities with 32–46 squares (Sagar, Davanagere, Dharwad, Dhule; the fifth is Udaipur, 104). The most positive come from cities with 30–41 squares (Bharatpur, Tezpur, Thoothukudi, Mirzapur; the fifth is Patna, 177).
 - **Limits:** ERA5 is ~9 km, so it gives each city's background climate, not differences inside the city. The Heat Index uses each day's maximum temperature with its mean dewpoint, which approximates the hottest hour. Rainfall cannot see irrigation (Manoli 2019).
 
+### Final phase: H6 felt heat
+
+Sources: `data/results/felt_heat.csv`, `data/results/felt_heat_test.csv`, `data/results/city_daily_climate.csv`.
+
+- **H6 is a scenario, not a measurement:** Measured daytime surface slopes × published air/surface ratios (r = 0.08 from Du 2024, 0.18 from Venter 2021; both European) × each city's ERA5-Land daily Tmax and dewpoint, 2019–2024.
+- **Size:** Before the monsoon, +0.1 NDVI is associated with a median −1.18 °C of surface cooling, which translates in this scenario to −0.09 °C of air cooling at r = 0.08 (−0.21 °C at r = 0.18) and −0.11 °C of Heat Index reduction (191 cities). Jodhpur: −1.44 → −0.12 → −0.12 °C; Kochi: −1.90 → −0.15 → −0.24 °C.
+- **Felt-heat efficiency (scenario A, dewpoint fixed):** Median 1.05 in 55 dry cities (< 1,000 mm) vs 1.18 in 136 wet ones (Spearman with RH ρ = +0.86, p = 2e-58). The Heat Index is steeper in humid air, so each degree of air cooling is felt more there, as long as leaves add no moisture.
+- **Break-even:** Under plausible surface-to-air ratios, leaves adding about 0.16 °C of dewpoint would cancel the felt benefit in wet cities, against 0.22 °C in dry ones (Spearman with RH ρ = −0.40, p = 8e-09; WLS per +10% RH −0.03 °C, 95% CI −0.04 to −0.01). Per degree of air cooling, break-even dewpoint is 1.70 °C in wet cities vs 2.75 °C in dry ones (ρ = −0.80, p = 3e-43). In Kochi δ* = 0.20 °C, in Jodhpur 0.35 °C.
+- **H6 verdict, partly supported: the felt benefit in humid cities is not smaller but more fragile.** Efficiency rises with humidity (median dry 1.05 vs wet 1.18, Mann-Whitney p = 8e-12) while break-even δ* falls (median dry 0.22 °C vs wet 0.16 °C, p = 1e-03; per °C of air cooling: 2.75 vs 1.70 °C, p = 6e-11). The Heat Index is steeper in humid air, so each degree of air cooling is felt more, but it is also far more sensitive to added dewpoint (about 1.3–1.6 °C of Heat Index per °C of dewpoint in humid air, against about 0.25 in dry air).
+- **Robustness:** The efficiency increase with humidity holds across all variants (ρ = +0.82 to +0.87, p < 1e-46). Pre-monsoon break-even δ* consistently falls with humidity for both r = 0.18 and the IQR step (ρ = −0.24 to −0.40, p ≤ 0.0007), whereas post-monsoon δ* shows no significant trend with humidity (|ρ| ≤ 0.06, p ≥ 0.5).
+- **Caveat (always):** Both ratios come from European cities; this scenario connects to Borah 2026 (dense, active canopies associated with a higher Heat Index in humid Indian cities) but is a scenario rather than a measured air cooling effect.
+
 ## Role 3 (pilot, seasons, robustness)
 
 Sources: `data/results/cooling_efficiency.csv` (main spec via `common.main_spec`: NDVI, built ≥ 10%, built + elevation + water; final run G4 with Role 5's water files), `dropped_cities.csv`, `seasons.csv`, `seasons_summary.csv`, `robustness.csv`, `robustness_ndvi_evi.csv`. Slopes are °C per 0.1 NDVI; negative = greener squares are cooler. Associations, not causes.
