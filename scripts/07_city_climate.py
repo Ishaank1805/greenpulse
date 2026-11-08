@@ -25,6 +25,8 @@ Usage:
   python scripts/07_city_climate.py Jodhpur Kochi   # test on two cities first
   python scripts/07_city_climate.py                 # all 303 (tell R1/R5 first)
   python scripts/07_city_climate.py --build-only    # rebuild the CSV from the cache
+  python scripts/07_city_climate.py --export-daily  # cache -> city_daily_climate.csv (final phase,
+                                                    # gate G-H6a; no Earth Engine calls)
 Also writes figures/C_climate_overview.png.
 """
 import argparse
@@ -39,6 +41,8 @@ import config as C
 
 CACHE = C.ROOT / 'cache' / 'era5'
 OUT = C.DATA / 'results' / 'city_climate.csv'
+DAILY_OUT = C.DATA / 'results' / 'city_daily_climate.csv'
+DAILY_COLS = ['uc_id', 'city', 'season', 'date', 't2m_max_c', 'td_c']   # README 6.1
 COLS = ['city', 'uc_id', 'season', 'rain_annual_mm', 'rain_season_mm', 't2m_c', 't2m_max_c',
         'rh_pct', 'swvl1', 'wind10_ms', 'hi_c']
 MONTHLY_BANDS = ['total_precipitation_sum', 'temperature_2m', 'dewpoint_temperature_2m',
@@ -232,6 +236,95 @@ def checks(df, full):
     return ok
 
 
+# --------------------------------------------------------------------------- daily export (G-H6a)
+def daily_frame(raw):
+    """One row per day for one cached city: all three seasons, kelvin -> degC."""
+    parts = []
+    for s in C.SEASONS:
+        d = pd.DataFrame(raw['daily'][s])
+        if 'date' not in d.columns:
+            raise SystemExit(f"cache for {raw['city']} ({raw['uc_id']}) has no 'date' on its daily "
+                             'features; this cache predates the date property, so re-fetch that city')
+        parts.append(pd.DataFrame({'uc_id': raw['uc_id'], 'city': raw['city'], 'season': s,
+                                   'date': d['date'], 't2m_max_c': d.temperature_2m_max - 273.15,
+                                   'td_c': d.dewpoint_temperature_2m - 273.15}))
+    return pd.concat(parts, ignore_index=True)
+
+
+def export_daily(uc_ids, full):
+    """Write city_daily_climate.csv from cache/era5/ (no Earth Engine), then check it."""
+    files = sorted(CACHE.glob('*.json')) if CACHE.exists() else []
+    raws = [json.loads(p.read_text()) for p in files]
+    raws = [r for r in raws if r['uc_id'] in uc_ids]
+    missing = sorted(uc_ids - {r['uc_id'] for r in raws})
+    if not raws:
+        raise SystemExit(f'No cached cities in {CACHE}. The cache is gone: re-fetching needs ~303 '
+                         'Earth Engine calls. Agree a time with Himani and Prajna first (shared quota).')
+    if missing:
+        print(f'WARNING: {len(missing)} of {len(uc_ids)} cities are not in the cache: {missing[:15]}')
+    d = pd.concat([daily_frame(r) for r in raws], ignore_index=True)
+    d = d.sort_values(['uc_id', 'season', 'date'])[DAILY_COLS]
+    out = DAILY_OUT if full and not missing else DAILY_OUT.with_name(
+        f'city_daily_climate_test_{d.uc_id.nunique()}cities.csv')
+    d.to_csv(out, index=False, float_format='%.4f')
+    mb = out.stat().st_size / 1e6
+    print(f'{d.uc_id.nunique()} cities, {len(d):,} days -> {out.relative_to(C.ROOT)} ({mb:.1f} MB)')
+    return daily_checks(pd.read_csv(out), full and not missing)   # check the file as written
+
+
+def daily_checks(d, full):
+    """Role 2 final phase, step 1 checks (on the CSV read back from disk)."""
+    print('\n=== Checks (G-H6a: city_daily_climate.csv) ===')
+    ok = True
+    clim = pd.read_csv(OUT)
+    g = d.groupby(['uc_id', 'season']).agg(city=('city', 'first'), n=('date', 'size'),
+                                           tmax=('t2m_max_c', 'mean')).reset_index()
+    d = d.assign(hi=heat_index_c(d.t2m_max_c, rh_magnus(d.t2m_max_c, d.td_c)))
+    g = g.merge(d.groupby(['uc_id', 'season']).hi.mean().reset_index(), on=['uc_id', 'season'])
+    m = g.merge(clim[['uc_id', 'season', 't2m_max_c', 'hi_c']], on=['uc_id', 'season'], how='left')
+    if m.t2m_max_c.isna().any():
+        ok = False
+        print(f'  {m.t2m_max_c.isna().sum()} city x season rows have no match in city_climate.csv: CHECK')
+    dt, dh = (m.tmax - m.t2m_max_c).abs(), (m.hi - m.hi_c).abs()
+    good = dt.max() <= 0.01
+    ok &= good
+    print(f"  Mean t2m_max_c matches city_climate.csv within 0.01 C: max diff {dt.max():.4f} "
+          f"{'ok' if good else 'CHECK (worst: ' + m.loc[dt.idxmax(), 'city'] + ')'}")
+    good = dh.max() <= 0.05
+    ok &= good
+    print(f"  Mean daily Heat Index reproduces hi_c within 0.05 C: max diff {dh.max():.4f} "
+          f"{'ok' if good else 'CHECK (worst: ' + m.loc[dh.idxmax(), 'city'] + ')'}")
+    expect = {'pre': 366, 'post': 366, 'winter': 542}   # 2019-2024: 61, 61, 90/91 days a year
+    for s, e in expect.items():
+        n = g[g.season == s].n
+        bad = g[(g.season == s) & ((g.n - e).abs() > 2)]
+        ok &= bad.empty
+        print(f"  Days per city, {s}: median {n.median():.0f}, range {n.min()}-{n.max()} (expect ~{e}) "
+              f"{'ok' if bad.empty else 'CHECK: ' + str(bad.city.tolist()[:10])}")
+    n_nan = int(d[DAILY_COLS].isna().sum().sum())
+    ok &= n_nan == 0
+    print(f"  NaNs: {n_nan} {'ok' if n_nan == 0 else 'CHECK'}")
+    above = int((d.td_c > d.t2m_max_c).sum())
+    ok &= above == 0
+    print(f"  Daily-mean dewpoint never above daily max temperature: {above} days "
+          f"{'ok' if above == 0 else 'CHECK'}")
+    dup = int(d.duplicated(['uc_id', 'season', 'date']).sum())
+    ok &= dup == 0
+    print(f"  Duplicate city x date rows: {dup} {'ok' if dup == 0 else 'CHECK'}")
+    if full:
+        good = g.uc_id.nunique() == 303 and len(g) == 909
+        ok &= good
+        print(f"  Cities {g.uc_id.nunique()} (expect 303), city x season {len(g)} (expect 909) "
+              f"{'ok' if good else 'CHECK'}")
+    for city in ('Jodhpur', 'Kochi'):
+        r = d[(d.city == city) & (d.season == 'pre')]
+        if len(r):
+            print(f'  {city} pre: mean Tmax {r.t2m_max_c.mean():.1f} C, mean Td {r.td_c.mean():.1f} C, '
+                  f'mean HI {r.hi.mean():.1f} C')
+    print('ALL CHECKS OK -> announce G-H6a' if ok else 'SOME CHECKS NEED A LOOK (see above)')
+    return ok
+
+
 def overview_figure(df):
     from style import apply_style, save
     apply_style()
@@ -259,6 +352,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('cities', nargs='*', help='names or uc_ids (default: all)')
     ap.add_argument('--build-only', action='store_true')
+    ap.add_argument('--export-daily', action='store_true',
+                    help='write data/results/city_daily_climate.csv from cache/era5/ (no Earth Engine)')
     a = ap.parse_args()
     with open(C.CITIES_FILE) as f:
         feats = json.load(f)['features']
@@ -266,6 +361,10 @@ def main():
         keys = {str(k).lower() for k in a.cities}
         feats = [ft for ft in feats if str(ft['properties']['ID_UC_G0']) in keys
                  or ft['properties']['name'].lower() in keys]
+    if a.export_daily:
+        ids = {ft['properties']['ID_UC_G0'] for ft in feats}
+        ok = export_daily(ids, full=len(ids) == 303)
+        raise SystemExit(0 if ok else 1)
     CACHE.mkdir(parents=True, exist_ok=True)
 
     if not a.build_only:
