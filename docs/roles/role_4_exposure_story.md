@@ -290,7 +290,7 @@ Step 1 is pure Python. Start it now, while Earth Engine time gets agreed for ste
 
 **Figures:**
 - **`figures/L_lorenz_examples.png`:** Lorenz curves for 6 cities (the 3 most and 3 least unequal, or Delhi, Mumbai, Kolkata, Bengaluru, Jodhpur and Kochi), with the diagonal for perfect equality.
-- **`figures/L_gini_hist.png`:** the spread of greenness and cooling Gini across cities.
+- **`figures/L_people_gap.png`:** people-weighted minus area Gini, per city and season. Above 0 means greenness or cooling sits away from where people live. This replaces a histogram of raw Gini values, which can't be compared between greenness and cooling (see the note in `17_lorenz.py`).
 
 **Checks** (build them in):
 - [ ] **Equal case:** a fake city with equal NDVI and equal population gives a Gini of exactly 0.
@@ -317,7 +317,7 @@ Step 1 is pure Python. Start it now, while Earth Engine time gets agreed for ste
 - Landsat passes at about 10:30–11:00 local time, earlier than MODIS Aqua's 13:30. So its temperatures will be lower than MODIS values, which is expected. State it.
 
 **Parks (OpenStreetMap, osmnx):**
-- Tags: `{'leisure': ['park', 'garden'], 'landuse': ['recreation_ground']}`.
+- Tags: `{'leisure': ['park', 'garden', 'nature_reserve'], 'landuse': ['recreation_ground']}`. `nature_reserve` is needed because OSM tags KBR National Park that way.
 - Keep polygons of at least 5 ha.
 - Drop parks that are mostly water, such as lakeside promenades, using Nidhi's OSM water approach. Cache the download in `raw/osm/`.
 - Report how many parks are left, with their names where OSM has them.

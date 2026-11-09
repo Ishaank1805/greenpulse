@@ -333,8 +333,8 @@ Nidhi's robustness check waits on Ishaan's and Johar's results. The deck waits o
 | `data/results/city_solar.csv` | R1 | uc_id, city, season, ssrd_mj_m2_day |
 | `data/results/felt_heat.csv` | R2 | uc_id, city, season, step, r, delta_td, d_lst, d_tair, d_hi, hi_efficiency, delta_star |
 | `data/results/height_effect.csv` | R3 | uc_id, city, season, time, tercile, n, ce_per_0.1, ci_lo, ci_hi, interaction, interaction_p |
-| `data/results/lorenz.csv` | R4 | uc_id, city, season, gini_ndvi, gini_cooling, n_cells, pop_total |
-| `data/results/hyderabad_parks.csv` | R4 | park_id, name, area_ha, lst_park_c, lst_plateau_c, cooling_c, distance_m |
+| `data/results/lorenz.csv` | R4 | uc_id, city, season, gini_ndvi, gini_cooling, n_cells, pop_total, gini_ndvi_area, gini_cooling_area, people_gap_ndvi, people_gap_cooling |
+| `data/results/hyderabad_parks.csv` | R4 | park_id, name, area_ha, lst_park_c, lst_plateau_c, cooling_c, distance_m, ndvi_park, flag |
 | `data/results/hyderabad_ring_profile.csv` | R4 | park_id, ring_m, lst_c, n_pixels |
 | `data/results/new_checks.csv` | R5 | analysis, variant, n_cities, statistic, value, note |
 

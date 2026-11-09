@@ -93,6 +93,28 @@ Source: `data/results/exposure.csv`. 202 cities with ≥ 30 urban squares (built
 - **Gaps are small on average** (tenths of a degree) **but reach about 1 °C** in some cities (Kolkata +1.08 °C pre-monsoon day). Kolkata is also the city where crowded squares are least green (−0.05 NDVI).
 - **Comparison with the literature:** Chakraborty et al. 2019 found poorer neighbourhoods hotter in 72% of 25 cities, using surface temperature. We use population density, not income, so we can say "more crowded squares", not "poorer". Our 63–87% by day is in the same range.
 
+### Final phase: who receives greenness and cooling (`data/results/lorenz.csv`, `scripts/17_lorenz.py`)
+
+- **The cooling greenery provides sits away from where people live.** Within cities, cooling is shared more unequally among people than across the city's land in 85% (pre-monsoon), 93% (post) and 94% (winter) of cities. The median people-weighted Gini is above the land-only Gini by 0.05-0.08.
+- **Greenness itself shows the same direction, more weakly:** it is shared more unequally among people than across land in 69-78% of cities, but the gap is tiny (median +0.003 to +0.005).
+- **Raw Gini values are not directly comparable.** The greenness Gini (median 0.08) is low because almost every urban square has some NDVI. The cooling Gini (median 0.46) is partly high by construction, since cooling is measured above each city's barest 10% of squares. Neither can be compared with Chen et al. 2022's greenspace-access Gini (0.47 vs 0.27). Use the people-vs-land comparison above instead.
+- **Bigger cities have more unequal greenness** (Spearman ρ = +0.43 with the number of squares, pre-monsoon), and drier cities slightly more (ρ = -0.38 with rainfall). Cooling inequality shows neither link (p > 0.15).
+- 36 city-seasons have no cooling Gini because their daytime slope is not negative.
+
+### Final phase: Hyderabad at 30 m (`data/results/hyderabad_parks.csv`, `scripts/18_hyderabad.py`)
+
+Landsat 8/9 surface temperature, 22 clear scenes, April-May 2019-2024. 22 OpenStreetMap parks of at least 5 ha, including KBR and Mahavir Harina Vanasthali National Parks, which OSM tags as nature reserves.
+
+- **Green parks cool, dry parks do not.** How much a park cools depends strongly on how green it is before the monsoon (Spearman ρ = +0.72, p = 0.0001, n = 22).
+  - The greener half of parks (NDVI ≥ 0.37) is a median 1.56 °C cooler than its surroundings, close to Shah et al. 2021's 2.23 °C for Bengaluru. Examples: Sanjeevaiah Park 2.98 °C, Indira Park 2.77 °C.
+  - The drier half is 0.23 °C *warmer* than its surroundings. These are dry scrub, sports grounds, and deciduous forest that has lost leaves by April-May (KBR only 0.17 °C cooler, Botanical Gardens 0.64 °C warmer).
+  - This fits Guo et al. 2026, where grassland often warms dry cities, and Manoli et al. 2019, where greenery needs water to cool.
+- **Cooling reaches about 430 m.** For the 19 parks with a clear turning point, the median cooling is 1.04 °C (middle half -0.16 to 1.91 °C), reaching a median 431 m (middle half 251-771 m). Shah et al. 2021 found 347 m in Bengaluru.
+- **Only 64% of parks** are cooler inside than their surroundings 500-990 m away.
+- **This is what 1 km squares cannot see.** A single park, and its cooling ring of a few hundred metres, is smaller than one MODIS square. At 30 m, the green-versus-dry contrast between parks is visible.
+- **Check against MODIS:** Landsat averaged into our 1 km squares follows the MODIS pattern (Spearman +0.44, n = 1,010 squares). It reads about 1.3 °C warmer on average, despite its earlier pass (about 10:30 vs 13:30). Landsat and MODIS use different temperature retrievals, so compare patterns, not absolute values.
+- **Limits:** one city and one season; parks come from OpenStreetMap; surface temperature, not air. Cooling distance uses a cubic turning point; check Shah et al.'s methods before calling it the same method.
+
 ## Role 5 (water and data quality)
 
 - **Monsoon availability:** In Mumbai, usable daytime LST composites fall from **85.0% in April–May to 25.2% in June–September**, supporting exclusion of the monsoon from the main seasonal analysis (`data/results/lst_availability_by_month.csv`).
