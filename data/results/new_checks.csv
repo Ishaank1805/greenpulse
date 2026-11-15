@@ -1,0 +1,17 @@
+analysis,variant,n_cities,statistic,value,note
+H6,all,191,spearman_hi_efficiency_vs_rh,0.8645511848994213,"p=2.22643e-58; pre, +0.1 NDVI, r=0.08, dewpoint change=0; only greener-is-cooler cities; SCENARIO, not measured air cooling"
+H6,all,191,spearman_delta_star_vs_rh,-0.40276591347478635,"p=7.63487e-09; pre, +0.1 NDVI, r=0.08, dewpoint change=0; only greener-is-cooler cities; SCENARIO, not measured air cooling"
+H6,n_blocks_ge_10,80,spearman_hi_efficiency_vs_rh,0.8749648382559775,"p=2.76598e-26; pre, +0.1 NDVI, r=0.08, dewpoint change=0; only greener-is-cooler cities; SCENARIO, not measured air cooling"
+H6,n_blocks_ge_10,80,spearman_delta_star_vs_rh,-0.5234646038443507,"p=6.28655e-07; pre, +0.1 NDVI, r=0.08, dewpoint change=0; only greener-is-cooler cities; SCENARIO, not measured air cooling"
+H6,n_blocks_gt_5,154,spearman_hi_efficiency_vs_rh,0.8831940987538712,"p=7.63495e-52; pre, +0.1 NDVI, r=0.08, dewpoint change=0; only greener-is-cooler cities; SCENARIO, not measured air cooling"
+H6,n_blocks_gt_5,154,spearman_delta_star_vs_rh,-0.4437976950310917,"p=8.17453e-09; pre, +0.1 NDVI, r=0.08, dewpoint change=0; only greener-is-cooler cities; SCENARIO, not measured air cooling"
+H6,water_median_le_0.05,191,spearman_hi_efficiency_vs_rh,0.8645511848994213,"p=2.22643e-58; pre, +0.1 NDVI, r=0.08, dewpoint change=0; only greener-is-cooler cities; SCENARIO, not measured air cooling"
+H6,water_median_le_0.05,191,spearman_delta_star_vs_rh,-0.40276591347478635,"p=7.63487e-09; pre, +0.1 NDVI, r=0.08, dewpoint change=0; only greener-is-cooler cities; SCENARIO, not measured air cooling"
+H6,water_mean_le_0.05 (extra),176,spearman_hi_efficiency_vs_rh,0.8584811798371121,"p=2.4212e-52; pre, +0.1 NDVI, r=0.08, dewpoint change=0; only greener-is-cooler cities; SCENARIO, not measured air cooling"
+H6,water_mean_le_0.05 (extra),176,spearman_delta_star_vs_rh,-0.39298481179837114,"p=6.85109e-08; pre, +0.1 NDVI, r=0.08, dewpoint change=0; only greener-is-cooler cities; SCENARIO, not measured air cooling"
+H6,main_slope_on_no_water_city_set,187,spearman_hi_efficiency_vs_rh,0.8672295648152567,p=6.33195e-58; main slope evaluated on cities with no-water cooling; matched-population comparator to no_water_slope_recomputed
+H6,main_slope_on_no_water_city_set,187,spearman_delta_star_vs_rh,-0.39092120282317705,p=3.17259e-08; main slope evaluated on cities with no-water cooling; matched-population comparator to no_water_slope_recomputed
+H6,no_water_same_city_set,187,spearman_hi_efficiency_vs_rh,0.8690353410971926,p=1.94696e-58; no-water slopes on exact main/no-water common cooling cities
+H6,no_water_same_city_set,187,spearman_delta_star_vs_rh,-0.4509283965660889,p=9.39558e-11; no-water slopes on exact main/no-water common cooling cities
+H6,no_water_slope_recomputed,188,spearman_hi_efficiency_vs_rh,0.8432708995913001,"p=4.87987e-52; 15_felt_heat.hi_change and delta_star; built_elev slopes, r=0.08; cooling cities only; SCENARIO"
+H6,no_water_slope_recomputed,188,spearman_delta_star_vs_rh,-0.4591724504114991,"p=3.40998e-11; 15_felt_heat.hi_change and delta_star; built_elev slopes, r=0.08; cooling cities only; SCENARIO"
