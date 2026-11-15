@@ -2,7 +2,7 @@
 
 This report is generated from local results by `scripts/23_finalize_role5.py`.
 
-**Height check:** PENDING Johar’s height_effect.csv.
+**Height check:** COMPLETE (review against Johar’s numbers before presenting).
 
 ## Verified findings
 
@@ -11,7 +11,7 @@ This report is generated from local results by `scripts/23_finalize_role5.py`.
 - **Actual exclusion of water-covered squares:** Refitting the pre-monsoon NDVI slope after excluding squares with >5% OSM mapped water retains 176 matched cooling cities. Humidity-efficiency ρ changes +0.861 → +0.861; humidity-break-even ρ changes -0.410 → -0.390. The ≥10-block restricted comparison contains 80 cities (restricted efficiency ρ=+0.875). An even stricter exclusion of all positive mapped water gives 137 matched cities (ρ=+0.827 → +0.826). This is a separate within-city refit; excluding entire high-water cities is not the same test.
 - **City-level water sensitivity:** The mean-water >5% city exclusion retains 176 H6 cities; the median-water >5% city exclusion excludes none. Adding water to the city-level LST regression changes the median paired pre-monsoon daytime slope by -0.0074 °C per 0.1 NDVI (bootstrap 95% interval -0.0196 to -0.0001). Absolute slope shifts are associated with mean mapped water (Spearman ρ=+0.472), without a causal interpretation.
 - **Nighttime selection check:** Of 202 pre-monsoon daytime-estimable cities, only 135 also have usable nighttime slopes. An exploratory model adjusting for daytime sample count gives an odds ratio 0.91 per +10 percentage points RH (95% CI 0.72–1.17; p=0.47); there is no clear adjusted humidity association. This tests sample availability, not a pure cloud-only mechanism.
-- **Building height: PENDING** Johar’s `data/results/height_effect.csv`. The script is tested with synthetic data but no real height result can be claimed yet.
+- **Building-height check (Johar input received):** 69 paired pre-monsoon daytime cities; significantly positive interaction share 18.8%, median tall-minus-low +0.064 °C per 0.1 NDVI. Among ≥10-block cities (n=65), positive-share 16.9%. Confirm the all-city definition matches Johar’s own headline before presenting the comparison.
 
 **Interpretation:** LST slopes are observational cross-sectional associations; H6 results are modelled Heat Index scenarios based on published conversion ratios and ERA5.
 
@@ -24,10 +24,9 @@ This report is generated from local results by `scripts/23_finalize_role5.py`.
 - `data/results/new_checks.csv`, `role5_water_sensitivity.csv`, `role5_night_selection.csv`, `role5_dry_square_city_slopes.csv`, `role5_water_square_checks.csv`
 - `figures/R5_h6_checks.png`, `figures/R5_water_sensitivity.png`, `figures/R5_night_selection.png`
 
-## Remaining dependency (not fabrication)
+## Remaining work
 
-- Ask Johar for `data/results/height_effect.csv`, his height headline count and effect, and related figure. Rerun `python scripts/19_new_checks.py --require-height`, then `python scripts/23_finalize_role5.py --require-height`.
-- Final deck, speaker script, teammate handoffs and group rehearsal are excluded here.
+- Final presentation and group rehearsal remain.
 
 ## Role 5 handoff points
 

@@ -184,11 +184,13 @@ def main():
                        '`role5_dry_square_city_slopes.csv`, `role5_water_square_checks.csv`\n'
                        '- `figures/R5_h6_checks.png`, `figures/R5_water_sensitivity.png`, '
                        '`figures/R5_night_selection.png`\n\n'
-                       '## Remaining dependency (not fabrication)\n\n'
-                       '- Ask Johar for `data/results/height_effect.csv`, his height headline count and effect, '
-                       'and related figure. Rerun `python scripts/19_new_checks.py --require-height`, '
-                       'then `python scripts/23_finalize_role5.py --require-height`.\n'
-                       '- Final deck, speaker script, teammate handoffs and group rehearsal are excluded here.\n\n'
+                       + (
+                           '## Remaining work\n\n'
+                           '- Final presentation and group rehearsal remain.\n\n'
+                           if has_height else
+                           '## Remaining dependencies\n\n'
+                           '- Building-height results and final presentation are pending.\n\n'
+                       ) +
                        '## Role 5 handoff points\n\n'
                        '1. The H6 scenario efficiency/humidity association stays positive under stricter '
                        'sample quality and dry-square exclusions, contrary to the originally expected direction.\n'
