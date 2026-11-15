@@ -130,7 +130,7 @@ def check_height(rows, ce, water, require_height=False):
     d['tercile_norm']=labels.replace({'lower':'low','lowest':'low','upper':'tall',
                                      'high':'tall','highest':'tall','short':'low',
                                      'medium':'mid','middle':'mid'})
-    unknown=set(d.tercile_norm.unique())-{'low','mid','tall'}
+    unknown=set(d.tercile_norm.unique())-{'low','mid','tall','all'}
     if unknown:raise ValueError(f'Unrecognized height terciles: {unknown}')
     if d.duplicated(['uc_id','tercile_norm']).any():
         raise ValueError('Duplicate city/tercile in height_effect.csv')

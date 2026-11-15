@@ -15,3 +15,13 @@ H6,no_water_same_city_set,187,spearman_hi_efficiency_vs_rh,0.8690353410971926,p=
 H6,no_water_same_city_set,187,spearman_delta_star_vs_rh,-0.4509283965660889,p=9.39558e-11; no-water slopes on exact main/no-water common cooling cities
 H6,no_water_slope_recomputed,188,spearman_hi_efficiency_vs_rh,0.8432708995913001,"p=4.87987e-52; 15_felt_heat.hi_change and delta_star; built_elev slopes, r=0.08; cooling cities only; SCENARIO"
 H6,no_water_slope_recomputed,188,spearman_delta_star_vs_rh,-0.4591724504114991,"p=3.40998e-11; 15_felt_heat.hi_change and delta_star; built_elev slopes, r=0.08; cooling cities only; SCENARIO"
+height,all,69,share_positive_interaction_p_lt_0.05,0.18840579710144928,Positive interaction means a less negative / more positive slope in tall areas
+height,all,69,median_tall_minus_low_ce_per_0.1,0.06403709052220563,°C per 0.1 NDVI; computed from tall and low tercile slopes
+height,n_blocks_ge_10,65,share_positive_interaction_p_lt_0.05,0.16923076923076924,Positive interaction means a less negative / more positive slope in tall areas
+height,n_blocks_ge_10,65,median_tall_minus_low_ce_per_0.1,0.05489192667669296,°C per 0.1 NDVI; computed from tall and low tercile slopes
+height,n_blocks_gt_5,69,share_positive_interaction_p_lt_0.05,0.18840579710144928,Positive interaction means a less negative / more positive slope in tall areas
+height,n_blocks_gt_5,69,median_tall_minus_low_ce_per_0.1,0.06403709052220563,°C per 0.1 NDVI; computed from tall and low tercile slopes
+height,water_median_le_0.05,69,share_positive_interaction_p_lt_0.05,0.18840579710144928,Positive interaction means a less negative / more positive slope in tall areas
+height,water_median_le_0.05,69,median_tall_minus_low_ce_per_0.1,0.06403709052220563,°C per 0.1 NDVI; computed from tall and low tercile slopes
+height,water_mean_le_0.05 (extra),62,share_positive_interaction_p_lt_0.05,0.1935483870967742,Positive interaction means a less negative / more positive slope in tall areas
+height,water_mean_le_0.05 (extra),62,median_tall_minus_low_ce_per_0.1,0.14248931762449146,°C per 0.1 NDVI; computed from tall and low tercile slopes
